@@ -33,12 +33,11 @@ namespace imilp {
 /** Retrospective oracle data collector. */
 class RankedPairsCollector : public DataCollectorBase {
  public:
-  RankedPairsCollector(SCIP *scip, const std::string &train_filename,
-                       const std::string &valid_filename, Oracle *oracle, 
+  RankedPairsCollector(SCIP *scip, const std::string &output_filename,
+                       Oracle *oracle, 
                        Feat *feat)
       : DataCollectorBase(scip),
-        train_filename_(train_filename),
-        valid_filename_(valid_filename),
+        output_filename_(output_filename),
         oracle_(oracle),
         feat_(feat) {}
   ~RankedPairsCollector() {};
@@ -50,12 +49,10 @@ class RankedPairsCollector : public DataCollectorBase {
 
  private:
   /** Output file name. */
-  std::string train_filename_;
-  std::string valid_filename_;
+  std::string output_filename_;
 
   /** File stream to save collected data to. */
-  std::ofstream train_file_;
-  std::ofstream valid_file_;
+  std::ofstream output_file_;
 
   /** Retrospective oracle. */
   Oracle *oracle_;

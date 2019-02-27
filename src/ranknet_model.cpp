@@ -122,8 +122,8 @@ bool RankNetModel::Train(const std::string& train_file,
 }
 
 /** Train model. */
-std::pair<double, double> RankNetModel::Predict(const std::vector<double>& x1,
-                                                const std::vector<double>& x2) {
+int RankNetModel::Predict(const std::vector<double>& x1,
+                          const std::vector<double>& x2) {
   try {
     /* Convert vectors to Python lists. */
     bp::list x1_list;
@@ -135,14 +135,17 @@ std::pair<double, double> RankNetModel::Predict(const std::vector<double>& x1,
     }
 
     /* Call the functions of the Python class to get the prediction. */
-    bp::object result =
+    bp::object result_obj =
         RankNet_py_.attr("predict")(x1_list, x2_list);
 
-    double score1 = bp::extract<double>(result[0]);
-    double score2 = bp::extract<double>(result[1]);
+    // double score1 = bp::extract<double>(result[0]);
+    // double score2 = bp::extract<double>(result[1]);
+
+    int result = bp::extract<int>(result_obj);
 
     /* Return the prediction. */
-    return std::make_pair(score1, score2);
+    // return std::make_pair(score1, score2);
+    return result;
 
     /* Handle error within embedded Python. */
   } catch (bp::error_already_set&) {
@@ -173,7 +176,8 @@ std::pair<double, double> RankNetModel::Predict(const std::vector<double>& x1,
   }
 
   /* If an error occurred. */
-  return std::make_pair(-1, -1);
+  // return std::make_pair(-1, -1);
+  return -1;
 }
 
 }  // namespace imilp

@@ -44,41 +44,22 @@ void RankedPairsCollector::Init() {
   namespace fs = boost::filesystem;
 
   /* If train file exists, open in append mode. */
-  if (fs::is_regular_file(fs::path(train_filename_))) {
+  if (fs::is_regular_file(fs::path(output_filename_))) {
     std::cerr << "[INFO]: "
               << "RankedPairsCollector: "
-              << "Appending train data to existing file: " << train_filename_
+              << "Appending data to existing file: " << output_filename_
               << "\n";
-    train_file_.open(train_filename_, std::ofstream::app);
+    output_file_.open(output_filename_, std::ofstream::app);
 
     /* Otherwise, create a new file and write headers. */
   } else {
     std::cerr << "[INFO]: "
               << "RankedPairsCollector: "
-              << "Creating new file for train data and writing headers: "
-              << train_filename_ << "\n";
-    train_file_.open(train_filename_, std::ofstream::out);
+              << "Creating new file for data and writing headers: "
+              << output_filename_ << "\n";
+    output_file_.open(output_filename_, std::ofstream::out);
     // WriteHeaders();
-    train_file_ << feat_->GetHeaders() << "\n";
-  }
-
-  /* If valid file exists, open in append mode. */
-  if (fs::is_regular_file(fs::path(valid_filename_))) {
-    std::cerr << "[INFO]: "
-              << "RankedPairsCollector: "
-              << "Appending validation data to existing file: "
-              << valid_filename_ << "\n";
-    valid_file_.open(valid_filename_, std::ofstream::app);
-
-    /* Otherwise, create a new file and write headers. */
-  } else {
-    std::cerr << "[INFO]: "
-              << "RankedPairsCollector: "
-              << "Creating new file for validation data and writing headers: "
-              << valid_filename_ << "\n";
-    valid_file_.open(valid_filename_, std::ofstream::out);
-    // WriteHeaders();
-    valid_file_ << feat_->GetHeaders() << "\n";
+    output_file_ << feat_->GetHeaders() << "\n";
   }
 
   /* Failed to load solutions. TODO */
@@ -90,8 +71,7 @@ void RankedPairsCollector::Init() {
 /** Deconstructor. */
 void RankedPairsCollector::DeInit() {
   /* Close the output file. */
-  train_file_.close();
-  valid_file_.close();
+  output_file_.close();
 
   /* Free all the solutions. */
   oracle_->FreeSolutions();
@@ -161,44 +141,47 @@ void RankedPairsCollector::Process() {
 
   /* Generate a random number to determine whether this data point should go
      to the train or the validation set. */
-  std::random_device rd; 
+  std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> dist(0.0, 1.0);
-  double p = dist(gen);
+  double prob_flip_pair = dist(gen);
 
   /* Write out the data in pairs. */
-  for (auto &opt_node : opt_nodes) {
+  for (auto& opt_node : opt_nodes) {
     for (auto& non_opt_node : non_opt_nodes) {
-      /* Write weight values */
-      if (p < 0.2) {
-        valid_file_ << weight << ",";
-      } else {
-        train_file_ << weight << ",";
-      }
+      /* TODO: some very basic depth cutoff */
+      if (weight >= 3.0) {
+        /* Write weight values */
+        output_file_ << weight << ",";
 
-      /* Write X1 values */
-      for (auto& feat : opt_node.first) {
-        if (p < 0.2) {
-          valid_file_ << feat << ",";
+        if (prob_flip_pair < 0.5) {
+          /* Write X1 values */
+          for (auto& feat : opt_node.first) {
+            output_file_ << feat << ",";
+          }
+
+          /* Write X2 values */
+          for (auto& feat : non_opt_node) {
+            output_file_ << feat << ",";
+          }
+
+          /* Write training target (y), that X1 better than X2 */
+          output_file_ << 1 << "\n";
+
         } else {
-          train_file_ << feat << ",";
-        }
-      }
+          /* Write X2 values */
+          for (auto& feat : non_opt_node) {
+            output_file_ << feat << ",";
+          }
 
-      /* Write X2 values */
-      for (auto& feat : non_opt_node) {
-        if (p < 0.2) {
-          valid_file_ << feat << ",";
-        } else {
-          train_file_ << feat << ",";
-        }
-      }
+          /* Write X1 values */
+          for (auto& feat : opt_node.first) {
+            output_file_ << feat << ",";
+          }
 
-      /* Write training target (y) */
-      if (p < 0.2) {
-        valid_file_ << opt_node.second << "\n";
-      } else {
-        train_file_ << opt_node.second << "\n";
+          /* Write training target (y), that X1 not better than X2 */
+          output_file_ << 0 << "\n";
+        }
       }
     }
   }

@@ -41,8 +41,7 @@ class RankNetModel {
              int num_epochs, int batch_size);
 
   /** Use model to get a prediction. */
-  std::pair<double, double> Predict(const std::vector<double>& x1,
-                                    const std::vector<double>& x2);
+  int Predict(const std::vector<double>& x1, const std::vector<double>& x2);
 
  private:
   int input_dim_;

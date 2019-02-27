@@ -18,34 +18,39 @@ namespace imilp {
 
 namespace fs = boost::filesystem;
 
-/** Solve a thing */
-bool ImitationMILP::Train(const std::string& problems_path,
-                          const std::string& solutions_path,
-                          const std::string& model_path,
-                          const std::string& prev_model, int num_iters,
-                          int num_epochs, int batch_size) {
-  bool success = true;
+const std::string kSolutionsDirName = "solutions";
 
+/** Validate directory structure. */
+bool ImitationMILP::ValidateDirectoryStructure(
+    const std::string& problems_path) {
+  bool success = true;
   SCIP_RETCODE retcode;
 
   /* Iterate through each problem in the problems directory and make sure a
      valid solution structure exists for each problem. */
   std::cout << "[INFO]: "
             << "ImitationMILP: "
-            << "Validating solutions directory structure."
+            << "Validating directory structure for folder: " << problems_path
             << "\n";
-  for (auto& problem : fs::directory_iterator(fs::path(problems_path))) {
+
+  fs::path path = fs::path(problems_path);
+  fs::path solutions_dir = path / kSolutionsDirName;
+
+  /* Make sure the main solutions directory exists. */
+  fs::create_directory(solutions_dir);
+
+  for (auto& problem : fs::directory_iterator(path)) {
     /* not a valid problem file, skip. */
     if (fs::extension(problem.path()) != ".lp") {
       continue;
     }
 
     fs::path problem_name = problem.path().stem();
-    fs::path solutions_dir = fs::path(solutions_path) / problem_name;
+    fs::path problem_solutions_dir = solutions_dir / problem_name;
 
     /* If the solution directory did not exist, we create it and generate a
      * solution. */
-    if (fs::create_directory(solutions_dir)) {
+    if (fs::create_directory(problem_solutions_dir)) {
       std::cout
           << "[INFO]: "
           << "ImitationMILP: "
@@ -60,8 +65,11 @@ bool ImitationMILP::Train(const std::string& problems_path,
       }
 
       /* Solve current SCIP instance. */
-      retcode = SolveSCIP(problem_name.string(), problems_path,
-                          solutions_dir.string(), NULL, NULL);
+      retcode = SolveSCIP(problem_name.string() /* problem name */, 
+                          problems_path /* input file */,
+                          problem_solutions_dir.string() /* output solution */,
+                          NULL /* use data collector */,
+                          NULL /* use node selector */);
       if (retcode != SCIP_OKAY) {
         success = false;
         break;
@@ -78,35 +86,27 @@ bool ImitationMILP::Train(const std::string& problems_path,
     return success;
   }
 
-  /* Run the train loop. */
-  Feat feat;
-  
-  /* Create the model. */
-  RankNetModel model(feat.GetNumFeatures(), model_path, prev_model);
-  success = model.Init();
-  if (!success) {
-    return success;
-  }
+  return success;
+}
 
-  fs::path train_file = fs::path(problems_path) / (problems_path + ".train");
-  fs::path valid_file = fs::path(problems_path) / (problems_path + ".valid");
+/** Solve a directory of problems with the oracle node selector and collect
+    data about the nodes. */
+bool ImitationMILP::OracleSolve(const std::string& problems_path, Feat* feat) {
+  bool success = true;
+  SCIP_RETCODE retcode;
 
-  /* If there was no previous model, train an initial model with the oracle
-     scorer as behavioral cloning. */
-  if (prev_model == "") {
-    std::cerr << "[INFO]: "
-              << "ImitationMILP: "
-              << "Previous model was not specified, training a new model and "
-                 "saving to file: " << model_path << "\n";
+  fs::path path = fs::path(problems_path);
+  fs::path solutions_dir = path / kSolutionsDirName;
+  fs::path data_file = path / (problems_path + ".data");
 
-    for (auto& problem : fs::directory_iterator(fs::path(problems_path))) {
+  for (auto& problem : fs::directory_iterator(path)) {
       /* not a valid problem file, skip. */
       if (fs::extension(problem.path()) != ".lp") {
         continue;
       }
 
       fs::path problem_name = problem.path().stem();
-      fs::path solutions_dir = fs::path(solutions_path) / problem_name;
+      fs::path problem_solutions_dir = fs::path(solutions_dir) / problem_name;
 
       retcode = CreateNewSCIP();
       if (retcode != SCIP_OKAY) {
@@ -115,11 +115,10 @@ bool ImitationMILP::Train(const std::string& problems_path,
       }
 
       /* Create the oracle. */
-      Oracle oracle(scip_, solutions_dir.string());
+      Oracle oracle(scip_, problem_solutions_dir.string());
 
       /* Create the data collector. */
-      RankedPairsCollector dc(scip_, train_file.string(), valid_file.string(),
-                              &oracle, &feat);
+      RankedPairsCollector dc(scip_, data_file.string(), &oracle, feat);
       EventhdlrCollectData event_handler(scip_, &dc);
 
       /* Create the oracle node selector. */
@@ -127,7 +126,9 @@ bool ImitationMILP::Train(const std::string& problems_path,
       NodeselPolicy node_selector(scip_, &scorer);
 
       /* Solve current SCIP instance. */
-      retcode = SolveSCIP(problem_name.string(), problems_path, std::string(""),
+      retcode = SolveSCIP(problem_name.string() /* problem name */,
+                          problems_path /* problem input file */,
+                          std::string("") /* don't write solution to outfile */,
                           &event_handler, &node_selector);
       if (retcode != SCIP_OKAY) {
         success = false;
@@ -144,7 +145,111 @@ bool ImitationMILP::Train(const std::string& problems_path,
       return success;
     }
 
+  return success;
+}
+
+/** Solve a directory of problems with the policy node selector and collect
+    data about the nodes. */
+bool ImitationMILP::PolicySolve(const std::string& problems_path, Feat* feat,
+                                RankNetModel* model) {
+  bool success = true;
+  SCIP_RETCODE retcode;
+
+  fs::path path = fs::path(problems_path);
+  fs::path solutions_dir = path / kSolutionsDirName;
+  fs::path data_file = path / (problems_path + ".data");
+
+  for (auto& problem : fs::directory_iterator(path)) {
+    /* not a valid problem file, skip. */
+    if (fs::extension(problem.path()) != ".lp") {
+      continue;
+    }
+
+    fs::path problem_name = problem.path().stem();
+    fs::path problem_solutions_dir = fs::path(solutions_dir) / problem_name;
+
+    retcode = CreateNewSCIP();
+    if (retcode != SCIP_OKAY) {
+      success = false;
+      break;
+    }
+
+    /* Create the oracle. */
+    Oracle oracle(scip_, problem_solutions_dir.string());
+
+    /* Create the data collector. */
+    RankedPairsCollector dc(scip_, data_file.string(), &oracle, feat);
+    EventhdlrCollectData event_handler(scip_, &dc);
+
+    /* Create the node selector. */
+    PythonScorer scorer(scip_, model, feat);
+    NodeselPolicy node_selector(scip_, &scorer);
+
+    /* Solve current SCIP instance. */
+    retcode = SolveSCIP(problem_name.string() /* problem name */,
+                        problems_path /* problem input file */,
+                        std::string("") /* don't write solution to outfile */,
+                        &event_handler, &node_selector);
+    if (retcode != SCIP_OKAY) {
+      success = false;
+      break;
+    }
+
+    /* Clean up current SCIP instance. */
+    retcode = FreeSCIP();
+
+    /* If something went wrong, free current SCIP instance. */
+    if (!success) {
+      FreeSCIP();
+      return success;
+    }
+  }
+
+  return success;
+}
+
+/** Train loop for model. */
+bool ImitationMILP::Train(const std::string& train_path,
+                          const std::string& valid_path,
+                          const std::string& model_path,
+                          const std::string& prev_model, int num_iters,
+                          int num_epochs, int batch_size) {
+  bool success = true;
+
+  /* Validate train and validation directory structures and make sure the 
+     problems have valid solutions. */
+  if (!ValidateDirectoryStructure(train_path) ||
+      !ValidateDirectoryStructure(valid_path)) {
+    return false;
+  }
+
+  /* Setup training. */
+  /* Features to compute during training. */
+  Feat feat;
+  
+  /* Create the model. */
+  RankNetModel model(feat.GetNumFeatures(), model_path, prev_model);
+  success = model.Init();
+  if (!success) {
+    return success;
+  }
+
+  /* If there was no previous model, train an initial model with the oracle
+     scorer as behavioral cloning. */
+  if (prev_model == "") {
+    std::cerr << "[INFO]: "
+              << "ImitationMILP: "
+              << "Previous model was not specified, training a new model and "
+                 "saving to file: " << model_path << "\n";
+
+    /* Collect initial data using oracle policy. */
+    if (!OracleSolve(train_path, &feat) || !OracleSolve(valid_path, &feat)) {
+      return false;
+    }
+
     /* Train the initial model. */
+    fs::path train_file = fs::path(train_path) / (train_path + ".data");
+    fs::path valid_file = fs::path(valid_path) / (valid_path + ".data");
     success = model.Train(train_file.string(), valid_file.string(), num_epochs,
                           batch_size);
     if (!success) {
@@ -160,52 +265,15 @@ bool ImitationMILP::Train(const std::string& problems_path,
   for (int i = 0; i < num_iters; ++i) {
     std::cerr << "[INFO]: " << "Starting train iteration " << i << "\n";
 
-    for (auto& problem : fs::directory_iterator(fs::path(problems_path))) {
-      /* not a valid problem file, skip. */
-      if (fs::extension(problem.path()) != ".lp") {
-        continue;
-      }
-
-      fs::path problem_name = problem.path().stem();
-      fs::path solutions_dir = fs::path(solutions_path) / problem_name;
-
-      retcode = CreateNewSCIP();
-      if (retcode != SCIP_OKAY) {
-        success = false;
-        break;
-      }
-
-      /* Create the oracle. */
-      Oracle oracle(scip_, solutions_dir.string());
-
-      /* Create the data collector. */
-      RankedPairsCollector dc(scip_, train_file.string(), valid_file.string(),
-                              &oracle, &feat);
-      EventhdlrCollectData event_handler(scip_, &dc);
-
-      /* Create the node selector. */
-      PythonScorer scorer(scip_, &model, &feat);
-      NodeselPolicy node_selector(scip_, &scorer);
-
-      /* Solve current SCIP instance. */
-      retcode = SolveSCIP(problem_name.string(), problems_path, std::string(""),
-                          &event_handler, &node_selector);
-      if (retcode != SCIP_OKAY) {
-        success = false;
-        break;
-      }
-
-      /* Clean up current SCIP instance. */
-      retcode = FreeSCIP();
+    /* Collect data using current trained model. */
+    if (!PolicySolve(train_path, &feat, &model) ||
+        !PolicySolve(valid_path, &feat, &model)) {
+      return false;
     }
 
-    /* If something went wrong, free current SCIP instance. */
-    if (!success) {
-      FreeSCIP();
-      return success;
-    }
-
-    /* Train the initial model. */
+    /* Train the next model. */
+    fs::path train_file = fs::path(train_path) / (train_path + ".data");
+    fs::path valid_file = fs::path(valid_path) / (valid_path + ".data");
     success = model.Train(train_file.string(), valid_file.string(), num_epochs,
                 batch_size);
     if (!success) {

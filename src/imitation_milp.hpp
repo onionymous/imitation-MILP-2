@@ -17,11 +17,13 @@
 
 #include <string>
 
-#include "scip/scip.h"
 #include "objscip/objscip.h"
+#include "scip/scip.h"
 
 #include "eventhdlr_collectdata.hpp"
 #include "nodesel_policy.hpp"
+#include "ranknet_model.hpp"
+#include "feat.hpp"
 
 namespace imilp {
 
@@ -42,13 +44,12 @@ class ImitationMILP {
   }
 
   /** Solve a single problem instance. */
-  bool Solve(const std::string& problem_file) {return true;}
+  bool Solve(const std::string& problem_file) { return true; }
 
   /** Begin the training. */
-  bool Train(const std::string& problems_path,
-             const std::string& solutions_path, const std::string& model_path,
-             const std::string& prev_model, int num_iters, int num_epochs,
-             int batch_size);
+  bool Train(const std::string& train_path, const std::string& valid_path,
+             const std::string& model_path, const std::string& prev_model,
+             int num_iters, int num_epochs, int batch_size);
 
  private:
   /** Create a new current SCIP instance. */
@@ -63,6 +64,12 @@ class ImitationMILP {
                          const std::string& output_dir,
                          EventhdlrCollectData* eventhdlr,
                          NodeselPolicy* nodesel);
+
+  /** Helper functions for training loop. */
+  bool ValidateDirectoryStructure(const std::string& problems_path);
+  bool OracleSolve(const std::string& problems_path, Feat* feat);
+  bool PolicySolve(const std::string& problems_path, Feat* feat,
+                   RankNetModel* model);
 
   /** Path of SCIP params file. */
   std::string settings_file_;

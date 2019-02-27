@@ -126,7 +126,7 @@ int Oracle::GetOptimality(SCIP_NODE* node) {
 
   /* The root is guaranteed to be optimal. */
   if (SCIPnodeGetDepth(node) == 0) {
-    opt = solutions_.size() - 1;
+    opt = solutions_.size();
     return node_opt_cache_[node_id];
   }
 

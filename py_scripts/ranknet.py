@@ -46,7 +46,8 @@ class RankNet:
 
         # Build model.
         self.model = Model(inputs=[rel, irr], outputs=prob)
-        self.model.compile(optimizer="adagrad", loss="binary_crossentropy")
+        self.model.compile(optimizer="adagrad", loss="binary_crossentropy",
+                           metrics=["acc"])
 
         # Load weights if it was specified
         if prev_model and Path(prev_model).is_file():
@@ -71,8 +72,6 @@ class RankNet:
         valid_X2 = valid_data[:, self.input_dim + 1:-1]
 
         # Train model
-        # NUM_EPOCHS = 30
-        # BATCH_SIZE = 32
         checkpointer = ModelCheckpoint(
             filepath=self.model_file, verbose=1, save_best_only=True)
         history = self.model.fit([train_X1, train_X2], train_y,
@@ -82,18 +81,23 @@ class RankNet:
                                      [valid_X1, valid_X2], valid_y, valid_weights),
                                  callbacks=[checkpointer], verbose=2)
 
+        print("avg prediction: ", np.mean(
+            self.model.predict([train_X1, train_X2])))
+
     def predict(self, X1, X2):
         X1 = np.array(X1).reshape((1, self.input_dim))
         X2 = np.array(X2).reshape((1, self.input_dim))
 
-        score1 = np.asscalar(self.get_score([X1])[0])
-        score2 = np.asscalar(self.get_score([X2])[0])
+        s1 = np.asscalar(self.model.predict([X1, X2]))
+        s2 = np.asscalar(self.model.predict([X2, X1]))
 
-        return (score1, score2)
+        if (s1 > s2):
+            return 1
+        else:
+            return 0
 
-# model = RankNet("models/test2.h5", 26, "models/test.h5")
 
-# X1 = 2 * np.random.uniform(size=(1, 26))
-# X2 = np.random.uniform(size=(1, 26))
-
-# print("\n\n", model.predict(X1, X2))
+# m = RankNet("models/test2.h5", 26, "models/test.h5")
+# m.train("test_data/test_data.train",
+#         "test_data/test_data.valid", 10, 32)
+# m.predict(np.array([1] * 26), np.array([0] * 26))
