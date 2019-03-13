@@ -126,7 +126,7 @@ int Oracle::GetOptimality(SCIP_NODE* node) {
 
   /* The root is guaranteed to be optimal. */
   if (SCIPnodeGetDepth(node) == 0) {
-    opt = solutions_.size();
+    opt = solutions_.size() - 1;
     return node_opt_cache_[node_id];
   }
 
@@ -200,6 +200,35 @@ int Oracle::GetOptimality(SCIP_NODE* node) {
   SCIPfreeBufferArray(scip_, &branchbounds);
 
   return node_opt_cache_[node_id];
+}
+
+/** Get distance from closest optimal node. */
+int Oracle::GetDistanceFromOpt(SCIP_NODE* node) {
+  NodeId node_id = SCIPnodeGetNumber(node);
+
+  /* If the node is already in the cache, return the cached value. */
+  auto it = opt_dist_cache_.find(node_id);
+  if (it != opt_dist_cache_.end()) {
+    return it->second;
+  }
+  
+  /* Otherwise, compute the distance from the closest optimal node. 
+     TODO: what to do in case of multiple optimal nodes? */
+  int dist = 0;
+  if (GetOptimality(node) >= 0) {
+    /* This node is optimal, distance is 0. */
+    dist = 0;
+  } else {
+    /* Node adds 1 to the distance from its parent. */
+    SCIP_NODE* parent = SCIPnodeGetParent(node);
+    dist = GetDistanceFromOpt(parent) + 1;
+  }
+
+  // std::cerr << "Distance: " << dist << "\n";
+
+  /* Cache and return. */
+  opt_dist_cache_[node_id] = dist;
+  return dist;
 }
 
 }  // namespace imilp

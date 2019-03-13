@@ -47,6 +47,9 @@ class Oracle {
       solutions. */
   int GetOptimality(SCIP_NODE *node);
 
+  /** Get distance of a node from the last optimal solution. */
+  int GetDistanceFromOpt(SCIP_NODE *node);
+
  private:
   /** Path to soliutins directory. */
   std::string solutions_dir_;
@@ -57,8 +60,12 @@ class Oracle {
   /** Current list of solutions. */
   std::vector<SCIP_SOL*> solutions_;
 
-  /** Cache for local features. */
-  std::unordered_map<NodeId, int> node_opt_cache_; 
+  /** Cache for optimality. */
+  std::unordered_map<NodeId, int> node_opt_cache_;
+
+  /** Cache for distance from last optimal node. */
+  std::unordered_map<NodeId, int> opt_dist_cache_; 
+
 };
 
 }  // namespace imilp

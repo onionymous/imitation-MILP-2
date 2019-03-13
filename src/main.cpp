@@ -39,20 +39,24 @@ int main(int argc, char** argv) {
     // std::string solutions_path;
     std::string model_path;
     std::string prev_model;
+    int num_iters;
+    int num_epochs;
 
     namespace po = boost::program_options;
     po::options_description desc("Options");
     desc.add_options()
       ("help,h", "produce help message")
       ("settings,x", po::value<std::string>(&settings_file)->default_value("scipparams.set", "SCIP parameters/settings file"))
-      ("problems_path,i", po::value<std::string>(&problems_path)->default_value(""), "problem file or directory of files to be solved")
+      ("problems_path,p", po::value<std::string>(&problems_path)->default_value(""), "problem file or directory of files to be solved")
       ("output_path,o", po::value<std::string>(&output_path)->default_value(""), "path to save solutions to")
       ("train,t", po::bool_switch(&is_train)->default_value(false), "run in training mode")
       ("train_path,f", po::value<std::string>(&train_path)->default_value(""), "directory of training problems")
       ("valid_path,v", po::value<std::string>(&valid_path)->default_value(""), "directory of validation probelms")
       // ("solutions_path,s", po::value<std::string>(&solutions_path)->default_value(""), "directory containing solutions to the input problems (for training mode)")
       ("model_path,m", po::value<std::string>(&model_path)->default_value(""), "path to save trained models to (for training mode)")
-      ("prev_model,w", po::value<std::string>(&prev_model)->default_value(""), "previous model to continue training on (for training mode)");
+      ("prev_model,w", po::value<std::string>(&prev_model)->default_value(""), "previous model to continue training on (for training mode)")
+      ("num_iters,i", po::value<int>(&num_iters)->default_value(5), "number of DAgger iterations (for training mode)")
+      ("num_epochs,e", po::value<int>(&num_epochs)->default_value(5), "number of model training epochs (for training mode)");
 
     po::variables_map vm;
     try {
@@ -114,7 +118,7 @@ int main(int argc, char** argv) {
 
       /* Train */
       if (!im.Train(train_path, valid_path, model_path, prev_model,
-                    1 /* iters */, 10 /* epochs */, 32 /* batch size */)) {
+                    num_iters, num_epochs, 32 /* batch size */)) {
         std::cerr << "[ERROR]: ImitationMILP encountered an error."
                   << "\n";
         return EXIT_FAILURE;

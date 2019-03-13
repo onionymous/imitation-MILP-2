@@ -69,7 +69,7 @@ class ImitationMILP {
   bool ValidateDirectoryStructure(const std::string& problems_path);
   bool OracleSolve(const std::string& problems_path, Feat* feat);
   bool PolicySolve(const std::string& problems_path, Feat* feat,
-                   RankNetModel* model);
+                   RankNetModel* model, double dc_sample_rate);
 
   /** Path of SCIP params file. */
   std::string settings_file_;

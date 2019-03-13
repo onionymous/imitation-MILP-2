@@ -118,7 +118,8 @@ bool ImitationMILP::OracleSolve(const std::string& problems_path, Feat* feat) {
       Oracle oracle(scip_, problem_solutions_dir.string());
 
       /* Create the data collector. */
-      RankedPairsCollector dc(scip_, data_file.string(), &oracle, feat);
+      RankedPairsCollector dc(scip_, data_file.string(), &oracle, feat,
+                              1.0 /* data collector random sampling rate */);
       EventhdlrCollectData event_handler(scip_, &dc);
 
       /* Create the oracle node selector. */
@@ -151,7 +152,7 @@ bool ImitationMILP::OracleSolve(const std::string& problems_path, Feat* feat) {
 /** Solve a directory of problems with the policy node selector and collect
     data about the nodes. */
 bool ImitationMILP::PolicySolve(const std::string& problems_path, Feat* feat,
-                                RankNetModel* model) {
+                                RankNetModel* model, double dc_sample_rate) {
   bool success = true;
   SCIP_RETCODE retcode;
 
@@ -178,7 +179,7 @@ bool ImitationMILP::PolicySolve(const std::string& problems_path, Feat* feat,
     Oracle oracle(scip_, problem_solutions_dir.string());
 
     /* Create the data collector. */
-    RankedPairsCollector dc(scip_, data_file.string(), &oracle, feat);
+    RankedPairsCollector dc(scip_, data_file.string(), &oracle, feat, 0.2);
     EventhdlrCollectData event_handler(scip_, &dc);
 
     /* Create the node selector. */
@@ -243,7 +244,8 @@ bool ImitationMILP::Train(const std::string& train_path,
                  "saving to file: " << model_path << "\n";
 
     /* Collect initial data using oracle policy. */
-    if (!OracleSolve(train_path, &feat) || !OracleSolve(valid_path, &feat)) {
+    if (!OracleSolve(train_path, &feat) || 
+        !OracleSolve(valid_path, &feat)) {
       return false;
     }
 
@@ -262,12 +264,12 @@ bool ImitationMILP::Train(const std::string& train_path,
             << "ImitationMILP: "
             << "Running training loop for " << num_iters << " iterations."
             << "\n";
-  for (int i = 0; i < num_iters; ++i) {
+  for (int i = 0; (i < num_iters) && success; ++i) {
     std::cerr << "[INFO]: " << "Starting train iteration " << i << "\n";
 
     /* Collect data using current trained model. */
-    if (!PolicySolve(train_path, &feat, &model) ||
-        !PolicySolve(valid_path, &feat, &model)) {
+    if (!PolicySolve(train_path, &feat, &model, 0.05) ||
+        !PolicySolve(valid_path, &feat, &model, 1.0)) {
       return false;
     }
 
@@ -276,9 +278,6 @@ bool ImitationMILP::Train(const std::string& train_path,
     fs::path valid_file = fs::path(valid_path) / (valid_path + ".data");
     success = model.Train(train_file.string(), valid_file.string(), num_epochs,
                 batch_size);
-    if (!success) {
-      return success;
-    }
   }
 
   return success;
@@ -374,6 +373,8 @@ SCIP_RETCODE ImitationMILP::SolveSCIP(const std::string& problem_name,
     SCIP_CALL(SCIPprintBestSol(scip_, file, FALSE));
     fclose(file);
   }
+
+  // SCIP_CALL( SCIPprintStatistics(scip_, NULL) );
 
   // Calculate some problem-solving stats
   // SCIP_Real duality_gap = SCIPgetGap(scip_);

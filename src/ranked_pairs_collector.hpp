@@ -34,12 +34,12 @@ namespace imilp {
 class RankedPairsCollector : public DataCollectorBase {
  public:
   RankedPairsCollector(SCIP *scip, const std::string &output_filename,
-                       Oracle *oracle, 
-                       Feat *feat)
+                       Oracle *oracle, Feat *feat, double sample_rate)
       : DataCollectorBase(scip),
         output_filename_(output_filename),
         oracle_(oracle),
-        feat_(feat) {}
+        feat_(feat),
+        sample_rate_(sample_rate) {}
   ~RankedPairsCollector() {};
 
   /** Process the current SCIP instance. */
@@ -59,6 +59,10 @@ class RankedPairsCollector : public DataCollectorBase {
 
   /** Features. */
   Feat *feat_;
+
+  /** Sampling rate for data collection output to files. (0.0 to write nothing,
+      1.0 to write everything). */
+  double sample_rate_;
 };
 
 }  // namespace imilp

@@ -30,6 +30,8 @@
 #include "scip/var.h"
 #include "scip/stat.h"
 
+#define MAX_DIST_FROM_OPT 5
+
 /**************************************************************************/
 /* RankedPairsCollector class */
 /**************************************************************************/
@@ -125,9 +127,20 @@ void RankedPairsCollector::Process() {
         int opt = oracle_->GetOptimality(node);
 
         if (opt > -1) {
+          /* Node is optimal. */
           opt_nodes.push_back({feat_->ComputeFeatures(scip_, node), opt});
+
         } else {
-          non_opt_nodes.push_back(feat_->ComputeFeatures(scip_, node));
+          /* Node is non-optimal, append it if it is within cutoff from last
+             optimal node. */
+          int dist_from_opt = oracle_->GetDistanceFromOpt(node);
+          if (dist_from_opt <= MAX_DIST_FROM_OPT) {
+            /* compute and append */
+            non_opt_nodes.push_back(feat_->ComputeFeatures(scip_, node));
+          } else {
+            /* compute only. */
+            feat_->ComputeFeatures(scip_, node);
+          }
         }
       }
 
@@ -139,22 +152,26 @@ void RankedPairsCollector::Process() {
 
   // std::cout << opt_nodes.size() << " " << non_opt_nodes.size() << "\n";
 
-  /* Generate a random number to determine whether this data point should go
-     to the train or the validation set. */
+  /* Generate a random number to determine whether this data point should be 
+     flipped. */
   std::random_device rd;
   std::mt19937 gen(rd());
   std::uniform_real_distribution<> dist(0.0, 1.0);
+
+  /* Probability to write this data point. */
+  double prob_write = dist(gen);
+
+  /* Probability to flip this output. */
   double prob_flip_pair = dist(gen);
 
   /* Write out the data in pairs. */
   for (auto& opt_node : opt_nodes) {
     for (auto& non_opt_node : non_opt_nodes) {
-      /* TODO: some very basic depth cutoff */
-      if (weight >= 3.0) {
+      if (prob_write <= sample_rate_) {
         /* Write weight values */
         output_file_ << weight << ",";
 
-        if (prob_flip_pair < 0.5) {
+        if (prob_flip_pair <= 0.5) {
           /* Write X1 values */
           for (auto& feat : opt_node.first) {
             output_file_ << feat << ",";

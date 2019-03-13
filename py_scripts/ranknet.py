@@ -81,8 +81,8 @@ class RankNet:
                                      [valid_X1, valid_X2], valid_y, valid_weights),
                                  callbacks=[checkpointer], verbose=2)
 
-        print("avg prediction: ", np.mean(
-            self.model.predict([train_X1, train_X2])))
+        # print("avg prediction: ", np.mean(
+        #    self.model.predict([train_X1, train_X2])))
 
     def predict(self, X1, X2):
         X1 = np.array(X1).reshape((1, self.input_dim))
