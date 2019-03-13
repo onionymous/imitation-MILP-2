@@ -30,6 +30,7 @@ CXXMAINOBJ	=	main.o \
 				oracle.o \
 				feat.o \
 				ranked_pairs_collector.o \
+				feat_computer_collector.o \
 				nodesel_policy.o \
 				oracle_scorer.o \
 				python_scorer.o \

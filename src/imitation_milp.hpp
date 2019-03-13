@@ -44,7 +44,8 @@ class ImitationMILP {
   }
 
   /** Solve a single problem instance. */
-  bool Solve(const std::string& problem_file) { return true; }
+  bool Solve(const std::string& problem_file, const std::string& output_file,
+             const std::string& model_file);
 
   /** Begin the training. */
   bool Train(const std::string& train_path, const std::string& valid_path,

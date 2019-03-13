@@ -234,7 +234,7 @@ constraints/disableenfops = FALSE
 
 # verbosity level of output
 # [type: int, advanced: FALSE, range: [0,5], default: 4]
-display/verblevel = 1
+display/verblevel = 4
 
 # maximal number of characters in a node information line
 # [type: int, advanced: FALSE, range: [0,2147483647], default: 139]

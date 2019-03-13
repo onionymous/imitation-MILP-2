@@ -8,6 +8,7 @@
 #include "oracle.hpp"
 #include "data_collector_base.hpp"
 #include "ranked_pairs_collector.hpp"
+#include "feat_computer_collector.hpp"
 #include "scorer_base.hpp"
 #include "oracle_scorer.hpp"
 #include "python_scorer.hpp"
@@ -19,6 +20,131 @@ namespace imilp {
 namespace fs = boost::filesystem;
 
 const std::string kSolutionsDirName = "solutions";
+
+/** Solve a problem. */
+bool ImitationMILP::Solve(const std::string& problem_file,
+                          const std::string& output_file,
+                          const std::string& model_file) {
+  bool success = true;
+
+  std::cout << "[INFO]: "
+            << "ImitationMILP: "
+            << "Solving problem: " << problem_file
+            << (model_file == "" ? " with default SCIP "
+                                 : (" with model: " + model_file)) << "\n";
+  
+  SCIP_RETCODE retcode;
+
+  retcode = CreateNewSCIP();
+  if (retcode != SCIP_OKAY) {
+    return false;
+  }
+
+  /* Solve current SCIP instance with model. If model file is empty, default
+     SCIP will be used to solve. */
+  Feat *feat = NULL;
+  RankNetModel *model = NULL;
+
+  FeatComputerCollector *dc = NULL;
+  EventhdlrCollectData *eventhdlr = NULL;
+
+  PythonScorer *scorer = NULL;
+  NodeselPolicy *nodesel = NULL;
+
+  if (model_file != "") {
+    feat = new Feat();
+  
+    /* Create the model. */
+    model = new RankNetModel(feat->GetNumFeatures(), model_file, model_file);
+    success = model->Init();
+    if (!success) {
+      return success;
+    }
+
+    /* Create the data collector. */
+    dc = new FeatComputerCollector(scip_, feat);
+    eventhdlr = new EventhdlrCollectData(scip_, dc);
+
+    /* Create the node selector. */
+    scorer = new PythonScorer(scip_, model, feat);
+    nodesel = new NodeselPolicy(scip_, scorer);
+
+    /* Use eventhandler. */
+    SCIP_CALL( SCIPincludeObjEventhdlr(scip_, eventhdlr, FALSE) );
+
+    /* Use node selector. */
+    SCIP_CALL( SCIPincludeObjNodesel(scip_, nodesel, FALSE) );
+  }
+
+  /* Read settings. */
+  SCIP_CALL( SCIPreadParams(scip_, settings_file_.c_str()) );
+  
+  /* Read problem file. */
+  retcode = SCIPreadProb(scip_, problem_file.c_str(), NULL);
+
+  switch (retcode) {
+    case SCIP_NOFILE:
+      SCIPinfoMessage(scip_, NULL, "file <%s> not found\n", problem_file);
+      success = false;
+      break;
+    case SCIP_PLUGINNOTFOUND:
+      SCIPinfoMessage(scip_, NULL, "no reader for input file <%s> available\n",
+                      problem_file);
+      success = false;
+      break;
+    case SCIP_READERROR:
+      SCIPinfoMessage(scip_, NULL, "error reading file <%s>\n", problem_file);
+      success = false;
+      break;
+    default:
+      SCIP_CALL(retcode);
+  } /*lint !e788*/
+
+  if (!success) {
+    FreeSCIP();
+    return success;
+  }
+
+  std::cerr << "[INFO]: " << "Read problem from file: " << problem_file << "\n";
+
+  /*******************
+   * Problem Solving *
+   *******************/
+
+  /* solve problem */
+  std::cerr << "[INFO]: " << "Solving problem..." << "\n\n";
+
+ /***********************************
+  * Version and library information *
+  ***********************************/
+  SCIP_CALL(SCIPsolve(scip_));
+
+  std::cerr << "\n";
+
+  /* If an output file was specified, write the solution to it. */
+  if (output_file != "") {
+    std::cerr << "[INFO]: " << "ImitationMILP: " << "Writing solution to: " << output_file << "\n";
+    FILE* file = fopen(output_file.c_str(), "w");
+    SCIP_CALL(SCIPprintBestSol(scip_, file, FALSE));
+    fclose(file);
+  }
+
+  /* Clean up current SCIP instance. */
+  retcode = FreeSCIP();
+
+  if (retcode != SCIP_OKAY) {
+    success = false;
+  }
+
+  delete feat;
+  delete model;
+  delete dc;
+  delete eventhdlr;
+  delete scorer;
+  delete nodesel;
+
+  return success;
+}
 
 /** Validate directory structure. */
 bool ImitationMILP::ValidateDirectoryStructure(

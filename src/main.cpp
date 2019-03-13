@@ -53,7 +53,7 @@ int main(int argc, char** argv) {
       ("train_path,f", po::value<std::string>(&train_path)->default_value(""), "directory of training problems")
       ("valid_path,v", po::value<std::string>(&valid_path)->default_value(""), "directory of validation probelms")
       // ("solutions_path,s", po::value<std::string>(&solutions_path)->default_value(""), "directory containing solutions to the input problems (for training mode)")
-      ("model_path,m", po::value<std::string>(&model_path)->default_value(""), "path to save trained models to (for training mode)")
+      ("model_path,m", po::value<std::string>(&model_path)->default_value(""), "path of trained model (solve mode) or path to save trained models to (for training mode)")
       ("prev_model,w", po::value<std::string>(&prev_model)->default_value(""), "previous model to continue training on (for training mode)")
       ("num_iters,i", po::value<int>(&num_iters)->default_value(5), "number of DAgger iterations (for training mode)")
       ("num_epochs,e", po::value<int>(&num_epochs)->default_value(5), "number of model training epochs (for training mode)");
@@ -86,14 +86,6 @@ int main(int argc, char** argv) {
     /* TRAINING MODE */
     if (is_train) {
       /* Check required arguments. */
-      // if (solutions_path == "") {
-      //   std::cerr << "[ERROR]: Solutions directory must be specified in "
-      //                "training mode."
-      //             << "\n\n";
-      //   std::cerr << desc << std::endl;
-      //   return EXIT_FAILURE;
-      // }
-
       if (model_path == "") {
         std::cerr
             << "[ERROR]: Model save path must be specified in training mode."
@@ -138,10 +130,17 @@ int main(int argc, char** argv) {
       }
 
       /* Check required arguments. */
-      if (output_path == "") {
-        std::cerr << "[ERROR]: Path to save solutions to must be specified."
-                  << "\n\n";
-        std::cerr << desc << std::endl;
+      // if (output_path == "") {
+      //   std::cerr << "[ERROR]: Path to save solutions to must be specified."
+      //             << "\n\n";
+      //   std::cerr << desc << std::endl;
+      //   return EXIT_FAILURE;
+      // }
+
+      /* Solve */
+      if (!im.Solve(problems_path, output_path, model_path)) {
+        std::cerr << "[ERROR]: ImitationMILP encountered an error."
+                  << "\n";
         return EXIT_FAILURE;
       }
 
