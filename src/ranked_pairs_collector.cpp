@@ -46,7 +46,7 @@ void RankedPairsCollector::Init() {
   namespace fs = boost::filesystem;
 
   /* If train file exists, open in append mode. */
-  if (fs::is_regular_file(fs::path(output_filename_))) {
+  if (fs::is_regular_file(fs::path(output_filename_)) && is_append_) {
     std::cerr << "[INFO]: "
               << "RankedPairsCollector: "
               << "Appending data to existing file: " << output_filename_
@@ -128,7 +128,7 @@ void RankedPairsCollector::Process() {
 
         if (opt > -1) {
           /* Node is optimal. */
-          opt_nodes.push_back({feat_->ComputeFeatures(scip_, node), opt});
+          opt_nodes.push_back({feat_->GetCachedFeatures(node), opt});
 
         } else {
           /* Node is non-optimal, append it if it is within cutoff from last
@@ -136,10 +136,7 @@ void RankedPairsCollector::Process() {
           int dist_from_opt = oracle_->GetDistanceFromOpt(node);
           if (dist_from_opt <= MAX_DIST_FROM_OPT) {
             /* compute and append */
-            non_opt_nodes.push_back(feat_->ComputeFeatures(scip_, node));
-          } else {
-            /* compute only. */
-            feat_->ComputeFeatures(scip_, node);
+            non_opt_nodes.push_back(feat_->GetCachedFeatures(node));
           }
         }
       }
@@ -151,6 +148,10 @@ void RankedPairsCollector::Process() {
   }
 
   // std::cout << opt_nodes.size() << " " << non_opt_nodes.size() << "\n";
+  // if (opt_nodes.size() == 0) {
+  //   // SCIPprintBestSol(scip_, stdout, FALSE);
+  //   SCIPinterruptSolve(scip_);
+  // }
 
   /* Generate a random number to determine whether this data point should be 
      flipped. */

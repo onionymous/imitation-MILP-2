@@ -231,4 +231,8 @@ int Oracle::GetDistanceFromOpt(SCIP_NODE* node) {
   return dist;
 }
 
+double Oracle::GetOptObjectiveValue() {
+  return SCIPsolGetOrigObj(solutions_[0]);
+}
+
 }  // namespace imilp

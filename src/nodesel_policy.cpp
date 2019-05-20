@@ -94,6 +94,9 @@ SCIP_DECL_NODESELSELECT(imilp::NodeselPolicy::scip_select) {
   assert(selnode != NULL);
 
   *selnode = SCIPgetBestNode(scip);
+  if (dc_) {
+    dc_->Process();
+  }
 
   return SCIP_OKAY;
 }

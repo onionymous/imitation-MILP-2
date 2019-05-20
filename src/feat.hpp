@@ -6,9 +6,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
 /**@file   feat.hpp
- * @brief  Data collector class that collects data for training a ranking model
-           with retrospective knowledge of node optimality, and writes the
-           collected data to a .csv file.
+ * @brief  Node features to be passed to the ranking model.
  * @author Stephanie Ding
  */
 

@@ -5,8 +5,8 @@
 /*                                                                           */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/**@file   python_scorer.hpp
- * @brief  Python node scorer.
+/**@file   ranknet_model.hpp
+ * @brief  C++ interface to the Python RankNet model.
  * @author Stephanie Ding
  */
 
@@ -34,10 +34,10 @@ class RankNetModel {
   ~RankNetModel() {};
 
   /** Python initialization. */
-  bool Init();
+  bool Init(bool is_gpu);
 
   /** Train model. */
-  bool Train(const std::string& train_file, const std::string& valid_file,
+  bool Train(const std::string& train_path, const std::string& valid_path,
              int num_epochs, int batch_size);
 
   /** Use model to get a prediction. */

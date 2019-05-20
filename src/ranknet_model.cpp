@@ -5,10 +5,8 @@
 /*                                                                           */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/**@file   ranked_pairs_collector.cpp
- * @brief  Data collector class that collects data for training a ranking model
-           with retrospective knowledge of node optimality, and writes the
-           collected data to a .csv file.
+/**@file   ranknet_model.cpp
+ * @brief  C++ interface to the Python RankNet model.
  * @author Stephanie Ding
  */
 
@@ -26,7 +24,7 @@ namespace imilp {
 namespace bp = boost::python;
 namespace fs = boost::filesystem;
 
-bool RankNetModel::Init() {
+bool RankNetModel::Init(bool is_gpu) {
   bool success = true;
   try {
     Py_Initialize();
@@ -41,7 +39,7 @@ bool RankNetModel::Init() {
     py_file_ = bp::import("ranknet");
     RankNet_py_ = py_file_.attr("RankNet")(
         model_path_, input_dim_,
-        prev_model_);
+        prev_model_, is_gpu);
 
   } catch (bp::error_already_set&) {
     success = false;
@@ -77,16 +75,16 @@ bool RankNetModel::Init() {
 }
 
 /** Train model. */
-bool RankNetModel::Train(const std::string& train_file,
-                         const std::string& valid_file, int num_epochs,
+bool RankNetModel::Train(const std::string& train_path,
+                         const std::string& valid_path, int num_epochs,
                          int batch_size) {
   bool success = true;
   try {
     /* Call the functions of the Python class to train. */
-    fs::path train_file_abs = fs::absolute(train_file).normalize();
-    fs::path valid_file_abs = fs::absolute(valid_file).normalize();
-    bp::object result = RankNet_py_.attr("train")(train_file_abs.string(),
-                                                  valid_file_abs.string(),
+    fs::path train_path_abs = fs::absolute(train_path).normalize();
+    fs::path valid_path_abs = fs::absolute(valid_path).normalize();
+    bp::object result = RankNet_py_.attr("train")(train_path_abs.string(),
+                                                  valid_path_abs.string(),
                                                   num_epochs, batch_size);
     /* Handle error within embedded Python. */
   } catch (bp::error_already_set&) {

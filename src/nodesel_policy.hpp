@@ -20,6 +20,7 @@
 #include "objscip/objscip.h"
 
 #include "scorer_base.hpp"
+#include "data_collector_base.hpp"
 
 #define NODESEL_NAME "policy"
 #define NODESEL_DESC "node selector that selects nodes according to a policy"
@@ -34,18 +35,30 @@ namespace imilp {
  */
 class NodeselPolicy : public scip::ObjNodesel {
  public:
-  NodeselPolicy(SCIP *scip, ScorerBase *scorer)
+  NodeselPolicy(SCIP *scip, ScorerBase *scorer,
+                DataCollectorBase *dc)
       : ObjNodesel(scip, NODESEL_NAME, NODESEL_DESC, NODESEL_PRIORITY,
                    NODESEL_PRIORITY),
-        scorer_(scorer) {}
+        scorer_(scorer),
+        dc_(dc) {}
 
   ~NodeselPolicy() {}
 
   /** Node selector initialization tasks. */
-  void Init() { scorer_->Init(); }
+  void Init() { 
+    scorer_->Init();
+    if (dc_) {
+      dc_->Init();
+    }
+  }
 
   /** Node selector deinitialization tasks. */
-  void DeInit() { scorer_->DeInit(); }
+  void DeInit() { 
+    scorer_->DeInit();
+    if (dc_) {
+      dc_->DeInit();
+    }
+  }
 
   /** Scores a node. */
   int Compare(SCIP_NODE *node1, SCIP_NODE *node2) {
@@ -101,6 +114,9 @@ class NodeselPolicy : public scip::ObjNodesel {
  private:
   /** Scorer that assigns a score to a node. */
   ScorerBase *scorer_;
+
+  /** Event handler object. */
+  DataCollectorBase *dc_;
 };
 
 }  // namespace imilp

@@ -50,6 +50,9 @@ class Oracle {
   /** Get distance of a node from the last optimal solution. */
   int GetDistanceFromOpt(SCIP_NODE *node);
 
+  /** Get optimal objective value. */
+  double GetOptObjectiveValue();
+
  private:
   /** Path to soliutins directory. */
   std::string solutions_dir_;

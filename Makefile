@@ -27,6 +27,7 @@ CMAINOBJ	=
 CXXMAINOBJ	=	main.o \
 				imitation_milp.o \
 				eventhdlr_collectdata.o \
+				eventhdlr_primalint.o \
 				oracle.o \
 				feat.o \
 				ranked_pairs_collector.o \

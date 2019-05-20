@@ -5,49 +5,49 @@
 /*                                                                           */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/**@file   eventhdlr_collectdata.hpp
- * @brief  event handler for collecting training data for imitation learning
+/**@file   eventhdlr_primalint.hpp
+ * @brief  event handler for calculating primal integral
  * @author Stephanie Ding
  */
 
 /*---+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9----+----0----+----1----+----2*/
 
-#ifndef EVENTHDLR_COLLECTDATA_HPP
-#define EVENTHDLR_COLLECTDATA_HPP
+#ifndef EVENTHDLR_PRIMALINT_HPP
+#define EVENTHDLR_PRIMALINT_HPP
 
 #include <unordered_map>
 #include <string>
-#include <array>
+#include <vector>
 
 #include "scip/scip.h"
 #include "objscip/objscip.h"
 
 #include "data_collector_base.hpp"
+#include "oracle.hpp"
 
 namespace imilp {
 
 /** C++ wrapper object for event handlers */
-class EventhdlrCollectData : public scip::ObjEventhdlr {
+class EventhdlrPrimalInt : public scip::ObjEventhdlr {
  public:
   /** Default constructor. */
-  EventhdlrCollectData(SCIP *scip, DataCollectorBase *data_collector)
-      : ObjEventhdlr(scip, "collectdata",
-                     "event handler for collecting imitation learning training "
-                     "data on all open "
-                     "nodes"),
-        data_collector_(data_collector) {}
+  EventhdlrPrimalInt(SCIP *scip, Oracle *oracle)
+      : ObjEventhdlr(scip, "primalint",
+                     "event handler for calculating primal integral"),
+        oracle_(oracle)
+       {}
 
   /** Destructor. */
-  ~EventhdlrCollectData() {}
+  ~EventhdlrPrimalInt() {}
 
   /** Process method for current SCIP state. */
-  void Process() { data_collector_->Process(); }
+  void Process();
 
   /** Event handler initialization tasks. */
-  void Init() { data_collector_->Init(); }
+  void Init() {} ;
 
   /** Event handler deinitialization tasks. */
-  void DeInit() { data_collector_->DeInit(); }
+  void DeInit();
 
   /**************************************************************************/
   /* Overwritten methods of SCIP event handler class */
@@ -98,9 +98,16 @@ class EventhdlrCollectData : public scip::ObjEventhdlr {
   virtual SCIP_DECL_EVENTEXEC(scip_exec);
 
  private:
-  /** Feature computer class for each node. Not owned. */
-  DataCollectorBase *data_collector_;
+  /** NOTE: Also has an scip_ object, inherited from parent. */
 
+  /** Oracle pointer. Not owned. */
+  Oracle *oracle_;
+
+  /** Objective values over time. */
+  std::vector<SCIP_Real> obj_vals_;
+
+  /** Time at which a new best primal solution was found. */
+  std::vector<SCIP_Real> times_;
 }; /*lint !e1712*/
 
 }  // namespace imilp

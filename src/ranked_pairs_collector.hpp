@@ -34,9 +34,11 @@ namespace imilp {
 class RankedPairsCollector : public DataCollectorBase {
  public:
   RankedPairsCollector(SCIP *scip, const std::string &output_filename,
-                       Oracle *oracle, Feat *feat, double sample_rate)
+                       bool is_append, Oracle *oracle, Feat *feat,
+                       double sample_rate)
       : DataCollectorBase(scip),
         output_filename_(output_filename),
+        is_append_(is_append),
         oracle_(oracle),
         feat_(feat),
         sample_rate_(sample_rate) {}
@@ -53,6 +55,9 @@ class RankedPairsCollector : public DataCollectorBase {
 
   /** File stream to save collected data to. */
   std::ofstream output_file_;
+
+  /** Append to existing file? */
+  bool is_append_;
 
   /** Retrospective oracle. */
   Oracle *oracle_;

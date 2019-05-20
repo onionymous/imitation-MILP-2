@@ -5,8 +5,8 @@
 /*                                                                           */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/**@file   eventhdlr_collectdata.cpp
- * @brief  event handler for collecting training data for imitation learning
+/**@file   eventhdlr_primalint.cpp
+ * @brief  event handler for calculating primal integral
  * @author Stephanie Ding
  */
 
@@ -14,12 +14,66 @@
 
 #include <cassert>
 #include <cstring>
-#include <fstream>
+#include <cstdlib>
+#include <algorithm>
 #include <iostream>
-#include <sstream>
 
-#include "eventhdlr_collectdata.hpp"
+#include "eventhdlr_primalint.hpp"
 #include "objscip/objscip.h"
+
+namespace imilp {
+  void EventhdlrPrimalInt::Process() {
+    SCIP_SOL *sol = SCIPgetBestSol(scip_);
+
+    if (sol) {
+      double obj = SCIPsolGetOrigObj(sol);
+
+      // double obj = SCIPgetPrimalbound(scip_);
+      double t = SCIPgetSolvingTime(scip_);
+
+      obj_vals_.push_back(obj);
+      times_.push_back(t);
+
+      std::cout << obj << " " << t << "\n";
+
+      // if (oracle_) {
+      //   if (fabs(obj - oracle_->GetOptObjectiveValue()) < 0.00001) {
+      //     SCIPinterruptSolve(scip_);
+      //   }
+      // }
+    }
+  }
+
+  void EventhdlrPrimalInt::DeInit() {
+    SCIP_SOL *sol = SCIPgetBestSol(scip_);
+    double opt = SCIPsolGetOrigObj(sol);
+
+    std::cout << "\nObjective values: (opt is " << opt << ")" << "\n";
+
+    double prev_t = 0.0;
+    double prev_p = 1.0;
+    double primal_integral = 0.0;
+
+    std::cout << "inf 1.0 0.0" << "\n";
+
+    for (size_t i = 0; i < obj_vals_.size(); i++) {
+      double p =
+          fabs(opt - obj_vals_[i]) / std::max(fabs(opt), fabs(obj_vals_[i]));
+      primal_integral += (prev_p * (times_[i] - prev_t));
+
+      prev_p = p;
+      prev_t = times_[i];
+
+      std::cout << obj_vals_[i] << " " << p << " " << times_[i] << "\n";
+    }
+
+    double t_final = SCIPgetSolvingTime(scip_);
+    primal_integral += prev_p * (t_final - prev_t);
+    std::cout << opt << " " << 0.0 << " " << t_final << "\n";
+
+    std::cout << "Primal integral: " << primal_integral << "\n\n";
+  }
+}
 
 /**************************************************************************/
 /* Overwritten methods of SCIP event handler class */
@@ -27,18 +81,18 @@
 
 /** destructor of event handler to free user data (called when SCIP is exiting)
  */
-SCIP_DECL_EVENTFREE(imilp::EventhdlrCollectData::scip_free) {
+SCIP_DECL_EVENTFREE(imilp::EventhdlrPrimalInt::scip_free) {
   return SCIP_OKAY;
 } /*lint !e715*/
 
 /** Initialization method of event handler (called after problem was
  *  transformed) */
-SCIP_DECL_EVENTINIT(imilp::EventhdlrCollectData::scip_init) {
-  imilp::EventhdlrCollectData* eventhdlr_obj = NULL;
+SCIP_DECL_EVENTINIT(imilp::EventhdlrPrimalInt::scip_init) {
+  imilp::EventhdlrPrimalInt* eventhdlr_obj = NULL;
 
   assert(scip != NULL);
   eventhdlr_obj =
-      static_cast<imilp::EventhdlrCollectData*>(SCIPgetObjEventhdlr(scip, eventhdlr));
+      static_cast<imilp::EventhdlrPrimalInt*>(SCIPgetObjEventhdlr(scip, eventhdlr));
   assert(eventhdlr_obj != NULL);
 
   eventhdlr_obj->Init();
@@ -48,12 +102,12 @@ SCIP_DECL_EVENTINIT(imilp::EventhdlrCollectData::scip_init) {
 
 /** Deinitialization method of event handler (called before transformed problem
  * is freed). */
-SCIP_DECL_EVENTEXIT(imilp::EventhdlrCollectData::scip_exit) {
-  imilp::EventhdlrCollectData* eventhdlr_obj = NULL;
+SCIP_DECL_EVENTEXIT(imilp::EventhdlrPrimalInt::scip_exit) {
+  imilp::EventhdlrPrimalInt* eventhdlr_obj = NULL;
 
   assert(scip != NULL);
   eventhdlr_obj =
-      static_cast<imilp::EventhdlrCollectData*>(SCIPgetObjEventhdlr(scip, eventhdlr));
+      static_cast<imilp::EventhdlrPrimalInt*>(SCIPgetObjEventhdlr(scip, eventhdlr));
   assert(eventhdlr_obj != NULL);
 
   eventhdlr_obj->DeInit();
@@ -69,10 +123,10 @@ SCIP_DECL_EVENTEXIT(imilp::EventhdlrCollectData::scip_exit) {
  *  initialize its branch and bound specific data.
  *
  */
-SCIP_DECL_EVENTINITSOL(imilp::EventhdlrCollectData::scip_initsol) {
+SCIP_DECL_EVENTINITSOL(imilp::EventhdlrPrimalInt::scip_initsol) {
   assert(scip != NULL);
   SCIP_CALL(
-      SCIPcatchEvent(scip, SCIP_EVENTTYPE_NODEEVENT, eventhdlr, NULL, NULL));
+      SCIPcatchEvent(scip, SCIP_EVENTTYPE_BESTSOLFOUND, eventhdlr, NULL, NULL));
   return SCIP_OKAY;
 }
 
@@ -83,16 +137,16 @@ SCIP_DECL_EVENTINITSOL(imilp::EventhdlrCollectData::scip_initsol) {
  *  The event handler should use this call to clean up its branch and bound
  *  data.
  */
-SCIP_DECL_EVENTEXITSOL(imilp::EventhdlrCollectData::scip_exitsol) {
+SCIP_DECL_EVENTEXITSOL(imilp::EventhdlrPrimalInt::scip_exitsol) {
   assert(scip != NULL);
   SCIP_CALL(
-      SCIPdropEvent(scip, SCIP_EVENTTYPE_NODEEVENT, eventhdlr, NULL, -1));
+      SCIPdropEvent(scip, SCIP_EVENTTYPE_BESTSOLFOUND, eventhdlr, NULL, -1));
 
   return SCIP_OKAY;
 }
 
 /** Frees specific constraint data.*/
-SCIP_DECL_EVENTDELETE(imilp::EventhdlrCollectData::scip_delete) {
+SCIP_DECL_EVENTDELETE(imilp::EventhdlrPrimalInt::scip_delete) {
   return SCIP_OKAY;
 } /*lint !e715*/
 
@@ -104,12 +158,12 @@ SCIP_DECL_EVENTDELETE(imilp::EventhdlrCollectData::scip_delete) {
  * method. This method creates an event filter object to point to the given
  * event handler and event data.
  */
-SCIP_DECL_EVENTEXEC(imilp::EventhdlrCollectData::scip_exec) {
-  imilp::EventhdlrCollectData* eventhdlr_obj = NULL;
+SCIP_DECL_EVENTEXEC(imilp::EventhdlrPrimalInt::scip_exec) {
+  imilp::EventhdlrPrimalInt* eventhdlr_obj = NULL;
 
   assert(scip != NULL);
   eventhdlr_obj =
-      static_cast<imilp::EventhdlrCollectData*>(SCIPgetObjEventhdlr(scip, eventhdlr));
+      static_cast<imilp::EventhdlrPrimalInt*>(SCIPgetObjEventhdlr(scip, eventhdlr));
   assert(eventhdlr_obj != NULL);
 
   eventhdlr_obj->Process();

@@ -5,7 +5,7 @@
 /*                                                                           */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-/**@file   feature_computer_base.hpp
+/**@file   imitation_milp.hpp
  * @brief  Main ImitationMILP solver class.
  * @author Stephanie Ding
  */
@@ -24,6 +24,7 @@
 #include "nodesel_policy.hpp"
 #include "ranknet_model.hpp"
 #include "feat.hpp"
+#include "oracle.hpp"
 
 namespace imilp {
 
@@ -63,14 +64,17 @@ class ImitationMILP {
   SCIP_RETCODE SolveSCIP(const std::string& problem_name,
                          const std::string& problem_dir,
                          const std::string& output_dir,
-                         EventhdlrCollectData* eventhdlr,
-                         NodeselPolicy* nodesel);
+                         EventhdlrCollectData *eventhdlr,
+                         NodeselPolicy *nodesel,
+                         Oracle *oracle);
 
   /** Helper functions for training loop. */
   bool ValidateDirectoryStructure(const std::string& problems_path);
-  bool OracleSolve(const std::string& problems_path, Feat* feat);
+  bool OracleSolve(const std::string& problems_path, Feat* feat,
+                   bool is_append);
   bool PolicySolve(const std::string& problems_path, Feat* feat,
-                   RankNetModel* model, double dc_sample_rate);
+                   RankNetModel* model, double dc_sample_rate,
+                   bool is_append);
 
   /** Path of SCIP params file. */
   std::string settings_file_;
