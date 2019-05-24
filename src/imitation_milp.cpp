@@ -67,6 +67,7 @@ bool ImitationMILP::Solve(const std::string& problem_file,
   PythonScorer *scorer = NULL;
   NodeselPolicy *nodesel = NULL;
 
+  // fix this later ur a dummy
   if (model_file != "") {
     feat = new Feat();
   
@@ -77,22 +78,22 @@ bool ImitationMILP::Solve(const std::string& problem_file,
       return success;
     }
 
-    /* Create the data collector. */
-    dc = new FeatComputerCollector(scip_, feat);
-    eventhdlr_dc = new EventhdlrCollectData(scip_, dc);
-    eventhdlr_primalint = new EventhdlrPrimalInt(scip_, NULL);
-
     /* Create the node selector. */
     scorer = new PythonScorer(scip_, model, feat);
     nodesel = new NodeselPolicy(scip_, scorer, NULL);
 
-    /* Use eventhandler. */
-    SCIP_CALL( SCIPincludeObjEventhdlr(scip_, eventhdlr_dc, FALSE) );
-    SCIP_CALL( SCIPincludeObjEventhdlr(scip_, eventhdlr_primalint, FALSE) );
+    /* Create the data collector. */
+    dc = new FeatComputerCollector(scip_, feat);
+    eventhdlr_dc = new EventhdlrCollectData(scip_, dc);
 
     /* Use node selector. */
+    SCIP_CALL( SCIPincludeObjEventhdlr(scip_, eventhdlr_dc, FALSE) );
     SCIP_CALL( SCIPincludeObjNodesel(scip_, nodesel, FALSE) );
   }
+
+  /* Use eventhandler. */
+  eventhdlr_primalint = new EventhdlrPrimalInt(scip_, NULL);
+  SCIP_CALL( SCIPincludeObjEventhdlr(scip_, eventhdlr_primalint, FALSE) );
 
   /* Read settings. */
   SCIP_CALL( SCIPreadParams(scip_, settings_file_.c_str()) );
