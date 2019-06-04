@@ -35,6 +35,7 @@ namespace imilp {
 namespace fs = boost::filesystem;
 
 const std::string kSolutionsDirName = "solutions";
+const std::string kDataDirName = "data";
 
 /** Solve a problem. */
 bool ImitationMILP::Solve(const std::string& problem_file,
@@ -91,7 +92,7 @@ bool ImitationMILP::Solve(const std::string& problem_file,
     SCIP_CALL( SCIPincludeObjNodesel(scip_, nodesel, FALSE) );
   }
 
-  /* Use eventhandler. */
+  /* Use eventhandler for primal integral. */
   eventhdlr_primalint = new EventhdlrPrimalInt(scip_, NULL);
   SCIP_CALL( SCIPincludeObjEventhdlr(scip_, eventhdlr_primalint, FALSE) );
 
@@ -188,8 +189,23 @@ bool ImitationMILP::ValidateDirectoryStructure(
 
   fs::path path = fs::path(problems_path);
   fs::path solutions_dir = path / kSolutionsDirName;
+  fs::path data_dir = path / kDataDirName;
 
-  /* Make sure the main solutions directory exists. */
+  /* Remove existing data if it exists. */
+  // if (fs::exists(data_dir) &&  fs::is_directory(data_dir)) {
+  //   fs::remove_all(data_dir);
+  // }
+
+  /* Create data directory, where each problem will save its data to a separate
+   * file in this directory. */
+  // if (fs::create_directory(data_dir)) {
+  //   std::cout << "[INFO]: "
+  //             << "ImitationMILP: "
+  //             << "Creating data directory: " << data_dir << "\n";
+  // }
+
+  /* Make sure the main data and solutions directories exists. */
+  // fs::create_directory(data_dir);
   fs::create_directory(solutions_dir);
 
   for (auto& problem : fs::directory_iterator(path)) {
@@ -252,15 +268,7 @@ bool ImitationMILP::OracleSolve(const std::string& problems_path, Feat* feat,
 
   fs::path path = fs::path(problems_path);
   fs::path solutions_dir = path / kSolutionsDirName;
-  fs::path data_dir = path / "data";
-
-  /* Create data directory, where each problem will save its data to a separate
-   * file in this directory. */
-  if (fs::create_directory(data_dir)) {
-    std::cout << "[INFO]: "
-              << "ImitationMILP: "
-              << "Creating data directory: " << data_dir << "\n";
-  }
+  fs::path data_dir = path / kDataDirName;
 
   for (auto& problem : fs::directory_iterator(path)) {
       /* not a valid problem file, skip. */
@@ -327,15 +335,7 @@ bool ImitationMILP::PolicySolve(const std::string& problems_path, Feat* feat,
 
   fs::path path = fs::path(problems_path);
   fs::path solutions_dir = path / kSolutionsDirName;
-  fs::path data_dir = path / "data";
-
-  /* Create data directory, where each problem will save its data to a separate
-   * file in this directory. */
-  if (fs::create_directory(data_dir)) {
-    std::cout << "[INFO]: "
-              << "ImitationMILP: "
-              << "Creating data directory: " << data_dir << "\n";
-  }
+  fs::path data_dir = path / kDataDirName;
 
   for (auto& problem : fs::directory_iterator(path)) {
     /* not a valid problem file, skip. */
@@ -423,6 +423,12 @@ bool ImitationMILP::Train(const std::string& train_path_str,
               << "Previous model was not specified, training a new model and "
                  "saving to file: " << model_path << "\n";
 
+    /* Remove existing data if it exists. */
+    if (fs::exists(data_dir) &&  fs::is_directory(data_dir)) {
+      fs::remove_all(data_dir);
+    }
+    fs::create_directory(data_dir);
+
     /* Collect initial data using oracle policy. */
     if (!OracleSolve(train_path_str, &feat, true /* aggregate data */) || 
         !OracleSolve(valid_path_str, &feat, false)) {
@@ -430,8 +436,8 @@ bool ImitationMILP::Train(const std::string& train_path_str,
     }
 
     /* Train the initial model. */
-    fs::path train_path = fs::path(train_path_str) / "data";
-    fs::path valid_path = fs::path(valid_path_str) / "data";
+    fs::path train_path = fs::path(train_path_str) / kDataDirName;
+    fs::path valid_path = fs::path(valid_path_str) / kDataDirName;
     success = model.Train(train_path.string(), valid_path.string(), num_epochs,
                           batch_size);
 
@@ -456,8 +462,8 @@ bool ImitationMILP::Train(const std::string& train_path_str,
     }
 
     /* Train the next model. */
-    fs::path train_path = fs::path(train_path_str) / "data";
-    fs::path valid_path = fs::path(valid_path_str) / "data";
+    fs::path train_path = fs::path(train_path_str) / kDataDirName;
+    fs::path valid_path = fs::path(valid_path_str) / kDataDirName;
     success = model.Train(train_path.string(), valid_path.string(), num_epochs,
                           batch_size);
   }

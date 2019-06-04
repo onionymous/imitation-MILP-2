@@ -1,0 +1,72 @@
+16x16x4, square
+
+> default SCIP
+
+256s|  4000 |     5 |252432 |  60.9 | 109M|  63 |   - | 775 |1939 | 775 |2199 | 141 |  75 |3656 | 2.364930e+00 | 2.367860e+00 |   0.12%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 255.96
+Solving Nodes      : 4005 (total of 4006 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (205 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> oracle
+
+206s|  3200 |    10 |123929 |  36.0 | 104M|  52 |  14 | 775 |2148 | 775 |2196 |  61 |  48 |1398 | 2.288350e+00 | 2.367860e+00 |   3.47%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 212.40
+Solving Nodes      : 3266 (total of 3267 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (177 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> run on trained model with behavioral cloning only
+
+252s|  6800 |     6 |144104 |  19.9 | 104M|  97 |   - | 775 |2205 | 775 |2197 | 184 | 102 |2790 | 2.278679e+00 | 2.367860e+00 |   3.91%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 270.97
+Solving Nodes      : 6862 (total of 6863 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (254 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+409s|  9600 |    16 |272974 |  27.5 | 103M|  59 |   8 | 775 |2224 | 775 |2200 |  90 | 104 |6111 | 2.293005e+00 | 2.367860e+00 |   3.26%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 410.02
+Solving Nodes      : 9648 (total of 9649 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (299 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> iteration 1
+
+218s|  4300 |    28 |105914 |  22.6 | 103M| 119 |   - | 775 |2159 | 775 |2196 | 129 |  51 |2293 | 2.278679e+00 | 2.367860e+00 |   3.91%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 237.29
+Solving Nodes      : 4366 (total of 4367 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (220 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+222s|  4300 |    28 |105914 |  22.6 | 103M| 119 |   - | 775 |2159 | 775 |2196 | 129 |  51 |2293 | 2.278679e+00 | 2.367860e+00 |   3.91%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 240.50
+Solving Nodes      : 4366 (total of 4367 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (220 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> iteration 2
+
+
+

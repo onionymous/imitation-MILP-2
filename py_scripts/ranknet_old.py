@@ -1,12 +1,10 @@
-import sys
 import numpy as np
 import tensorflow as tf
 from keras import backend as K
 from keras.callbacks import ModelCheckpoint
-from keras.layers import Activation, Add, Dense, Input, Lambda, Dropout, Subtract
+from keras.layers import Activation, Add, Subtract, Dense, Input, Lambda, Dropout
 from keras.models import Model, load_model
 from pathlib import Path
-from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 
 NUM_CORES = 4
@@ -151,10 +149,7 @@ def data_generator(data_path, scaler, input_dim, batch_size):
             w_batch = weights[i:end]
             yield ([X1_batch, X2_batch], y_batch, w_batch)
 
-        idx += 1
-        if idx == len(dg.files):
-            idx = 0
-            np.random.shuffle(dg.files)
+        idx = (idx + 1) % len(dg.files)
         # yield (xs, y, weights)
 
 
@@ -168,24 +163,18 @@ class RankNet:
         '''
         Constructor. Initialize with either CPU or GPU session as specified.
         '''
-        assert ('linux' in sys.platform), "This code runs on Linux only."
 
         self.model_file = model_file
-        self.prev_model = prev_model
         self.input_dim = input_dim
-        self.model = None
 
         self.is_gpu = is_gpu
 
         self.set_session()
-        if prev_model and (prev_model != ""):
-            self.build_model()
-            self.load_model()
+        self.build_model()
 
-    def load_model(self):
-        assert(self.prev_model and Path(self.prev_model).is_file()
-               ), "Previous model {} could not be loaded.".format(self.prev_model)
-        self.model.load_weights(self.prev_model)
+        # Load weights if it was specified
+        if prev_model and Path(prev_model).is_file():
+            self.model.load_weights(prev_model)
 
     def build_model(self):
         '''
@@ -198,32 +187,23 @@ class RankNet:
 
         # Model
         h1 = Dense(h1_dim, activation="relu")
-        d1 = Dropout(rate=0.2)
         h2 = Dense(h2_dim, activation="relu")
-        d2 = Dropout(rate=0.2)
         h3 = Dense(h3_dim, activation="relu")
-        d3 = Dropout(rate=0.2)
         s = Dense(1)
 
         # Relevant samples
         rel = Input(shape=(self.input_dim, ), dtype="float32")
         h1_rel = h1(rel)
-        d1_rel = d1(h1_rel)
-        h2_rel = h2(d1_rel)
-        d2_rel = d2(h2_rel)
-        h3_rel = h3(d2_rel)
-        d3_rel = d3(h3_rel)
-        rel_score = s(d3_rel)
+        h2_rel = h2(h1_rel)
+        h3_rel = h3(h2_rel)
+        rel_score = s(h3_rel)
 
         # Irrelevant samples
         irr = Input(shape=(self.input_dim, ), dtype="float32")
         h1_irr = h1(irr)
-        d1_irr = d1(h1_irr)
-        h2_irr = h2(d1_irr)
-        d2_irr = d2(h2_irr)
-        h3_irr = h3(d2_irr)
-        d3_irr = d3(h3_irr)
-        irr_score = s(d3_irr)
+        h2_irr = h2(h1_irr)
+        h3_irr = h3(h2_irr)
+        irr_score = s(h3_irr)
 
         # Subtract scores.
         diff = Subtract()([rel_score, irr_score])
@@ -262,12 +242,13 @@ class RankNet:
         Saves the model, clears the existing backend session, flips the is_gpu
         flag and creates a new session.
         '''
-        # self.model.save(self.model_file)
+        self.model.save(self.model_file)
         K.clear_session()
         self.is_gpu = not self.is_gpu
         self.set_session()
+        self.model = load_model(self.model_file)
 
-    def train(self, train_dir, valid_dir, num_epochs, batch_size):
+    def train(self, train_path, valid_path, num_epochs, batch_size):
         '''
         Run the training loop for a specified number of epochs and iterations.
         Training is done on the GPU so session will be switched if it was on
@@ -278,21 +259,19 @@ class RankNet:
         if not self.is_gpu:
             self.switch_session()
 
-        self.build_model()
-
         # Create data scaler
-        scaler = build_standard_scaler(train_dir, self.input_dim)
+        scaler = build_standard_scaler(train_path, self.input_dim)
 
         # Create generators
         train_dg = DataGenerator(
-            train_dir, self.input_dim, batch_size=batch_size, shuffle=True)
+            train_path, self.input_dim, batch_size=batch_size, shuffle=True)
         valid_dg = DataGenerator(
-            valid_dir, self.input_dim, batch_size=batch_size, shuffle=True)
+            valid_path, self.input_dim, batch_size=batch_size, shuffle=True)
 
         train_gen = data_generator(
-            train_dir, scaler, self.input_dim, batch_size)
+            train_path, scaler, self.input_dim, batch_size)
         valid_gen = data_generator(
-            valid_dir, scaler, self.input_dim, batch_size)
+            valid_path, scaler, self.input_dim, batch_size)
 
         # Count data files
         print("Train on {} samples, test on {} samples".format(
@@ -318,16 +297,13 @@ class RankNet:
                                            validation_steps=valid_dg.steps_per_epoch(),
                                            epochs=num_epochs,
                                            callbacks=[checkpointer], verbose=1,
-                                           max_queue_size=10, workers=1, use_multiprocessing=False,
+                                           max_queue_size=1, workers=1, use_multiprocessing=False,
                                            shuffle=False)
 
-        self.prev_model = self.model_file
-        self.load_model()
-
-        print(self.model.evaluate_generator(train_gen, train_dg.steps_per_epoch(),
-                                            max_queue_size=10, workers=1, use_multiprocessing=False))
-        print(self.model.evaluate_generator(valid_gen, train_dg.steps_per_epoch(),
-                                            max_queue_size=10, workers=1, use_multiprocessing=False))
+        print(m.model.evaluate_generator(train_gen, train_dg.steps_per_epoch(),
+                                         max_queue_size=1, workers=1, use_multiprocessing=False))
+        print(m.model.evaluate_generator(valid_gen, train_dg.steps_per_epoch(),
+                                         max_queue_size=1, workers=1, use_multiprocessing=False))
 
     def predict(self, X1, X2):
         '''
@@ -337,8 +313,6 @@ class RankNet:
         # predict on the CPU
         if self.is_gpu:
             self.switch_session()
-            self.build_model()
-            self.load_model()
 
         X1 = np.array(X1).reshape((1, self.input_dim))
         X2 = np.array(X2).reshape((1, self.input_dim))
@@ -351,30 +325,108 @@ class RankNet:
             return 0
 
 
-train_path = "/home/orion/Documents/dev/imitation-milp-2/data/3dp_train/data"
-valid_path = "/home/orion/Documents/dev/imitation-milp-2/data/3dp_valid/data/"
-m = RankNet("models/3dp3.h5", 26, "models/3dp3.h5")
+# train_path = "/home/orion/Documents/dev/imitation-milp-2/data/test_train_small/data2"
+# valid_path = "/home/orion/Documents/dev/imitation-milp-2/data/test_valid_small/data2"
+# m = RankNet("models/test2.h5", 26, "models/test2.h5")
+
 # m.train(train_path, valid_path, 10, 32)
-# m.predict([0] * 26, [1] * 26)
+
+# train_data = np.genfromtxt(train_path, delimiter=",", skip_header=1)
+# valid_data = np.genfromtxt(valid_path, delimiter=",", skip_header=1)
+
+# train_weights = train_data[:, 0]  # target
+# train_y = train_data[:, -1]
+# train_X1 = train_data[:, 1:m.input_dim + 1]
+# train_X2 = train_data[:, m.input_dim + 1:-1]
+
+# # train_X = np.vstack((train_X1, train_X2))
+# # scaler = StandardScaler()
+# # train_X = scaler.fit_transform(train_X)
+# # train_X1 = train_data[:, 1:m.input_dim + 1]
+# # train_X2 = train_data[:, m.input_dim + 1:-1]
+# train_X = np.hstack((train_X1, train_X2))
+
+# valid_weights = valid_data[:, 0]  # target
+# valid_y = valid_data[:, -1]
+# valid_X1 = valid_data[:, 1:m.input_dim + 1]
+# valid_X2 = valid_data[:, m.input_dim + 1:-1]
+
+# # valid_X = np.vstack((valid_X1, valid_X2))
+# # valid_X = scaler.transform(valid_X)
+# # valid_X1 = valid_data[:, 1:m.input_dim + 1]
+# # valid_X2 = valid_data[:, m.input_dim + 1:-1]
+# valid_X = np.hstack((valid_X1, valid_X2))
+
+# # logreg = LogisticRegression()
+# # logreg.fit(train_X, train_y)
+
+# # y_pred = logreg.predict(train_X)
+# # print("{} {}".format(len(y_pred), np.unique(train_y, return_counts=True)))
+# # print('Accuracy of logistic regression classifier on train set: {:.2f}'.format(
+# #     logreg.score(train_X, train_y)))
+# # y_pred = logreg.predict(valid_X)
+# # print("{} {}".format(len(y_pred), np.unique(valid_y, return_counts=True)))
+# # print('Accuracy of logistic regression classifier on valid set: {:.2f}'.format(
+# #     logreg.score(valid_X, valid_y)))
+
+
+# print(m.model.summary())
+# checkpointer = ModelCheckpoint(
+#     filepath=m.model_file, verbose=1, save_best_only=True)
+# history = m.model.fit([train_X1, train_X2], train_y,
+#                       sample_weight=train_weights,
+#                       epochs=20, batch_size=32,
+#                       validation_data=(
+#     [valid_X1, valid_X2], valid_y, valid_weights),
+#     callbacks=[checkpointer], verbose=2)
+
+train_path = "/home/orion/Documents/dev/imitation-milp-2/data/test_train_small/data/"
+valid_path = "/home/orion/Documents/dev/imitation-milp-2/data/test_valid_small/data/"
+m = RankNet("models/test.h5", 26, "models/test.h5")
+# m.train(train_path, valid_path, 10, 32)
 
 print("TRAIN:")
-for file in sorted(Path(train_path).glob("*.data")):
+for file in Path(train_path).glob("*.data"):
     data = np.genfromtxt(file, delimiter=",", skip_header=1)
     weights = data[:, 0]  # target
     y = data[:, -1]
     X1 = data[:, 1:27]
     X2 = data[:, 27:-1]
 
-    print(file)
-    print(m.model.evaluate([X1, X2], y, batch_size=32, verbose=2))
+    y = y.reshape((len(y), 1))
+
+    s1 = m.model.predict([X1, X2])
+    # print(s1)
+    # print(y)
+    # s2 = m.model.predict([X2, X1])
+    # s2 = s2.reshape((len(s2), 1))
+    # s3 = (s1 > s2).astype(int)
+    # print(y.shape)
+    # print(s1.shape)
+    s1 = s1.reshape((len(s1), 1))
+    s1 = (s1 > 0.5).astype(int)
+    # print(s1)
+    errs = np.sum(s1 != np.array(y))
+    print("{}, samples={}, wrong={}".format(file.stem, len(y), errs))
 
 print("\nVALID:")
-for file in sorted(Path(valid_path).glob("*.data")):
+for file in Path(valid_path).glob("*.data"):
     data = np.genfromtxt(file, delimiter=",", skip_header=1)
     weights = data[:, 0]  # target
     y = data[:, -1]
     X1 = data[:, 1:27]
     X2 = data[:, 27:-1]
 
-    print(file)
-    print(m.model.evaluate([X1, X2], y, batch_size=32, verbose=2))
+    s1 = m.model.predict([X1, X2])
+    # s1 = s1.reshape((len(s1), 1))
+    # print(s1)
+    # print(y)
+    # s2 = m.model.predict([X2, X1])
+    # s2 = s2.reshape((len(s2), 1))
+    y = y.reshape((len(y), 1))
+    # s3 = (s1 > s2).astype(int)
+    s1 = s1.reshape((len(s1), 1))
+    s1 = (s1 > 0.5).astype(int)
+    # print(s1)
+    errs = np.sum(s1 != np.array(y))
+    print("{}, samples={}, wrong={}".format(file.stem, len(y), errs))

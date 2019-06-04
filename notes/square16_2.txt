@@ -1,0 +1,115 @@
+[ square, 16x16x4 ]
+
+> default SCIP
+
+256s|  4000 |     5 |252432 |  60.9 | 109M|  63 |   - | 775 |1939 | 775 |2199 | 141 |  75 |3656 | 2.364930e+00 | 2.367860e+00 |   0.12%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 255.96
+Solving Nodes      : 4005 (total of 4006 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (205 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+> oracle
+
+  215s|  3200 |    10 |123929 |  36.0 | 104M|  52 |  14 | 775 |2148 | 775 |2196 |  61 |  48 |1398 | 2.288350e+00 | 2.367860e+00 |   3.47%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 222.59
+Solving Nodes      : 3266 (total of 3267 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (177 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+
+[ 5 iterations, 5 epochs | square4.h5 ]
+
+> iteration 1 (behavioral cloning)
+
+Epoch 5/5
+ - 0s - loss: 0.1398 - acc: 0.9859 - val_loss: 0.1363 - val_acc: 0.9859
+
+Epoch 00005: val_loss improved from 0.14322 to 0.13632, saving model to models/square4.h5
+
+  253s|  6800 |     6 |144104 |  19.9 | 104M|  97 |   - | 775 |2205 | 775 |2197 | 184 | 102 |2790 | 2.278679e+00 | 2.367860e+00 |   3.91%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 272.45
+Solving Nodes      : 6862 (total of 6863 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (254 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> iteration 2
+
+Epoch 5/5
+ - 2s - loss: 1.0875 - acc: 0.8976 - val_loss: 1.0726 - val_acc: 0.8977
+
+Epoch 00005: val_loss improved from 1.09994 to 1.07259, saving model to models/square4.h5
+
+  379s| 12800 |    10 |237923 |  17.9 | 108M| 103 |   - | 775 |2212 | 775 |2199 | 367 |  94 |3460 | 2.290146e+00 | 2.367860e+00 |   3.39%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 379.70
+Solving Nodes      : 12824 (total of 12825 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (399 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> iteration 3
+
+Epoch 5/5
+ - 8s - loss: 0.9171 - acc: 0.9177 - val_loss: 0.9142 - val_acc: 0.9179
+
+Epoch 00005: val_loss improved from 0.91863 to 0.91423, saving model to models/square4.h5
+
+
+  468s| 12800 |     2 |434752 |  33.3 | 107M| 105 | 207 | 775 |2165 | 775 |2197 | 301 | 429 |5227 | 2.356994e+00 | 2.367859e+00 |   0.46%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 468.33
+Solving Nodes      : 12807 (total of 12808 nodes in 2 runs)
+Primal Bound       : +2.36785851829703e+00 (258 solutions)
+Dual Bound         : +2.36785851829703e+00
+Gap                : 0.00 %
+
+
+> iteration 4
+
+Epoch 5/5
+ - 15s - loss: 1.0384 - acc: 0.8965 - val_loss: 1.0379 - val_acc: 0.8948
+
+Epoch 00005: val_loss did not improve from 1.03785
+
+
+  627s| 18200 |     3 |523668 |  28.3 | 106M|  73 | 345 | 775 |2453 | 775 |2198 | 416 | 694 |8124 | 2.329943e+00 | 2.367860e+00 |   1.63%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 628.28
+Solving Nodes      : 18223 (total of 18224 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (372 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> iteration 5
+
+Epoch 5/5
+ - 25s - loss: 1.3106 - acc: 0.8793 - val_loss: 1.3098 - val_acc: 0.8790
+
+Epoch 00005: val_loss improved from 1.31022 to 1.30982, saving model to models/square4.h5
+
+
+  194s|  2300 |     1 |123420 |  49.9 | 105M|  49 |   - | 775 |1989 |   0 |   0 |  39 | 135 | 592 | 2.367155e+00 | 2.367860e+00 |   0.03%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 194.51
+Solving Nodes      : 2301 (total of 2302 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (140 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+

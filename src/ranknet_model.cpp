@@ -122,15 +122,25 @@ bool RankNetModel::Train(const std::string& train_path,
 /** Train model. */
 int RankNetModel::Predict(const std::vector<double>& x1,
                           const std::vector<double>& x2) {
+  assert(x1.size() == input_dim_);
+  assert(x2.size() == input_dim_);
   try {
     /* Convert vectors to Python lists. */
     bp::list x1_list;
     bp::list x2_list;
 
-    for (int i = 0; i < input_dim_; ++i) {
-      x1_list.append(x1[i]);
-      x2_list.append(x2[i]);
+    for (auto& x : x1) {
+      x1_list.append(x);
     }
+
+    for (auto& x : x2) {
+      x2_list.append(x);
+    }
+
+    // for (int i = 0; i < input_dim_; ++i) {
+    //   x1_list.append(x1[i]);
+    //   x2_list.append(x2[i]);
+    // }
 
     /* Call the functions of the Python class to get the prediction. */
     bp::object result_obj =

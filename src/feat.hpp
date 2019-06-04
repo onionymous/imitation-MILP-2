@@ -37,7 +37,7 @@ class Feat {
   std::string GetHeaders();
 
   /** Get number of features. */
-  int GetNumFeatures();
+  size_t GetNumFeatures();
 
   /** Reset cache. */
   void ResetCache() { cache_.clear(); }

@@ -1,0 +1,124 @@
+[ cross, 16x16x4 ]
+
+> default SCIP:
+
+123s|  7900 |   402 | 92930 |  10.7 | 121M|  45 |  12 | 727 | 661 | 727 |2132 | 685 | 274 | 604 | 2.013431e+00 | 2.017302e+00 |   0.19%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 123.49
+Solving Nodes      : 7970 (total of 7971 nodes in 2 runs)
+Primal Bound       : +2.01730164036959e+00 (335 solutions)
+Dual Bound         : +2.01730164036959e+00
+Gap                : 0.00 %
+
+
+> oracle
+
+ 39.7s|  1100 |     4 | 19949 |  10.3 | 113M|  37 |  10 | 727 | 765 | 727 |2128 | 123 |  57 | 709 | 2.012828e+00 | 2.017302e+00 |   0.22%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 39.87
+Solving Nodes      : 1110 (total of 1111 nodes in 2 runs)
+Primal Bound       : +2.01730204582711e+00 (112 solutions)
+Dual Bound         : +2.01730204582711e+00
+Gap                : 0.00 %
+
+
+> with square3.h5 model [16x16x4 square, 2 iterations, 10 epochs]
+
+ 99.4s|  2000 |    55 | 59419 |  25.4 | 122M|  40 |  13 | 727 | 783 | 727 |2140 | 672 | 406 | 557 | 2.008516e+00 | 2.017301e+00 |   0.44%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 100.10
+Solving Nodes      : 2040 (total of 2041 nodes in 2 runs)
+Primal Bound       : +2.01730105845265e+00 (271 solutions)
+Dual Bound         : +2.01730105845265e+00
+Gap                : 0.00 %
+
+
+[cross, 16x16, 5 epochs, 5 iterations]
+
+> iteration 1 (behavioral cloning)
+
+Epoch 5/5
+ - 0s - loss: 0.2274 - acc: 0.9801 - val_loss: 0.2231 - val_acc: 0.9801
+
+Epoch 00005: val_loss improved from 0.22849 to 0.22310, saving model to models/cross.h5
+
+ 70.3s|  2600 |     5 | 28133 |   7.5 | 115M|  42 |   - | 727 | 525 | 727 |2130 | 226 |  39 |1274 | 2.008575e+00 | 2.017302e+00 |   0.43%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 70.69
+Solving Nodes      : 2617 (total of 2618 nodes in 2 runs)
+Primal Bound       : +2.01730206222304e+00 (163 solutions)
+Dual Bound         : +2.01730206222304e+00
+Gap                : 0.00 %
+
+
+> iteration 2
+
+Epoch 5/5
+ - 1s - loss: 1.5298 - acc: 0.9055 - val_loss: 1.5504 - val_acc: 0.8736
+
+Epoch 00005: val_loss did not improve from 1.52883
+
+z52.5s|   815 |    17 | 21573 |  15.9 | 112M|  38 |   - | 727 | 568 | 727 |2130 | 133 | 127 | 600 | 2.013431e+00 | 2.017302e+00 |   0.19%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 53.24
+Solving Nodes      : 878 (total of 879 nodes in 2 runs)
+Primal Bound       : +2.01730204330317e+00 (44 solutions)
+Dual Bound         : +2.01730204330317e+00
+Gap                : 0.00 %
+
+
+
+> iteration 3
+
+Epoch 5/5
+ - 1s - loss: 1.9025 - acc: 0.8159 - val_loss: 1.8965 - val_acc: 0.8170
+
+Epoch 00005: val_loss improved from 1.90163 to 1.89654, saving model to models/cross.h5
+
+ 45.0s|   900 |     4 | 15893 |   8.1 | 110M|  30 |  18 | 727 | 482 | 727 |2128 |  38 |  33 | 621 | 2.005648e+00 | 2.017302e+00 |   0.58%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 45.95
+Solving Nodes      : 939 (total of 940 nodes in 2 runs)
+Primal Bound       : +2.01730205691138e+00 (59 solutions)
+Dual Bound         : +2.01730205691138e+00
+Gap                : 0.00 %
+
+
+> iteration 4
+
+Epoch 5/5
+ - 2s - loss: 1.9023 - acc: 0.8428 - val_loss: 1.9057 - val_acc: 0.8451
+
+Epoch 00005: val_loss did not improve from 1.90422
+
+ 59.7s|  1600 |    15 | 22563 |   8.7 | 115M|  30 |   - | 727 | 806 | 727 |2135 | 203 |  29 | 850 | 2.008158e+00 | 2.017302e+00 |   0.46%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 60.74
+Solving Nodes      : 1665 (total of 1666 nodes in 2 runs)
+Primal Bound       : +2.01730206050769e+00 (158 solutions)
+Dual Bound         : +2.01730206050769e+00
+Gap                : 0.00 %
+
+
+> iteration 5
+
+Epoch 5/5
+ - 2s - loss: 1.8403 - acc: 0.8646 - val_loss: 1.8391 - val_acc: 0.8639
+
+Epoch 00005: val_loss improved from 1.84035 to 1.83912, saving model to models/cross.h5
+
+ 76.4s|  2800 |    15 | 30473 |   7.8 | 115M|  46 |  15 | 727 | 736 | 727 |2132 | 217 |  48 |1067 | 2.013421e+00 | 2.017302e+00 |   0.19%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 77.82
+Solving Nodes      : 2896 (total of 2897 nodes in 2 runs)
+Primal Bound       : +2.01730205782312e+00 (175 solutions)
+Dual Bound         : +2.01730205782312e+00
+Gap                : 0.00 %

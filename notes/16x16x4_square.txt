@@ -1,0 +1,58 @@
+16x16x4, square
+
+RAW SCIP:
+256s|  4000 |     5 |252432 |  60.9 | 109M|  63 |   - | 775 |1939 | 775 |2199 | 141 |  75 |3656 | 2.364930e+00 | 2.367860e+00 |   0.12%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 255.96
+Solving Nodes      : 4005 (total of 4006 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (205 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+OPT:
+207s|  3200 |    10 |123929 |  36.0 | 104M|  52 |  14 | 775 |2148 | 775 |2196 |  61 |  48 |1398 | 2.288350e+00 | 2.367860e+00 |   3.47%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 213.37
+Solving Nodes      : 3266 (total of 3267 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (177 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+AFTER 1 ROUND (BEHAVIORAL CLONING):
+204s|  4000 |     9 |110067 |  25.4 | 104M|  65 |   - | 775 |2186 | 775 |2199 | 138 |  79 |1811 | 2.278679e+00 | 2.367860e+00 |   3.91%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 219.65
+Solving Nodes      : 4081 (total of 4082 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (196 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+AFTER 2 ROUNDS:
+232s|  3000 |     1 |158599 |  50.0 | 103M|  70 |   - | 775 |1875 | 775 |2194 |  67 |  20 |1791 | 2.285859e+00 | 2.367860e+00 |   3.59%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 235.05
+Solving Nodes      : 3009 (total of 3010 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (156 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+AFTER 3 ROUNDS:
+205s|  2800 |     3 |144609 |  48.6 | 104M|  50 |   - | 775 |2167 | 775 |2195 |  59 |  49 | 884 | 2.358186e+00 | 2.367860e+00 |   0.41%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 205.50
+Solving Nodes      : 2859 (total of 2860 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (207 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+AFTER 4 ROUNDS:

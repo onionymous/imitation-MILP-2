@@ -62,7 +62,7 @@ std::unordered_map<Feat::Feature, const char*> Feat::feature_names_ = {
 };
 
 /** Get number of features. */
-int Feat::GetNumFeatures() {
+size_t Feat::GetNumFeatures() {
   return N_FEATURES;
 }
 
@@ -93,6 +93,7 @@ std::vector<double> Feat::GetCachedFeatures(SCIP_NODE* node) {
   long node_id = SCIPnodeGetNumber(node);
 
   assert(cache_.find(node_id) != cache_.end());
+  assert(cache_[node_id].size() == GetNumFeatures());
 
   return cache_[node_id];
 }
@@ -237,6 +238,7 @@ std::vector<double> Feat::ComputeFeatures(SCIP* scip, SCIP_NODE* node) {
 
   /* Cache and return */
   cache_[node_id] = vals;
+  assert(cache_[node_id].size() == GetNumFeatures());
   return vals;
 }
 

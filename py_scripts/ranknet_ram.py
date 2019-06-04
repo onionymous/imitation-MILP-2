@@ -163,13 +163,13 @@ class RankNet:
 
         # Train model
         checkpointer = ModelCheckpoint(
-            filepath=self.model_file, verbose=2, save_best_only=True)
+            filepath=self.model_file, verbose=1, save_best_only=True)
         history = self.model.fit([train_X1, train_X2], train_y,
                                  sample_weight=train_weights,
                                  epochs=num_epochs, batch_size=batch_size,
                                  validation_data=(
                                      [valid_X1, valid_X2], valid_y, valid_weights),
-                                 callbacks=[checkpointer], verbose=2)
+                                 callbacks=[checkpointer], verbose=1)
 
         # print("avg prediction: ", np.mean(
         #    self.model.predict([train_X1, train_X2])))
@@ -178,9 +178,9 @@ class RankNet:
         self.load_model()
 
         print(self.model.evaluate(
-            [train_X1, train_X2], train_y, batch_size=batch_size, verbose=2))
+            [train_X1, train_X2], train_y, batch_size=batch_size))
         print(self.model.evaluate(
-            [valid_X1, valid_X2], valid_y, batch_size=batch_size, verbose=2))
+            [valid_X1, valid_X2], valid_y, batch_size=batch_size))
 
     def predict(self, X1, X2):
         '''

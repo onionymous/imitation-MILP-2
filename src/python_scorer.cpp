@@ -46,6 +46,8 @@ int PythonScorer::Compare(SCIP_NODE *node1, SCIP_NODE *node2) {
   std::vector<double> x1 = feat_->GetCachedFeatures(node1);
   std::vector<double> x2 = feat_->GetCachedFeatures(node2);
   // std::cout << x1.size() << " " << x2.size() << "\n";
+  assert(x1.size() == feat_->GetNumFeatures());
+  assert(x2.size() == feat_->GetNumFeatures());
 
   int result = model_->Predict(x1, x2);
 

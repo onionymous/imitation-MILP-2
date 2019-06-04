@@ -1,0 +1,60 @@
+[ square, 16x16x4 ]
+
+> default SCIP
+
+256s|  4000 |     5 |252432 |  60.9 | 109M|  63 |   - | 775 |1939 | 775 |2199 | 141 |  75 |3656 | 2.364930e+00 | 2.367860e+00 |   0.12%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 255.96
+Solving Nodes      : 4005 (total of 4006 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (205 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> oracle
+
+  206s|  3200 |    10 |123929 |  36.0 | 104M|  52 |  14 | 775 |2148 | 775 |2196 |  61 |  48 |1398 | 2.288350e+00 | 2.367860e+00 |   3.47%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 212.10
+Solving Nodes      : 3266 (total of 3267 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (177 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+[trained model: 2 iterations, 10 epochs]
+
+> iteration 1: behavioral cloning
+
+Epoch 10/10
+ - 0s - loss: 0.1246 - acc: 0.9859 - val_loss: 0.1238 - val_acc: 0.9859
+
+Epoch 00010: val_loss improved from 0.12499 to 0.12380, saving model to models/square3.h5
+
+  326s|  7500 |     3 |221563 |  28.4 | 106M|  98 | 343 | 775 |2253 | 775 |2199 | 321 | 184 |3386 | 2.295969e+00 | 2.367860e+00 |   3.13%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 344.73
+Solving Nodes      : 7587 (total of 7588 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (320 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
+
+
+> iteration 2
+
+Epoch 10/10
+ - 2s - loss: 0.1577 - acc: 0.9939 - val_loss: 0.1531 - val_acc: 0.9941
+
+Epoch 00010: val_loss improved from 0.16140 to 0.15313, saving model to models/square3.h5
+
+  312s|  3200 |    79 |235630 |  70.9 | 105M| 154 |   - | 775 |2198 |   0 |   0 | 306 | 146 |4144 | 2.355255e+00 | 2.367860e+00 |   0.54%
+
+SCIP Status        : problem is solved [optimal solution found]
+Solving Time (sec) : 312.95
+Solving Nodes      : 3286 (total of 3287 nodes in 2 runs)
+Primal Bound       : +2.36785962185570e+00 (212 solutions)
+Dual Bound         : +2.36785962185570e+00
+Gap                : 0.00 %
