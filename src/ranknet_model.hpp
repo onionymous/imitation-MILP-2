@@ -17,6 +17,7 @@
 
 #include <string>
 #include <utility>
+#include <vector>
 
 #include <boost/python.hpp>
 #include <python3.7m/Python.h>

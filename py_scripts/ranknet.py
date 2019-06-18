@@ -8,6 +8,7 @@ from keras.models import Model, load_model
 from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
+from sklearn.externals import joblib
 
 NUM_CORES = 4
 
@@ -28,18 +29,20 @@ class RankNet:
         self.prev_model = prev_model
         self.input_dim = input_dim
         self.model = None
+        self.scaler = None
 
         self.is_gpu = is_gpu
-
         self.set_session()
+
         if prev_model and (prev_model != ""):
             self.build_model()
             self.load_model()
 
     def load_model(self):
         assert(self.prev_model and Path(self.prev_model).is_file()
-               ), "Previous model {} could not be loaded.".format(self.prev_model)
+               ), "Model {} could not be loaded.".format(self.prev_model)
         self.model.load_weights(self.prev_model)
+        self.scaler = joblib.load(self.prev_model + ".scaler")
 
     def build_model(self):
         '''
@@ -90,6 +93,8 @@ class RankNet:
         self.model.compile(optimizer="adagrad", loss="binary_crossentropy",
                            metrics=["acc"])
 
+        self.scaler = StandardScaler()
+
     def set_session(self):
         '''
         Set the current session to either CPU or GPU depending on the value of
@@ -121,6 +126,9 @@ class RankNet:
         self.is_gpu = not self.is_gpu
         self.set_session()
 
+        self.model = None
+        self.scaler = None
+
     def train(self, train_dir, valid_dir, num_epochs, batch_size):
         '''
         Run the training loop for a specified number of epochs and iterations.
@@ -134,32 +142,37 @@ class RankNet:
 
         self.build_model()
 
-        # y = np.ones((train_X.shape[0], 1))
-        train_data = np.empty((0, 2 * (self.input_dim + 1)))
+        # Load data
+        train_files = Path(train_dir).glob("*.data")
+        train_data = np.concatenate(
+            [np.genfromtxt(file, delimiter=",", skip_header=1) for file in train_files])
 
-        for file in Path(train_dir).glob("*.data"):
-            new_data = np.genfromtxt(file, delimiter=",", skip_header=1)
-            if new_data.shape[0] == 0:
-                continue
-            train_data = np.vstack((train_data, new_data))
+        valid_files = Path(valid_dir).glob("*.data")
+        valid_data = np.concatenate(
+            [np.genfromtxt(file, delimiter=",", skip_header=1) for file in valid_files])
 
-        valid_data = np.empty((0, 2 * (self.input_dim + 1)))
-
-        for file in Path(valid_dir).glob("*.data"):
-            new_data = np.genfromtxt(file, delimiter=",", skip_header=1)
-            if new_data.shape[0] == 0:
-                continue
-            valid_data = np.vstack((valid_data, new_data))
-
+        # Separate training data into components
         train_weights = train_data[:, 0]  # target
         train_y = train_data[:, -1]
         train_X1 = train_data[:, 1:self.input_dim + 1]
         train_X2 = train_data[:, self.input_dim + 1:-1]
 
+        # Fit scaler using training data
+        train_X = np.vstack([train_X1, train_X2])
+        self.scaler.fit(train_X)
+        joblib.dump(self.scaler, self.model_file + ".scaler")
+
+        # Separate validation data into components
         valid_weights = valid_data[:, 0]  # target
         valid_y = valid_data[:, -1]
         valid_X1 = valid_data[:, 1:self.input_dim + 1]
         valid_X2 = valid_data[:, self.input_dim + 1:-1]
+
+        # Scale training and validation data
+        train_X1 = self.scaler.transform(train_X1)
+        train_X2 = self.scaler.transform(train_X2)
+        valid_X1 = self.scaler.transform(valid_X1)
+        valid_X2 = self.scaler.transform(valid_X2)
 
         # Train model
         checkpointer = ModelCheckpoint(
@@ -190,11 +203,18 @@ class RankNet:
         # predict on the CPU
         if self.is_gpu:
             self.switch_session()
+
+        if self.prev_model is None or self.prev_model == "":
+            self.prev_model = self.model_file
+
+        if self.model is None or self.scaler is None:
             self.build_model()
             self.load_model()
 
         X1 = np.array(X1).reshape((1, self.input_dim))
+        X1 = self.scaler.transform(X1)
         X2 = np.array(X2).reshape((1, self.input_dim))
+        X2 = self.scaler.transform(X2)
 
         pred = np.asscalar(self.model.predict([X1, X2]))
 
@@ -206,9 +226,9 @@ class RankNet:
 
 # train_path = "/home/orion/Documents/dev/imitation-milp-2/data/3dp_train/data/"
 # valid_path = "/home/orion/Documents/dev/imitation-milp-2/data/3dp_valid/data/"
-# m = RankNet("models/3dp_2.h5", 26, "")
+m = RankNet("models/mvc3.h5", 26, "")
 # m.train(train_path, valid_path, 100, 32)
-# m.predict([0] * 26, [1] * 26)
+# print(m.predict([0] * 26, [1] * 26))
 
 # print("TRAIN:")
 # for file in Path(train_path).glob("*.data"):

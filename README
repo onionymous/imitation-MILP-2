@@ -3,3 +3,15 @@ Imitation MILP
 =====================================================================
 
 compile with make LPS=grb ZIMPL=false
+
+To run in training mode, e.g:
+bin/imilp --train -f data/test_train_small -v data/test_valid_small -m models/test.h5 -i 3 -e 10
+
+bin/imilp -h will show all parameters and their descriptions.
+
+To run in solving mode:
+bin/imilp -p data/test_train_small/130000.lp -m models/test.h5
+(to solve with a model)
+
+bin/imilp -p data/test_train_small/130000.lp -m models/test.h5
+(to solve with default SCIP)
