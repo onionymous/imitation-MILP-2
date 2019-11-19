@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
   try {
     /** Define and parse the program options */
     bool is_train;
+    std::string mode;
     std::string settings_file;
     std::string problems_path;
     std::string output_path;
@@ -47,6 +48,7 @@ int main(int argc, char** argv) {
     po::options_description desc("Options");
     desc.add_options()
       ("help,h", "produce help message")
+      ("mode,M", po::value<std::string>(&mode)->default_value(""), "mode to run in")
       ("settings,x", po::value<std::string>(&settings_file)->default_value("scipparams.set", "SCIP parameters/settings file"))
       ("problems_path,p", po::value<std::string>(&problems_path)->default_value(""), "problem file or directory of files to be solved")
       ("output_path,o", po::value<std::string>(&output_path)->default_value(""), "path to save solutions to")
@@ -85,7 +87,7 @@ int main(int argc, char** argv) {
     imilp::ImitationMILP im(settings_file);
 
     /* TRAINING MODE */
-    if (is_train) {
+    if (mode == "train") {
       /* Check required arguments. */
       if (model_path == "") {
         std::cerr
@@ -110,8 +112,8 @@ int main(int argc, char** argv) {
       }
 
       /* Train */
-      if (!im.Train(train_path, valid_path, model_path, prev_model,
-                    num_iters, num_epochs, 32 /* batch size */)) {
+      if (!im.Train(train_path, valid_path, model_path, prev_model, num_iters,
+                    num_epochs, 32 /* batch size */)) {
         std::cerr << "[ERROR]: ImitationMILP encountered an error."
                   << "\n";
         return EXIT_FAILURE;
@@ -119,9 +121,9 @@ int main(int argc, char** argv) {
 
       return EXIT_SUCCESS;
 
-    } else {
+    } else if (mode == "solve") {
       /* SOLVE MODE */
-      
+
       /* Check all required command-line arguments were passed. */
       if (problems_path == "") {
         std::cerr << "[ERROR]: Path to input problems must be specified."
@@ -140,6 +142,64 @@ int main(int argc, char** argv) {
 
       /* Solve */
       if (!im.Solve(problems_path, output_path, model_path)) {
+        std::cerr << "[ERROR]: ImitationMILP encountered an error."
+                  << "\n";
+        return EXIT_FAILURE;
+      }
+
+      return EXIT_SUCCESS;
+
+    } else if (mode == "oracle") {
+      /* ORACLE MODE, WRITE TRAJECTORY TO FILE */
+
+      if (problems_path == "") {
+        std::cerr << "[ERROR]: Path to problems must be specified."
+                  << "\n\n";
+        std::cerr << desc << std::endl;
+        return EXIT_FAILURE;
+      }
+
+      if (output_path == "") {
+        std::cerr << "[ERROR]: Path to save solutions to must be specified."
+                  << "\n\n";
+        std::cerr << desc << std::endl;
+        return EXIT_FAILURE;
+      }
+
+      /* Solve with oracle. */
+      if (!im.GetOracleTrajectories(problems_path, output_path)) {
+        std::cerr << "[ERROR]: ImitationMILP encountered an error."
+                  << "\n";
+        return EXIT_FAILURE;
+      }
+
+      return EXIT_SUCCESS;
+    } else if (mode == "model") {
+      /* ORACLE MODE, WRITE TRAJECTORY TO FILE */
+
+      if (problems_path == "") {
+        std::cerr << "[ERROR]: Path to problems must be specified."
+                  << "\n\n";
+        std::cerr << desc << std::endl;
+        return EXIT_FAILURE;
+      }
+
+      if (output_path == "") {
+        std::cerr << "[ERROR]: Path to save solutions to must be specified."
+                  << "\n\n";
+        std::cerr << desc << std::endl;
+        return EXIT_FAILURE;
+      }
+
+      if (model_path == "") {
+        std::cerr << "[ERROR]: Model path must be specified."
+                  << "\n\n";
+        std::cerr << desc << std::endl;
+        return EXIT_FAILURE;
+      }
+
+      /* Solve with model. */
+      if (!im.GetPolicyTrajectories(problems_path, output_path, model_path)) {
         std::cerr << "[ERROR]: ImitationMILP encountered an error."
                   << "\n";
         return EXIT_FAILURE;

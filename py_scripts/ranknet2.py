@@ -1,6 +1,5 @@
 import sys
 import numpy as np
-import joblib
 import tensorflow as tf
 from tensorflow.python.keras import backend as K
 from tensorflow.keras.callbacks import ModelCheckpoint
@@ -9,6 +8,7 @@ from tensorflow.keras.models import Model, load_model
 from pathlib import Path
 from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
+from sklearn.externals import joblib
 
 NUM_CORES = 4
 
@@ -30,7 +30,6 @@ class RankNet:
         self.input_dim = input_dim
         self.model = None
         self.scaler = None
-        self.iters = 0
 
         self.is_gpu = is_gpu
         self.set_session()
@@ -130,7 +129,7 @@ class RankNet:
         self.model = None
         self.scaler = None
 
-    def train(self, train_dirs, valid_dirs, num_epochs, batch_size):
+    def train(self, train_dir, valid_dir, num_epochs, batch_size):
         '''
         Run the training loop for a specified number of epochs and iterations.
         Training is done on the GPU so session will be switched if it was on
@@ -144,23 +143,13 @@ class RankNet:
         self.build_model()
 
         # Load data
-        for train_dir in train_dirs:
-            train_data = np.empty(2*(self.input_dim+1))
-            train_files = Path(train_dir).glob("*.data")
-            for file in train_files:
-                data = np.genfromtxt(file, delimiter=",", skip_header=1)
-                if data.ndim == 1:
-                    continue
-                train_data = np.row_stack((train_data, data))
+        train_files = Path(train_dir).glob("*.data")
+        train_data = np.concatenate(
+            [np.genfromtxt(file, delimiter=",", skip_header=1) for file in train_files])
 
-        for valid_dir in valid_dirs:
-            valid_files = Path(valid_dir).glob("*.data")
-            valid_data = np.empty(2*(self.input_dim+1)) 
-            for file in valid_files:
-                data = np.genfromtxt(file, delimiter=",", skip_header=1)
-                if data.ndim == 1:
-                    continue
-                valid_data = np.row_stack((valid_data, data))
+        valid_files = Path(valid_dir).glob("*.data")
+        valid_data = np.concatenate(
+            [np.genfromtxt(file, delimiter=",", skip_header=1) for file in valid_files])
 
         # Separate training data into components
         train_weights = train_data[:, 0]  # target
@@ -169,11 +158,9 @@ class RankNet:
         train_X2 = train_data[:, self.input_dim + 1:-1]
 
         # Fit scaler using training data
-        model_file = self.model_file.rstrip(
-            ".h5") + "-" + str(self.iters) + ".h5"
         train_X = np.vstack([train_X1, train_X2])
         self.scaler.fit(train_X)
-        joblib.dump(self.scaler, model_file + ".scaler")
+        joblib.dump(self.scaler, self.model_file + ".scaler")
 
         # Separate validation data into components
         valid_weights = valid_data[:, 0]  # target
@@ -189,7 +176,7 @@ class RankNet:
 
         # Train model
         checkpointer = ModelCheckpoint(
-            filepath=model_file, verbose=2, save_best_only=True)
+            filepath=self.model_file, verbose=2, save_best_only=True)
         history = self.model.fit([train_X1, train_X2], train_y,
                                  sample_weight=train_weights,
                                  epochs=num_epochs, batch_size=batch_size,
@@ -200,7 +187,7 @@ class RankNet:
         # print("avg prediction: ", np.mean(
         #    self.model.predict([train_X1, train_X2])))
 
-        self.prev_model = model_file
+        self.prev_model = self.model_file
         self.load_model()
 
         print(self.model.evaluate(
@@ -229,48 +216,37 @@ class RankNet:
         X2 = np.array(X2).reshape((1, self.input_dim))
         X2 = self.scaler.transform(X2)
 
-        pred = self.model.predict([X1, X2]).item()
+        pred = np.asscalar(self.model.predict([X1, X2]))
 
         if (pred >= 0.5):
             return 1
         else:
             return 0
 
-
-train_path = ["/cs/ml/sding/imitation-milp-2/data/test_train/oracle", "/cs/ml/sding/imitation-milp-2/data/test_train/iter1"]
-valid_path = ["/cs/ml/sding/imitation-milp-2/data/test_valid/oracle/", "/cs/ml/sding/imitation-milp-2/data/test_valid/iter1"]
-m = RankNet("models/v2_test1.h5", 26, "")
+train_path = "/home/orion/Documents/dev/imitation-milp-2/data/mvc_train/data"
+valid_path = "/home/orion/Documents/dev/imitation-milp-2/data/mvc_valid/data/"
+m = RankNet("models/mvc4-test.h5", 26, "")
 m.train(train_path, valid_path, 100, 32)
-# print(m.predict([0] * 26, [1] * 26))
+# m.predict([0] * 26, [1] * 26)
 
-# print("TRAIN:")
-# for file in sorted(Path(train_path).glob("*.data")):
-#     data = np.genfromtxt(file, delimiter=",", skip_header=1)
-#     if data.ndim == 1:
-#         continue
-# 
-#     weights = data[:, 0]  # target
-#     y = data[:, -1]
-#     X1 = data[:, 1:27]
-#     X2 = data[:, 27:-1]
-# 
-#     print(file)
-#     score = 0
-#     for y_actual, x1, x2 in zip(y, X1, X2):
-#         y_pred = m.predict(x1, x2)
-#         if y_pred == y_actual:
-#             score += 1
-#     print(len(y), score, score / len(y))
-#     print('')
-#     # print(m.model.evaluate([X1, X2], y, batch_size=32, verbose=2))
-# 
-# # print("\nVALID:")
-# # for file in sorted(Path(valid_path).glob("*.data")):
-# #     data = np.genfromtxt(file, delimiter=",", skip_header=1)
-# #     weights = data[:, 0]  # target
-# #     y = data[:, -1]
-# #     X1 = data[:, 1:27]
-# #     X2 = data[:, 27:-1]
-#
-# #     print(file)
-# #     print(m.model.evaluate([X1, X2], y, batch_size=32, verbose=2))
+print("TRAIN:")
+for file in sorted(Path(train_path).glob("*.data")):
+    data = np.genfromtxt(file, delimiter=",", skip_header=1)
+    weights = data[:, 0]  # target
+    y = data[:, -1]
+    X1 = data[:, 1:27]
+    X2 = data[:, 27:-1]
+
+    print(file)
+    print(m.model.evaluate([X1, X2], y, batch_size=32, verbose=2))
+
+print("\nVALID:")
+for file in sorted(Path(valid_path).glob("*.data")):
+    data = np.genfromtxt(file, delimiter=",", skip_header=1)
+    weights = data[:, 0]  # target
+    y = data[:, -1]
+    X1 = data[:, 1:27]
+    X2 = data[:, 27:-1]
+
+    print(file)
+    print(m.model.evaluate([X1, X2], y, batch_size=32, verbose=2))

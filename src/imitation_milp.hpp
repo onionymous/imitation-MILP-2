@@ -17,14 +17,13 @@
 
 #include <string>
 
-#include "objscip/objscip.h"
-#include "scip/scip.h"
-
 #include "eventhdlr_collectdata.hpp"
-#include "nodesel_policy.hpp"
-#include "ranknet_model.hpp"
 #include "feat.hpp"
+#include "nodesel_policy.hpp"
+#include "objscip/objscip.h"
 #include "oracle.hpp"
+#include "ranknet_model.hpp"
+#include "scip/scip.h"
 
 namespace imilp {
 
@@ -53,6 +52,15 @@ class ImitationMILP {
              const std::string& model_path, const std::string& prev_model,
              int num_iters, int num_epochs, int batch_size);
 
+  /** Write oracle trajectories to file. */
+  bool GetOracleTrajectories(const std::string& problems_path_str,
+                             const std::string& data_path_str);
+
+  /** Write trajectories when solving with a model/policy to file. */
+  bool GetPolicyTrajectories(const std::string& problems_path_str,
+                             const std::string& data_path_str,
+                             const std::string& model_path_str);
+
  private:
   /** Create a new current SCIP instance. */
   SCIP_RETCODE CreateNewSCIP();
@@ -64,17 +72,16 @@ class ImitationMILP {
   SCIP_RETCODE SolveSCIP(const std::string& problem_name,
                          const std::string& problem_dir,
                          const std::string& output_dir,
-                         EventhdlrCollectData *eventhdlr,
-                         NodeselPolicy *nodesel,
-                         Oracle *oracle);
+                         EventhdlrCollectData* eventhdlr,
+                         NodeselPolicy* nodesel, Oracle* oracle);
 
   /** Helper functions for training loop. */
   bool ValidateDirectoryStructure(const std::string& problems_path);
-  bool OracleSolve(const std::string& problems_path, Feat* feat,
-                   bool is_append);
-  bool PolicySolve(const std::string& problems_path, Feat* feat,
-                   RankNetModel* model, double dc_sample_rate,
-                   bool is_append);
+  bool OracleSolve(const std::string& problems_path,
+                   const std::string& data_path, Feat* feat, bool is_append);
+  bool PolicySolve(const std::string& problems_path,
+                   const std::string& data_path, Feat* feat,
+                   RankNetModel* model, double dc_sample_rate, bool is_append);
 
   /** Path of SCIP params file. */
   std::string settings_file_;

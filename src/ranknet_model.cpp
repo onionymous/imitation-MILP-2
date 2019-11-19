@@ -19,14 +19,37 @@
 
 #include <boost/filesystem.hpp>
 
+#include <dlfcn.h>
+
 namespace imilp {
 
 namespace bp = boost::python;
 namespace fs = boost::filesystem;
 
+std::string handle_pyerror() {
+    using namespace boost::python;
+    using namespace boost;
+
+    PyObject *exc,*val,*tb;
+    object formatted_list, formatted;
+    PyErr_Fetch(&exc,&val,&tb);
+    handle<> hexc(exc),hval(allow_null(val)),htb(allow_null(tb)); 
+    object traceback(import("traceback"));
+    if (!tb) {
+        object format_exception_only(traceback.attr("format_exception_only"));
+        formatted_list = format_exception_only(hexc,hval);
+    } else {
+        object format_exception(traceback.attr("format_exception"));
+        formatted_list = format_exception(hexc,hval,htb);
+    }
+    formatted = str("\n").join(formatted_list);
+    return extract<std::string>(formatted);
+}
+
 bool RankNetModel::Init(bool is_gpu) {
   bool success = true;
   try {
+    void *const libpython_handle = dlopen("libpython3.7m.so", RTLD_LAZY | RTLD_GLOBAL);
     Py_Initialize();
     fs::path working_dir = fs::absolute("./").normalize();
     working_dir /= "py_scripts";
@@ -43,32 +66,41 @@ bool RankNetModel::Init(bool is_gpu) {
 
   } catch (bp::error_already_set&) {
     success = false;
+    if (PyErr_Occurred()) {
+       std::string msg = handle_pyerror(); 
+       std::cout << "[ERROR]: Python error: " << msg << "\n";
+    }
+    bp::handle_exception();
+    PyErr_Clear();
 
-    /* Handle error within embedded Python. */
-    PyObject *ptype, *pvalue, *ptraceback;
-    PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+    // /* Handle error within embedded Python. */
+    // PyObject *ptype, *pvalue, *ptraceback;
+    // PyErr_Fetch(&ptype, &pvalue, &ptraceback);
 
-    bp::handle<> hType(ptype);
-    bp::object extype(hType);
-    bp::handle<> hTraceback(ptraceback);
-    bp::object traceback(hTraceback);
+    // bp::handle<> hType(ptype);
+    // bp::object extype(hType);
+    // bp::handle<> hTraceback(ptraceback);
+    // bp::object traceback(hTraceback);
+    // 
+    // if (pvalue) {
+    // 	/* Extract error message */
+    // 	std::string error_msg = bp::extract<std::string>(pvalue);
+    // /* Extract line number (top entry of call stack).
+    //    Other levels of call stack can be extracted by processing
+    //    traceback.attr("tb_next") recurently. */
+    // long lineno = bp::extract<long>(traceback.attr("tb_lineno"));
+    // std::string filename = bp::extract<std::string>(
+    //     traceback.attr("tb_frame").attr("f_code").attr("co_filename"));
+    // std::string funcname = bp::extract<std::string>(
+    //     traceback.attr("tb_frame").attr("f_code").attr("co_name"));
 
-    /* Extract error message */
-    std::string error_msg = bp::extract<std::string>(pvalue);
+    // /* Print out the error details. */
+    // std::cout << "[ERROR]: Python: Error on line: " << lineno
+    //           << ", function: " << funcname << "\n";
+    // std::cout << error_msg << "\n\n";
+    // }
 
-    /* Extract line number (top entry of call stack).
-       Other levels of call stack can be extracted by processing
-       traceback.attr("tb_next") recurently. */
-    long lineno = bp::extract<long>(traceback.attr("tb_lineno"));
-    std::string filename = bp::extract<std::string>(
-        traceback.attr("tb_frame").attr("f_code").attr("co_filename"));
-    std::string funcname = bp::extract<std::string>(
-        traceback.attr("tb_frame").attr("f_code").attr("co_name"));
-
-    /* Print out the error details. */
-    std::cout << "[ERROR]: Python: Error on line: " << lineno
-              << ", function: " << funcname << "\n";
-    std::cout << error_msg << "\n\n";
+    std::cout << "[ERROR]: Python error, terminating." << "\n";
   }
 
   return success;
@@ -90,30 +122,30 @@ bool RankNetModel::Train(const std::string& train_path,
   } catch (bp::error_already_set&) {
     success = false;
 
-    PyObject *ptype, *pvalue, *ptraceback;
-    PyErr_Fetch(&ptype, &pvalue, &ptraceback);
+    // PyObject *ptype, *pvalue, *ptraceback;
+    // PyErr_Fetch(&ptype, &pvalue, &ptraceback);
 
-    bp::handle<> hType(ptype);
-    bp::object extype(hType);
-    bp::handle<> hTraceback(ptraceback);
-    bp::object traceback(hTraceback);
+    // bp::handle<> hType(ptype);
+    // bp::object extype(hType);
+    // bp::handle<> hTraceback(ptraceback);
+    // bp::object traceback(hTraceback);
 
-    /* Extract error message */
-    std::string error_msg = bp::extract<std::string>(pvalue);
+    // /* Extract error message */
+    // std::string error_msg = bp::extract<std::string>(pvalue);
 
-    /* Extract line number (top entry of call stack).
-       Other levels of call stack can be extracted by processing
-       traceback.attr("tb_next") recurently. */
-    long lineno = bp::extract<long>(traceback.attr("tb_lineno"));
-    std::string filename = bp::extract<std::string>(
-        traceback.attr("tb_frame").attr("f_code").attr("co_filename"));
-    std::string funcname = bp::extract<std::string>(
-        traceback.attr("tb_frame").attr("f_code").attr("co_name"));
+    // /* Extract line number (top entry of call stack).
+    //    Other levels of call stack can be extracted by processing
+    //    traceback.attr("tb_next") recurently. */
+    // long lineno = bp::extract<long>(traceback.attr("tb_lineno"));
+    // std::string filename = bp::extract<std::string>(
+    //     traceback.attr("tb_frame").attr("f_code").attr("co_filename"));
+    // std::string funcname = bp::extract<std::string>(
+    //     traceback.attr("tb_frame").attr("f_code").attr("co_name"));
 
-    /* Print out the error details. */
-    std::cout << "[ERROR]: Python: Error on line: " << lineno
-              << "function: " << funcname << "\n";
-    std::cout << error_msg << "\n";
+    // /* Print out the error details. */
+    // std::cout << "[ERROR]: Python: Error on line: " << lineno
+    //           << "function: " << funcname << "\n";
+    // std::cout << error_msg << "\n";
   }
 
   return success;

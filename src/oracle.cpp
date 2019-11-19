@@ -62,6 +62,7 @@ bool Oracle::LoadSolutions() {
 
   /* Loop through each file in the solutions directory and read a solution. */
   namespace fs = boost::filesystem;
+  std::cout << solutions_dir_ << "\n";
   for (auto& sol_path : fs::directory_iterator(fs::path(solutions_dir_))) {
     SCIP_Bool partial, error;
     SCIP_SOL *sol;
