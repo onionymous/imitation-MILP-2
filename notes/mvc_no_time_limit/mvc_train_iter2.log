@@ -1,0 +1,164 @@
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+Starting ImitationMILP...
+
+[INFO]: ImitationMILP: Validating directory structure for folder: data/mvc_train
+[INFO]: ImitationMILP: Creating data directory: "data/mvc_train/data"
+[INFO]: ImitationMILP: Writing trajectories to directory: "data/mvc_train/iter2"
+[INFO]: Read problem from file: "data/mvc_train/input4.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/iter2/input4.data
+data/mvc_train/solutions/input4
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input4/input4.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input4.lp
+  Variables        : 124 (124 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1115 initial, 1115 maximal
+  Objective        : minimize, 124 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      17.73
+  solving          :      17.73
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.08 (14 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       3459 (1734 internal, 1725 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       1725
+  nodes (total)    :       3459 (1734 internal, 1725 leaves)
+  nodes left       :          0
+  max depth        :         39
+  max depth (total):         39
+  backtracks       :       1389 (40.2%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (16 domain reductions, 0 cutoffs)
+  avg switch length:       4.73
+  switching time   :       2.96
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.06        314          0       0.00       0.00       0.06        314
+  dual LP          :       3.68       4274      92969      23.82   25263.32       0.03        371
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.11         71       2238      31.52   20345.45
+  strong branching :       2.68        615      71265     115.88   26591.42          -          -         31
+    (at root node) :          -         27       6248     231.41          -
+  conflict analysis:       0.00         49        421       8.59          -
+Solution           :
+  Solutions found  :        431 (5 improvements)
+  First Solution   : +1.24000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       8.85 %
+  Primal Bound     : +9.70000000000000e+01   (in run 1, after 77 nodes, 3.89 seconds, depth 28, found by <pscostdiving>)
+  Dual Bound       : +9.70000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.41 % (149.15 primal-dual integral)
+
+Objective values: (opt is 97)
+inf 1.0 0.0
+104 0.0673077 0.02
+99 0.020202 0.02
+98 0.0102041 0.03
+97 0 3.89
+97 0 17.73
+Primal integral: 0.0595898
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/mvc_train/input8.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/iter2/input8.data
+data/mvc_train/solutions/input8
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input8/input8.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input8.lp
+  Variables        : 157 (157 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1887 initial, 1887 maximal
+  Objective        : minimize, 157 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     462.30
+  solving          :     462.30
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.13 (29 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      49372 (25303 internal, 24069 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      24067
+  nodes (total)    :      49372 (25303 internal, 24069 leaves)
+  nodes left       :          0
+  max depth        :         74
+  max depth (total):         74
+  backtracks       :      24685 (50.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          5 (23 domain reductions, 0 cutoffs)
+  avg switch length:      16.96
+  switching time   :      80.28
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       2.24       6175          0       0.00       0.00       2.21       6175
+  dual LP          :      79.97      57277    1462552      27.86   18288.76       0.98       4789
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      15.84      11242     331577      29.49   20932.89
+  strong branching :       6.91       1193     125864     105.50   18214.76          -          -         75
+    (at root node) :          -         36      10566     293.50          -
+  conflict analysis:       0.24        671       6322       9.42   26341.67
+Solution           :
+  Solutions found  :        519 (6 improvements)
+  First Solution   : +1.57000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.59 %
+  Primal Bound     : +1.29000000000000e+02   (in run 1, after 4627 nodes, 73.21 seconds, depth 50, found by <relaxation>)
+  Dual Bound       : +1.29000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       8.62 % (3985.83 primal-dual integral)
+
+Objective values: (opt is 129)
+inf 1.0 0.0
+139 0.0719424 0.02
+133 0.0300752 0.03
+131 0.0152672 10.6
+130 0.00769231 50.77
+129 0 73.46
+129 0 462.3
+Primal integral: 1.12644
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/mvc_train/input10.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/iter2/input10.data
+data/mvc_train/solutions/input10
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input10/input10.sol

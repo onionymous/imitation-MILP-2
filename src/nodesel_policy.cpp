@@ -17,6 +17,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <chrono> 
+
 
 #include "nodesel_policy.hpp"
 #include "objscip/objscip.h"
@@ -109,6 +111,8 @@ SCIP_DECL_NODESELSELECT(imilp::NodeselPolicy::scip_select) {
  *         and ==0 means no preference
  */
 SCIP_DECL_NODESELCOMP(imilp::NodeselPolicy::scip_comp) {
+  // auto start = std::chrono::high_resolution_clock::now(); 
+
   assert(nodesel != NULL);
   assert(strcmp(SCIPnodeselGetName(nodesel), NODESEL_NAME) == 0);
   assert(scip != NULL);
@@ -151,6 +155,11 @@ SCIP_DECL_NODESELCOMP(imilp::NodeselPolicy::scip_comp) {
     /* if none of these worked. */
     comp = 0;
   }
+
+  // auto stop = std::chrono::high_resolution_clock::now(); 
+  // auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start); 
+
+  // std::cout << "nodesel_policy::scip_comp(): " << duration.count() << "\n";
 
   return comp;
 }

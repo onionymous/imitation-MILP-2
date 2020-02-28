@@ -1,0 +1,10 @@
+iter2
+
+Train on (7987751, 52), test on (3521979, 52)
+train precision: 0.8654273225694936
+train recall: 0.8639471801486057
+train accuracy: 0.8644408169458462
+test precision: 0.9398318272844756
+test recall: 0.8677388945119529
+test accuracy: 0.9063242569021565
+0

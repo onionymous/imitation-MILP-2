@@ -17,6 +17,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <chrono>
 
 #include "eventhdlr_collectdata.hpp"
 #include "objscip/objscip.h"
@@ -105,6 +106,8 @@ SCIP_DECL_EVENTDELETE(imilp::EventhdlrCollectData::scip_delete) {
  * event handler and event data.
  */
 SCIP_DECL_EVENTEXEC(imilp::EventhdlrCollectData::scip_exec) {
+  // auto start = std::chrono::high_resolution_clock::now(); 
+
   imilp::EventhdlrCollectData* eventhdlr_obj = NULL;
 
   assert(scip != NULL);
@@ -113,6 +116,11 @@ SCIP_DECL_EVENTEXEC(imilp::EventhdlrCollectData::scip_exec) {
   assert(eventhdlr_obj != NULL);
 
   eventhdlr_obj->Process();
+
+  // auto stop = std::chrono::high_resolution_clock::now(); 
+  // auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start); 
+
+  // std::cout << "eventhdlr::Process(): " << duration.count() << "\n";
 
   return SCIP_OKAY;
 } /*lint !e715*/

@@ -270,7 +270,7 @@ history/allowtransfer = FALSE
 
 # maximal time in seconds to run
 # [type: real, advanced: FALSE, range: [0,1e+20], default: 1e+20]
-limits/time = 1000
+limits/time = 1e20
 
 # maximal number of nodes to process (-1: no limit)
 # [type: longint, advanced: FALSE, range: [-1,9223372036854775807], default: -1]

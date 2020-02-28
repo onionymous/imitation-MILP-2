@@ -1,0 +1,26 @@
+Starting ImitationMILP...
+
+[INFO]: ImitationMILP: Validating directory structure for folder: data/test_train_small
+[INFO]: ImitationMILP: Creating data directory: "data/test_train_small/data"
+[INFO]: ImitationMILP: Writing trajectories to directory: "data/test_train_small/model2"
+[ERROR]: Python error: Traceback (most recent call last):
+
+  File "/cs/ml/sding/imitation-milp-2/./py_scripts/ranknet.py", line 32, in __init__
+    self.load_model()
+
+  File "/cs/ml/sding/imitation-milp-2/./py_scripts/ranknet.py", line 37, in load_model
+    self.model = joblib.load(self.prev_model)
+
+  File "/cs/ml/software/miniconda3/lib/python3.7/site-packages/joblib/numpy_pickle.py", line 605, in load
+    obj = _unpickle(fobj, filename, mmap_mode)
+
+  File "/cs/ml/software/miniconda3/lib/python3.7/site-packages/joblib/numpy_pickle.py", line 529, in _unpickle
+    obj = unpickler.load()
+
+  File "/cs/ml/software/miniconda3/lib/python3.7/pickle.py", line 1088, in load
+    dispatch[key[0]](self)
+
+KeyError: 72
+
+[ERROR]: Python error, terminating.
+[ERROR]: ImitationMILP encountered an error.

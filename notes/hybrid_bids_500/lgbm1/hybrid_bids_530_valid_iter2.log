@@ -1,0 +1,3695 @@
+/bin/sh: /cs/ml/software/miniconda3/lib/libreadline.so.7: no version information available (required by /bin/sh)
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+Starting ImitationMILP...
+
+[INFO]: ImitationMILP: Validating directory structure for folder: data/hybrid_bids/bids_530/valid
+[INFO]: ImitationMILP: Creating data directory: "data/hybrid_bids/bids_530/valid/data"
+[INFO]: ImitationMILP: Writing trajectories to directory: "data/hybrid_bids/bids_530/valid/iter2"
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/130000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/130000.data
+data/hybrid_bids/bids_530/valid/solutions/130000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/130000/130000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/130000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 62.1441, abs.max = 17454.6)
+Total Time         :      19.57
+  solving          :      19.55
+  presolving       :       0.16 (included in solving)
+  reading          :       0.02
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         11 (5 internal, 6 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          6
+  nodes (total)    :         12 (6 internal, 6 leaves)
+  nodes left       :          0
+  max depth        :          5
+  max depth (total):          5
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          4 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.82
+  switching time   :       0.03
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02         15          0       0.00       0.00       0.02         15
+  dual LP          :       1.36        178       5109      35.73    3756.62       0.02         35
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.13         11        764      69.45    5876.92
+  strong branching :      12.57        456      61324     134.48    4878.60          -          -          0
+    (at root node) :          -         92      24927     270.95          -
+  conflict analysis:       0.01          9         60       6.67    6000.00
+Solution           :
+  Solutions found  :        183 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.09 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       3.17 %
+  Primal Bound     : -8.25322140000000e+04   (in run 2, after 8 nodes, 14.19 seconds, depth 6, found by <relaxation>)
+  Dual Bound       : -8.25322140000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       7.95 % (155.35 primal-dual integral)
+
+Objective values: (opt is -41879.8)
+inf 1.0 0.0
+-32133 0.232734 0.31
+-33945.3 0.189459 2.92
+-37718.6 0.0993626 2.92
+-40255.5 0.0387853 3.25
+-40602.8 0.0304935 3.26
+-40692.9 0.0283405 4.78
+-41416.3 0.0110684 11.03
+-41879.8 0 14.19
+-41879.8 0 19.55
+Primal integral: 1.20907
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/350000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/350000.data
+data/hybrid_bids/bids_530/valid/solutions/350000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/350000/350000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/350000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 18.0725, abs.max = 37413.5)
+Total Time         :       8.52
+  solving          :       8.50
+  presolving       :       0.06 (included in solving)
+  reading          :       0.02
+  copying          :       0.03 (4 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          3
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          3
+  nodes (total)    :          7 (2 internal, 5 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.40
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         21          0       0.00       0.00       0.01         21
+  dual LP          :       0.39        203       4567      27.68   11710.26       0.04         38
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.06         27       1704      63.11   28400.00
+  strong branching :       4.40        344      54561     158.61   12400.23          -          -          0
+    (at root node) :          -        211      41828     198.24          -
+  conflict analysis:       0.01         10         64       6.40    6400.00
+Solution           :
+  Solutions found  :        210 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.48 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.99 %
+  Primal Bound     : -8.42146800000000e+04   (in run 2, after 1 nodes, 2.87 seconds, depth 9, found by <farkasdiving>)
+  Dual Bound       : -8.42146800000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       8.36 % (71.10 primal-dual integral)
+
+Objective values: (opt is -43631.7)
+inf 1.0 0.0
+-42688.7 0.0216136 0.49
+-43484.7 0.00337037 1.27
+-43631.7 0 2.87
+-43631.7 0 8.5
+Primal integral: 0.512251
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/90000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/90000.data
+data/hybrid_bids/bids_530/valid/solutions/90000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/90000/90000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/90000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 27.9527, abs.max = 20394.8)
+Total Time         :      18.29
+  solving          :      18.27
+  presolving       :       0.24 (included in solving)
+  reading          :       0.02
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         11 (5 internal, 6 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          6
+  nodes (total)    :         12 (6 internal, 6 leaves)
+  nodes left       :          0
+  max depth        :          4
+  max depth (total):          4
+  backtracks       :          4 (36.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          3 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.45
+  switching time   :       0.18
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         12          0       0.00       0.00       0.01         12
+  dual LP          :       0.96        165       3618      27.83    3768.75       0.03         35
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.26         28        950      33.93    3653.85
+  strong branching :      11.58        476      45407      95.39    3921.16          -          -          0
+    (at root node) :          -         38       7673     201.92          -
+  conflict analysis:       0.03         10         69       6.90    2300.00
+Solution           :
+  Solutions found  :        137 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.80 %
+  Primal Bound     : -8.46026470000000e+04   (in run 2, after 4 nodes, 10.23 seconds, depth 4, found by <relaxation>)
+  Dual Bound       : -8.46026470000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       7.30 % (133.34 primal-dual integral)
+
+Objective values: (opt is -38861.3)
+inf 1.0 0.0
+-31554.6 0.188019 0.41
+-31830.8 0.180911 2.72
+-34676.1 0.107694 2.72
+-38521.8 0.00873595 2.83
+-38633 0.00587438 2.84
+-38861.3 0 10.23
+-38861.3 0 18.27
+Primal integral: 0.899669
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/60000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/60000.data
+data/hybrid_bids/bids_530/valid/solutions/60000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/60000/60000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/60000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 8.11978, abs.max = 23762.9)
+Total Time         :      15.14
+  solving          :      15.12
+  presolving       :       0.23 (included in solving)
+  reading          :       0.02
+  copying          :       0.03 (3 #copies) (minimal 0.01, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         13 (6 internal, 7 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          7
+  nodes (total)    :         14 (7 internal, 7 leaves)
+  nodes left       :          0
+  max depth        :          5
+  max depth (total):          5
+  backtracks       :          4 (30.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.38
+  switching time   :       0.16
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.00         13          0       0.00          -       0.00         13
+  dual LP          :       0.77        150       4070      31.80    5285.71       0.02         22
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.33         38       1334      35.11    4042.42
+  strong branching :      10.36        315      37517     119.10    3621.33          -          -          0
+    (at root node) :          -         54      11453     212.09          -
+  conflict analysis:       0.00         10         61       6.10          -
+Solution           :
+  Solutions found  :        150 (5 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.44 %
+  Primal Bound     : -8.23112030000000e+04   (in run 2, after 8 nodes, 11.26 seconds, depth 6, found by <relaxation>)
+  Dual Bound       : -8.23112030000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       6.67 % (100.82 primal-dual integral)
+
+Objective values: (opt is -41835.7)
+inf 1.0 0.0
+-34876 0.166357 0.43
+-41025.4 0.0193677 1.11
+-41835.7 0 11.26
+-41835.7 0 15.12
+Primal integral: 0.739705
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/00000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/00000.data
+data/hybrid_bids/bids_530/valid/solutions/00000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/00000/00000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/00000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 7.18361, abs.max = 995.889)
+Total Time         :    1000.39
+  solving          :    1000.38
+  presolving       :       0.12 (included in solving)
+  reading          :       0.01
+  copying          :       0.27 (4 #copies) (minimal 0.00, maximal 0.14, average 0.07)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1740 (1018 internal, 722 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        721
+  nodes (total)    :       1740 (1018 internal, 722 leaves)
+  nodes left       :        205
+  max depth        :         19
+  max depth (total):         19
+  backtracks       :       1737 (99.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          4 (0 domain reductions, 0 cutoffs)
+  avg switch length:      15.37
+  switching time   :     464.94
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.96        585          0       0.00       0.00       4.96        585
+  dual LP          :      55.58       4752      58372      21.30    1050.23       5.48       2012
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      38.64       2940      40906      13.91    1058.64
+  strong branching :      57.96       2217      87262      39.36    1505.56          -          -        147
+    (at root node) :          -         19       2031     106.89          -
+  conflict analysis:       0.01         10         61       6.10    6100.00
+Solution           :
+  Solutions found  :        402 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.16 %
+  Primal Bound     : -2.63151840000000e+04   (in run 1, after 1458 nodes, 847.49 seconds, depth 25, found by <pscostdiving>)
+  Dual Bound       : -2.68780107628050e+04
+  Gap              :       2.14 %
+  Avg. Gap         :       2.58 % (2576.83 primal-dual integral)
+
+Objective values: (opt is -26315.2)
+inf 1.0 0.0
+-23031.6 0.124777 0.33
+-25189.5 0.0427758 2.88
+-25837.4 0.0181563 3.26
+-25865.6 0.0170864 18.15
+-26094.5 0.00838706 28.49
+-26304.9 0.000390725 353.98
+-26315.2 0 848.23
+-26315.2 0 1000.38
+Primal integral: 4.03448
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/430000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/430000.data
+data/hybrid_bids/bids_530/valid/solutions/430000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/430000/430000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/430000.lp
+  Variables        : 535 (0 binary, 535 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 199 initial, 199 maximal
+  Objective        : minimize, 535 non-zeros (abs.min = 4.30689, abs.max = 3507.77)
+Total Time         :    1000.20
+  solving          :    1000.15
+  presolving       :       0.37 (included in solving)
+  reading          :       0.05
+  copying          :       1.81 (14 #copies) (minimal 0.00, maximal 0.16, average 0.13)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2311 (1236 internal, 1075 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          2
+  objective leaves :       1072
+  nodes (total)    :       2311 (1236 internal, 1075 leaves)
+  nodes left       :        118
+  max depth        :         52
+  max depth (total):         52
+  backtracks       :       2308 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:      27.08
+  switching time   :     511.50
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       5.38        688          0       0.00       0.00       5.37        688
+  dual LP          :      76.83       3804     107591      38.52    1400.38       3.17       1011
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      79.04       3157     116020      36.75    1467.86
+  strong branching :      77.39       1631     168181     103.12    2173.16          -          -        241
+    (at root node) :          -         32      14357     448.66          -
+  conflict analysis:       0.02          9         45       5.00    2250.00
+Solution           :
+  Solutions found  :        470 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.15 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      15.45 %
+  Primal Bound     : -6.44670730000000e+03   (in run 1, after 967 nodes, 484.29 seconds, depth 18, found by <pscostdiving>)
+  Dual Bound       : -7.39138261139662e+03
+  Gap              :      14.65 %
+  Avg. Gap         :      14.46 % (14465.23 primal-dual integral)
+
+Objective values: (opt is -6205.16)
+inf 1.0 0.0
+-4823.27 0.2227 0.6
+-5089.18 0.179847 4.49
+-5657.51 0.0882574 4.49
+-6017.56 0.0302328 14.37
+-6048.05 0.0253191 22.23
+-6205.16 0 490.9
+-6205.16 0 1000.15
+Primal integral: 14.4422
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/410000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/410000.data
+data/hybrid_bids/bids_530/valid/solutions/410000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/410000/410000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/410000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 7.62394, abs.max = 22801.4)
+Total Time         :       7.81
+  solving          :       7.78
+  presolving       :       0.24 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          3
+  nodes (total)    :          6 (3 internal, 3 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.40
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         13          0       0.00       0.00       0.01         13
+  dual LP          :       0.52        158       3301      23.92    6348.08       0.02         20
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.06         21        777      37.00   12950.00
+  strong branching :       3.00        228      20994      92.08    6998.00          -          -          0
+    (at root node) :          -         41       7619     185.83          -
+  conflict analysis:       0.01          9         60       6.67    6000.00
+Solution           :
+  Solutions found  :        148 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.15 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.93 %
+  Primal Bound     : -8.48319690000000e+04   (in run 2, after 1 nodes, 4.10 seconds, depth 10, found by <farkasdiving>)
+  Dual Bound       : -8.48319690000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      14.63 % (113.78 primal-dual integral)
+
+Objective values: (opt is -35763.6)
+inf 1.0 0.0
+-26188.8 0.267725 0.44
+-30273.8 0.153503 3.15
+-32672.4 0.0864354 3.15
+-35630.8 0.00371472 3.24
+-35660.5 0.00288321 3.3
+-35763.6 0 4.1
+-35763.6 0 7.78
+Primal integral: 1.17584
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/170000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/170000.data
+data/hybrid_bids/bids_530/valid/solutions/170000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/170000/170000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/170000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 22.3908, abs.max = 22541.7)
+Total Time         :      12.20
+  solving          :      12.18
+  presolving       :       0.23 (included in solving)
+  reading          :       0.02
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          7 (3 internal, 4 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          4
+  nodes (total)    :          8 (4 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          3
+  max depth (total):          3
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.86
+  switching time   :       0.02
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.00         11          0       0.00          -       0.00         11
+  dual LP          :       0.72        131       3233      30.21    4490.28       0.02         24
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.11         11        862      78.36    7836.36
+  strong branching :       6.90        300      36214     120.71    5248.41          -          -          0
+    (at root node) :          -         59      13302     225.46          -
+  conflict analysis:       0.01          7         42       6.00    4200.00
+Solution           :
+  Solutions found  :        149 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.10 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.84 %
+  Primal Bound     : -8.47121370000000e+04   (in run 1, after 1 nodes, 3.20 seconds, depth 0, found by <oneopt>)
+  Dual Bound       : -8.47121370000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       9.25 % (112.62 primal-dual integral)
+
+Objective values: (opt is -41118.1)
+inf 1.0 0.0
+-30756.9 0.251985 0.38
+-33554.3 0.183953 0.54
+-36187.5 0.119914 3.11
+-40555.4 0.0136841 3.19
+-41118.1 1.76953e-16 3.2
+-41118.1 0 12.18
+Primal integral: 0.902808
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/440000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/440000.data
+data/hybrid_bids/bids_530/valid/solutions/440000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/440000/440000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/440000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 2.03615, abs.max = 995.85)
+Total Time         :      69.07
+  solving          :      69.05
+  presolving       :       0.14 (included in solving)
+  reading          :       0.02
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         71 (35 internal, 36 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :         36
+  nodes (total)    :         72 (36 internal, 36 leaves)
+  nodes left       :          0
+  max depth        :         10
+  max depth (total):         10
+  backtracks       :         68 (95.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       7.63
+  switching time   :       7.33
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02          2          0       0.00       0.00       0.02          2
+  dual LP          :       4.35        498       7294      26.24    1676.78       0.45        220
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       3.77        214       5737      26.81    1521.75
+  strong branching :      35.56       1428      67050      46.95    1885.55          -          -          8
+    (at root node) :          -         65       8049     123.83          -
+  conflict analysis:       0.01         10         62       6.20    6200.00
+Solution           :
+  Solutions found  :        379 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       0.66 %
+  Primal Bound     : -2.72735570000000e+04   (in run 2, after 62 nodes, 67.90 seconds, depth 10, found by <relaxation>)
+  Dual Bound       : -2.72735570000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       3.35 % (231.09 primal-dual integral)
+
+Objective values: (opt is -27273.6)
+inf 1.0 0.0
+-22499.2 0.175054 0.34
+-23565.8 0.135949 1.84
+-26971.2 0.0110863 1.97
+-27109.4 0.0060199 2.06
+-27161 0.00412546 11.04
+-27273.6 0 67.9
+-27273.6 0 69.05
+Primal integral: 0.909884
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/450000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/450000.data
+data/hybrid_bids/bids_530/valid/solutions/450000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/450000/450000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/450000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 1.53603, abs.max = 998.975)
+Total Time         :    1000.02
+  solving          :    1000.00
+  presolving       :       0.13 (included in solving)
+  reading          :       0.02
+  copying          :       0.57 (6 #copies) (minimal 0.01, maximal 0.15, average 0.09)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1767 (1039 internal, 728 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        728
+  nodes (total)    :       1767 (1039 internal, 728 leaves)
+  nodes left       :        283
+  max depth        :         20
+  max depth (total):         20
+  backtracks       :       1764 (99.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:      16.01
+  switching time   :     507.81
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       3.66        487          0       0.00       0.00       3.65        487
+  dual LP          :      45.84       4487      52971      20.48    1155.56       4.37       1900
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      34.39       2834      36952      13.04    1074.50
+  strong branching :      53.64       2026      87364      43.12    1628.71          -          -        126
+    (at root node) :          -         28       3026     108.07          -
+  conflict analysis:       0.02         10         63       6.30    3150.00
+Solution           :
+  Solutions found  :        536 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.42 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.90 %
+  Primal Bound     : -2.71077700000000e+04   (in run 1, after 1515 nodes, 886.13 seconds, depth 26, found by <pscostdiving>)
+  Dual Bound       : -2.78931726772384e+04
+  Gap              :       2.90 %
+  Avg. Gap         :       3.17 % (3167.92 primal-dual integral)
+
+Objective values: (opt is -27107.8)
+inf 1.0 0.0
+-22335.3 0.176055 0.61
+-24616.5 0.0919007 3.13
+-26876.7 0.00852298 3.4
+-27023.2 0.00312139 14.68
+-27051 0.00209438 173.36
+-27087.1 0.000762364 707.95
+-27107.8 0 888.08
+-27107.8 0 1000
+Primal integral: 2.92687
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/160000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/160000.data
+data/hybrid_bids/bids_530/valid/solutions/160000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/160000/160000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/160000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 36.1992, abs.max = 24899.3)
+Total Time         :       9.22
+  solving          :       9.19
+  presolving       :       0.24 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :          2
+  nodes (total)    :          6 (3 internal, 3 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.40
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         11          0       0.00       0.00       0.01         11
+  dual LP          :       0.57        112       3215      34.95    5640.35       0.01         20
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.07          8        529      66.12    7557.14
+  strong branching :       4.06        262      35240     134.50    8679.80          -          -          0
+    (at root node) :          -         73      16074     220.19          -
+  conflict analysis:       0.02         10         87       8.70    4350.00
+Solution           :
+  Solutions found  :        180 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       0.00 %
+  Primal Bound     : -8.22027490000000e+04   (in run 2, after 5 nodes, 9.19 seconds, depth 2, found by <relaxation>)
+  Dual Bound       : -8.22027490000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      11.49 % (105.59 primal-dual integral)
+
+Objective values: (opt is -39217.2)
+inf 1.0 0.0
+-34983.7 0.107949 0.43
+-38707.1 0.0130066 3
+-38856.7 0.0091931 3.11
+-39100.7 0.00296937 5.31
+-39217.2 0 9.19
+-39217.2 0 9.19
+Primal integral: 0.740605
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/80000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/80000.data
+data/hybrid_bids/bids_530/valid/solutions/80000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/80000/80000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/80000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 0.278566, abs.max = 997.223)
+Total Time         :    1000.02
+  solving          :    1000.00
+  presolving       :       0.15 (included in solving)
+  reading          :       0.02
+  copying          :       0.57 (7 #copies) (minimal 0.00, maximal 0.15, average 0.08)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :       2045 (1078 internal, 967 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        966
+  nodes (total)    :       2046 (1079 internal, 967 leaves)
+  nodes left       :        106
+  max depth        :         20
+  max depth (total):         20
+  backtracks       :       2042 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      14.87
+  switching time   :     468.29
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.83        658          0       0.00       0.00       4.82        658
+  dual LP          :      54.14       5300      61119      19.48    1128.91       5.05       2162
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      38.84       3304      40923      12.39    1053.63
+  strong branching :      52.27       2329      85555      36.73    1636.79          -          -        133
+    (at root node) :          -         38       3877     102.03          -
+  conflict analysis:       0.01         10         61       6.10    6100.00
+Solution           :
+  Solutions found  :        429 (6 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.34 %
+  Primal Bound     : -2.68618620000000e+04   (in run 2, after 140 nodes, 125.15 seconds, depth 25, found by <pscostdiving>)
+  Dual Bound       : -2.74914445809308e+04
+  Gap              :       2.34 %
+  Avg. Gap         :       2.43 % (2431.15 primal-dual integral)
+
+Objective values: (opt is -26861.9)
+inf 1.0 0.0
+-21383.6 0.203942 0.35
+-24080.3 0.103552 1.9
+-24561.8 0.085627 1.9
+-26794.2 0.00251915 2.02
+-26861.9 0 125.99
+-26861.9 0 1000
+Primal integral: 0.988684
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/230000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/230000.data
+data/hybrid_bids/bids_530/valid/solutions/230000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/230000/230000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/230000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 10.6715, abs.max = 31550.9)
+Total Time         :       6.12
+  solving          :       6.09
+  presolving       :       0.33 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (5 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          6
+  nodes            :          1 (0 internal, 1 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          0
+  nodes (total)    :          6 (0 internal, 6 leaves)
+  nodes left       :          0
+  max depth        :          0
+  max depth (total):          0
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.00
+  switching time   :       0.00
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.00         19          0       0.00          -       0.00         19
+  dual LP          :       0.36        207       5620      34.27   15611.11       0.01         43
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.07         41       1096      26.73   15657.14
+  strong branching :       0.69        145      24847     171.36   36010.14          -          -          0
+    (at root node) :          -        145      24847     171.36          -
+  conflict analysis:       0.01         10         72       7.20    7200.00
+Solution           :
+  Solutions found  :        225 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.48 %
+  Primal Bound     : -8.42734570000000e+04   (in run 1, after 1 nodes, 3.19 seconds, depth 0, found by <rens>)
+  Dual Bound       : -8.42734570000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      19.34 % (117.79 primal-dual integral)
+
+Objective values: (opt is -30125)
+inf 1.0 0.0
+-27059.1 0.101773 0.42
+-27404.6 0.0903011 2.9
+-33720.3 0.106624 2.92
+-36953.3 0.184784 3.14
+-40780.9 0.261298 3.19
+-30125 0 6.09
+Primal integral: 1.46466
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/140000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/140000.data
+data/hybrid_bids/bids_530/valid/solutions/140000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/140000/140000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/140000.lp
+  Variables        : 534 (0 binary, 534 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 201 initial, 201 maximal
+  Objective        : minimize, 534 non-zeros (abs.min = 24.2082, abs.max = 4557.45)
+Total Time         :    1000.09
+  solving          :    1000.09
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       2.18 (17 #copies) (minimal 0.00, maximal 0.16, average 0.13)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2484 (1288 internal, 1196 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          1
+  objective leaves :       1192
+  nodes (total)    :       2484 (1288 internal, 1196 leaves)
+  nodes left       :         88
+  max depth        :         57
+  max depth (total):         57
+  backtracks       :       2481 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      26.74
+  switching time   :     522.23
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       7.12        717          0       0.00       0.00       7.11        717
+  dual LP          :      94.80       4075     124268      41.78    1310.84       3.52       1101
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      88.34       2727     124661      45.71    1411.15
+  strong branching :      72.57       1480     179357     121.19    2471.50          -          -        232
+    (at root node) :          -         30      17461     582.03          -
+  conflict analysis:       0.00          9         54       6.00          -
+Solution           :
+  Solutions found  :        384 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      16.84 %
+  Primal Bound     : -5.85948180000000e+03   (in run 1, after 1634 nodes, 707.89 seconds, depth 21, found by <relaxation>)
+  Dual Bound       : -6.82288776715596e+03
+  Gap              :      16.44 %
+  Avg. Gap         :      15.12 % (15118.16 primal-dual integral)
+
+Objective values: (opt is -5577.71)
+inf 1.0 0.0
+-4890.14 0.123271 0.01
+-4928.98 0.116307 3.65
+-5436.41 0.0253315 5.12
+-5524.63 0.00951545 19.9
+-5531.29 0.00832123 309.74
+-5575.55 0.000386413 519.75
+-5577.71 0 708.02
+-5577.71 0 1000.09
+Primal integral: 5.58233
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/190000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/190000.data
+data/hybrid_bids/bids_530/valid/solutions/190000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/190000/190000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/190000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 11.968, abs.max = 26338.7)
+Total Time         :      19.75
+  solving          :      19.72
+  presolving       :       0.22 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         13 (6 internal, 7 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :          6
+  nodes (total)    :         14 (7 internal, 7 leaves)
+  nodes left       :          0
+  max depth        :          6
+  max depth (total):          6
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          3 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.85
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         12          0       0.00       0.00       0.01         12
+  dual LP          :       1.17        177       4387      31.11    3749.57       0.07         36
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.11          7        554      79.14    5036.36
+  strong branching :      12.59        463      47654     102.92    3785.07          -          -          0
+    (at root node) :          -         59      14248     241.49          -
+  conflict analysis:       0.01         10         61       6.10    6100.00
+Solution           :
+  Solutions found  :        156 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.73 %
+  Primal Bound     : -8.39053340000000e+04   (in run 2, after 12 nodes, 19.13 seconds, depth 6, found by <relaxation>)
+  Dual Bound       : -8.39053340000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       7.86 % (155.09 primal-dual integral)
+
+Objective values: (opt is -41363)
+inf 1.0 0.0
+-33168.5 0.198111 0.42
+-36195 0.124942 3.2
+-41177 0.00449506 3.32
+-41235.7 0.00307703 5.9
+-41363 0 19.13
+-41363 0 19.72
+Primal integral: 1.03805
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/180000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/180000.data
+data/hybrid_bids/bids_530/valid/solutions/180000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/180000/180000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/180000.lp
+  Variables        : 533 (0 binary, 533 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 197 initial, 197 maximal
+  Objective        : minimize, 533 non-zeros (abs.min = 42.0001, abs.max = 3522.46)
+Total Time         :    1000.04
+  solving          :    1000.00
+  presolving       :       0.37 (included in solving)
+  reading          :       0.04
+  copying          :       1.86 (15 #copies) (minimal 0.00, maximal 0.15, average 0.12)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2264 (1196 internal, 1068 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          1
+  objective leaves :       1064
+  nodes (total)    :       2264 (1196 internal, 1068 leaves)
+  nodes left       :        112
+  max depth        :         57
+  max depth (total):         57
+  backtracks       :       2261 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:      25.49
+  switching time   :     498.92
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.43        555          0       0.00       0.00       4.43        555
+  dual LP          :      78.43       3901     108785      39.09    1387.03       3.63       1118
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      70.65       2981     103455      34.70    1464.33
+  strong branching :      72.08       1660     165956      99.97    2302.39          -          -        204
+    (at root node) :          -         29      11512     396.97          -
+  conflict analysis:       0.00          9         42       4.67          -
+Solution           :
+  Solutions found  :        490 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      14.25 %
+  Primal Bound     : -6.95732520000000e+03   (in run 1, after 1162 nodes, 579.49 seconds, depth 17, found by <relaxation>)
+  Dual Bound       : -7.90925795207464e+03
+  Gap              :      13.68 %
+  Avg. Gap         :      13.25 % (13253.36 primal-dual integral)
+
+Objective values: (opt is -6177.28)
+inf 1.0 0.0
+-4769.32 0.227926 0.64
+-5076.49 0.1782 4.17
+-5799.03 0.0612329 5.31
+-5905.58 0.0439842 5.36
+-5952.2 0.0364373 37.6
+-6034.81 0.0230636 37.68
+-6114.16 0.0102177 63.51
+-6177.28 0 581.89
+-6177.28 0 1000
+Primal integral: 8.96412
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/110000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/110000.data
+data/hybrid_bids/bids_530/valid/solutions/110000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/110000/110000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/110000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 87.1111, abs.max = 23742.9)
+Total Time         :       4.83
+  solving          :       4.79
+  presolving       :       0.24 (included in solving)
+  reading          :       0.04
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          3 (1 internal, 2 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          2
+  nodes (total)    :          4 (2 internal, 2 leaves)
+  nodes left       :          0
+  max depth        :          1
+  max depth (total):          1
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.00
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.03         16          0       0.00       0.00       0.03         16
+  dual LP          :       0.31        146       3364      28.51   10851.61       0.00         28
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.07         15       1018      67.87   14542.86
+  strong branching :       0.69        170      22969     135.11   33288.41          -          -          0
+    (at root node) :          -        165      22942     139.04          -
+  conflict analysis:       0.03         10         93       9.30    3100.00
+Solution           :
+  Solutions found  :        166 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.68 %
+  Primal Bound     : -8.22018230000000e+04   (in run 2, after 1 nodes, 4.00 seconds, depth 0, found by <rens>)
+  Dual Bound       : -8.22018230000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      24.59 % (117.78 primal-dual integral)
+
+Objective values: (opt is -40959.7)
+inf 1.0 0.0
+-27818.2 0.32084 0.42
+-28840.8 0.295874 2.7
+-35972.4 0.12176 2.71
+-36286.4 0.114094 2.8
+-40247.8 0.01738 2.9
+-40959.7 0 4
+-40959.7 0 4.79
+Primal integral: 1.19596
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/270000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/270000.data
+data/hybrid_bids/bids_530/valid/solutions/270000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/270000/270000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/270000.lp
+  Variables        : 533 (0 binary, 533 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 197 initial, 197 maximal
+  Objective        : minimize, 533 non-zeros (abs.min = 8.34581, abs.max = 3157.54)
+Total Time         :    1000.30
+  solving          :    1000.26
+  presolving       :       0.40 (included in solving)
+  reading          :       0.04
+  copying          :       1.58 (14 #copies) (minimal 0.00, maximal 0.15, average 0.11)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2267 (1201 internal, 1066 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          3
+  objective leaves :       1061
+  nodes (total)    :       2267 (1201 internal, 1066 leaves)
+  nodes left       :        106
+  max depth        :         72
+  max depth (total):         72
+  backtracks       :       2264 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      29.95
+  switching time   :     495.69
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.98        607          0       0.00       0.00       4.97        607
+  dual LP          :      87.14       3979     119267      41.35    1368.68       3.39       1095
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      88.27       3133     125550      40.07    1422.34
+  strong branching :      79.14       1953     172416      88.28    2178.62          -          -        261
+    (at root node) :          -         27      12543     464.56          -
+  conflict analysis:       0.01          9         52       5.78    5200.00
+Solution           :
+  Solutions found  :        387 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      12.54 %
+  Primal Bound     : -6.86066030000000e+03   (in run 1, after 886 nodes, 436.02 seconds, depth 33, found by <pscostdiving>)
+  Dual Bound       : -7.68788783969770e+03
+  Gap              :      12.06 %
+  Avg. Gap         :      12.12 % (12125.11 primal-dual integral)
+
+Objective values: (opt is -6010.12)
+inf 1.0 0.0
+-4880.94 0.187881 0.63
+-5727.23 0.0470685 5.44
+-5761.45 0.0413758 5.56
+-5770.31 0.0399011 38.5
+-5795.78 0.0356639 95.82
+-5831.96 0.0296429 100.36
+-5958.85 0.00853016 230.63
+-6010.12 0 436.82
+-6010.12 0 1000.26
+Primal integral: 10.9717
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/10000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/10000.data
+data/hybrid_bids/bids_530/valid/solutions/10000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/10000/10000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/10000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 8.70659, abs.max = 25491.3)
+Total Time         :      20.25
+  solving          :      20.22
+  presolving       :       0.22 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         13 (6 internal, 7 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          7
+  nodes (total)    :         14 (7 internal, 7 leaves)
+  nodes left       :          0
+  max depth        :          4
+  max depth (total):          4
+  backtracks       :          8 (61.5%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.08
+  switching time   :       0.42
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         13          0       0.00       0.00       0.01         13
+  dual LP          :       1.02        169       4064      29.45    3984.31       0.04         31
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.39         24        868      36.17    2225.64
+  strong branching :      12.56        437      46632     106.71    3712.74          -          -          0
+    (at root node) :          -         58      12861     221.74          -
+  conflict analysis:       0.00         10         56       5.60          -
+Solution           :
+  Solutions found  :        172 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.98 %
+  Primal Bound     : -8.27009810000000e+04   (in run 2, after 12 nodes, 18.46 seconds, depth 6, found by <relaxation>)
+  Dual Bound       : -8.27009810000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       7.57 % (153.02 primal-dual integral)
+
+Objective values: (opt is -38268.1)
+inf 1.0 0.0
+-29500.3 0.229114 0.4
+-37607.4 0.0172641 3.18
+-37901.5 0.00958066 3.26
+-37994.1 0.00715835 11.68
+-38228 0.00104798 11.71
+-38246.3 0.000569624 15.94
+-38268.1 0 18.46
+-38268.1 0 20.22
+Primal integral: 1.12507
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/200000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/200000.data
+data/hybrid_bids/bids_530/valid/solutions/200000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/200000/200000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/200000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 27.9425, abs.max = 28903.2)
+Total Time         :       7.97
+  solving          :       7.94
+  presolving       :       0.23 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          3
+  nodes (total)    :          6 (3 internal, 3 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.40
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         10          0       0.00       0.00       0.01         10
+  dual LP          :       0.55        119       3247      31.83    5903.64       0.00         17
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.08          7        478      68.29    5975.00
+  strong branching :       4.80        169      19771     116.99    4118.96          -          -          0
+    (at root node) :          -         38       7428     195.47          -
+  conflict analysis:       0.01          9         60       6.67    6000.00
+Solution           :
+  Solutions found  :        123 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.90 %
+  Primal Bound     : -8.36511560000000e+04   (in run 2, after 1 nodes, 2.28 seconds, depth 4, found by <farkasdiving>)
+  Dual Bound       : -8.36511560000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      11.95 % (94.88 primal-dual integral)
+
+Objective values: (opt is -40094.6)
+inf 1.0 0.0
+-30288.2 0.244581 0.43
+-31676.9 0.209945 0.47
+-39405.8 0.0171779 1.47
+-39639.7 0.0113452 1.53
+-39823.7 0.00675565 1.55
+-40094.6 0 2.28
+-40094.6 0 7.94
+Primal integral: 0.655918
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/120000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/120000.data
+data/hybrid_bids/bids_530/valid/solutions/120000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/120000/120000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/120000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 2.30687, abs.max = 33126.1)
+Total Time         :       4.05
+  solving          :       4.05
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          3 (1 internal, 2 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          2
+  nodes (total)    :          4 (2 internal, 2 leaves)
+  nodes left       :          0
+  max depth        :          1
+  max depth (total):          1
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.00
+  switching time   :       0.02
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         18          0       0.00       0.00       0.01         18
+  dual LP          :       0.20        159       3179      23.72   15895.00       0.01         25
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.05         31       1667      53.77   33340.00
+  strong branching :       1.89        188      24290     129.20   12851.85          -          -          0
+    (at root node) :          -        137      21426     156.39          -
+  conflict analysis:       0.00         10         61       6.10          -
+Solution           :
+  Solutions found  :        160 (5 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.21 %
+  Primal Bound     : -8.46430466000000e+04   (in run 2, after 1 nodes, 1.62 seconds, depth 17, found by <farkasdiving>)
+  Dual Bound       : -8.46430466000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       4.82 % (19.54 primal-dual integral)
+
+Objective values: (opt is -39468.2)
+inf 1.0 0.0
+-25767.3 0.347139 0
+-39182.9 0.00722819 0.69
+-39468.2 0 1.62
+-39468.2 0 4.05
+Primal integral: 0.246248
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/360000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/360000.data
+data/hybrid_bids/bids_530/valid/solutions/360000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/360000/360000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/360000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 9.59869, abs.max = 30075.4)
+Total Time         :      10.83
+  solving          :      10.81
+  presolving       :       0.25 (included in solving)
+  reading          :       0.02
+  copying          :       0.02 (4 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          3
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          3
+  nodes (total)    :          7 (4 internal, 3 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.40
+  switching time   :       0.02
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02         17          0       0.00       0.00       0.02         17
+  dual LP          :       0.70        188       4271      26.20    6101.43       0.01         25
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.15         31       2194      70.77   14626.67
+  strong branching :       5.87        330      42783     129.65    7288.42          -          -          0
+    (at root node) :          -         90      20262     225.13          -
+  conflict analysis:       0.01          6         40       6.67    4000.00
+Solution           :
+  Solutions found  :        180 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.12 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.31 %
+  Primal Bound     : -8.30812726900000e+04   (in run 3, after 4 nodes, 8.98 seconds, depth 4, found by <relaxation>)
+  Dual Bound       : -8.30812726900000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      10.22 % (110.50 primal-dual integral)
+
+Objective values: (opt is -43880.7)
+inf 1.0 0.0
+-31026 0.292946 0.41
+-31856.9 0.274012 0.57
+-39913.3 0.0904133 1.77
+-43151.7 0.0166118 1.87
+-43611.3 0.00613826 2.95
+-43880.7 0 8.98
+-43880.7 0 10.81
+Primal integral: 0.849681
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/370000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/370000.data
+data/hybrid_bids/bids_530/valid/solutions/370000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/370000/370000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/370000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 2.81131, abs.max = 20421.9)
+Total Time         :      36.71
+  solving          :      36.71
+  presolving       :       0.03 (included in solving)
+  reading          :       0.00
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         34 (17 internal, 17 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :         17
+  nodes (total)    :         35 (18 internal, 17 leaves)
+  nodes left       :          0
+  max depth        :          8
+  max depth (total):          8
+  backtracks       :         25 (73.5%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.82
+  switching time   :       1.91
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.03         10          0       0.00       0.00       0.03         10
+  dual LP          :       1.96        258       5395      29.01    2752.55       0.17         72
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       1.04         70       2436      34.80    2342.31
+  strong branching :      24.55        833      62444      74.96    2543.54          -          -         21
+    (at root node) :          -         48      10575     220.31          -
+  conflict analysis:       0.00         10         61       6.10          -
+Solution           :
+  Solutions found  :        206 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.54 %
+  Primal Bound     : -8.55190570000000e+04   (in run 2, after 22 nodes, 31.16 seconds, depth 5, found by <relaxation>)
+  Dual Bound       : -8.55190570000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       4.35 % (159.76 primal-dual integral)
+
+Objective values: (opt is -43734.7)
+inf 1.0 0.0
+-33699.1 0.229466 0.01
+-38715.1 0.114775 0.67
+-40766.6 0.0678666 0.67
+-42084.6 0.0377292 0.81
+-42085.3 0.0377128 18.36
+-42213.2 0.0347886 20.64
+-42396.5 0.0305979 25.75
+-43734.7 0 31.19
+-43734.7 0 36.71
+Primal integral: 1.2633
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/150000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/150000.data
+data/hybrid_bids/bids_530/valid/solutions/150000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/150000/150000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/150000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 3.85269, abs.max = 994.704)
+Total Time         :      21.87
+  solving          :      21.86
+  presolving       :       0.13 (included in solving)
+  reading          :       0.01
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         13 (6 internal, 7 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          7
+  nodes (total)    :         14 (7 internal, 7 leaves)
+  nodes left       :          0
+  max depth        :          3
+  max depth (total):          3
+  backtracks       :         10 (76.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.69
+  switching time   :       0.68
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01          3          0       0.00       0.00       0.01          3
+  dual LP          :       0.78        165       2681      26.28    3437.18       0.06         63
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.35         41       1015      24.76    2900.00
+  strong branching :      13.80        665      37767      56.79    2736.74          -          -          0
+    (at root node) :          -         46       3885      84.46          -
+  conflict analysis:       0.04         10         62       6.20    1550.00
+Solution           :
+  Solutions found  :        313 (4 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.12 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.62 %
+  Primal Bound     : -2.86369550000000e+04   (in run 1, after 1 nodes, 3.09 seconds, depth 0, found by <rens>)
+  Dual Bound       : -2.86369550000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       5.89 % (128.84 primal-dual integral)
+
+Objective values: (opt is -28637)
+inf 1.0 0.0
+-24077.5 0.159216 0.31
+-26571.6 0.0721234 3.07
+-28637 0 3.09
+-28637 0 21.86
+Primal integral: 0.750878
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/340000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/340000.data
+data/hybrid_bids/bids_530/valid/solutions/340000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/340000/340000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/340000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 0.180285, abs.max = 998.135)
+Total Time         :     900.22
+  solving          :     900.21
+  presolving       :       0.00 (included in solving)
+  reading          :       0.01
+  copying          :       0.28 (4 #copies) (minimal 0.00, maximal 0.14, average 0.07)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1701 (878 internal, 823 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        823
+  nodes (total)    :       1701 (878 internal, 823 leaves)
+  nodes left       :          0
+  max depth        :         19
+  max depth (total):         19
+  backtracks       :       1696 (99.7%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      15.15
+  switching time   :     391.09
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.66        539          0       0.00       0.00       4.65        539
+  dual LP          :      54.69       4641      59557      21.74    1088.99       4.80       1901
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      32.93       2550      33974      13.32    1031.70
+  strong branching :      60.45       2238      96840      43.27    1601.99          -          -         87
+    (at root node) :          -         21       2795     133.10          -
+  conflict analysis:       0.00         10         61       6.10          -
+Solution           :
+  Solutions found  :        456 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.28 %
+  Primal Bound     : -2.74511440000000e+04   (in run 1, after 1161 nodes, 681.93 seconds, depth 17, found by <pscostdiving>)
+  Dual Bound       : -2.74511440000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       2.44 % (2192.33 primal-dual integral)
+
+Objective values: (opt is -27451.1)
+inf 1.0 0.0
+-21645.1 0.211505 0.01
+-22259.5 0.189124 0.02
+-25807.1 0.0598891 0.02
+-27297 0.00561386 0.85
+-27337.7 0.00413169 0.96
+-27451.1 0 690.63
+-27451.1 0 900.21
+Primal integral: 2.91194
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/460000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/460000.data
+data/hybrid_bids/bids_530/valid/solutions/460000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/460000/460000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/460000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 10.0554, abs.max = 18446)
+Total Time         :      11.12
+  solving          :      11.09
+  presolving       :       0.23 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          7 (3 internal, 4 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          4
+  nodes (total)    :          8 (4 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          4 (57.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.57
+  switching time   :       0.16
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         11          0       0.00       0.00       0.01         11
+  dual LP          :       0.51        120       2617      26.17    5131.37       0.00         20
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.14         18        980      54.44    7000.00
+  strong branching :       5.61        251      23240      92.59    4142.60          -          -          0
+    (at root node) :          -         44       7001     159.11          -
+  conflict analysis:       0.01         10         84       8.40    8400.00
+Solution           :
+  Solutions found  :        147 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       0.87 %
+  Primal Bound     : -8.68428700000000e+04   (in run 2, after 5 nodes, 10.90 seconds, depth 4, found by <relaxation>)
+  Dual Bound       : -8.68428700000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      10.85 % (120.37 primal-dual integral)
+
+Objective values: (opt is -46819.8)
+inf 1.0 0.0
+-34260.3 0.268251 0.42
+-39294.4 0.160731 3.01
+-40623.1 0.132352 3.01
+-46363.2 0.0097508 3.07
+-46722.9 0.00206883 10
+-46819.8 0 10.9
+-46819.8 0 11.09
+Primal integral: 1.19215
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/240000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/240000.data
+data/hybrid_bids/bids_530/valid/solutions/240000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/240000/240000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/240000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 41.5265, abs.max = 26312.7)
+Total Time         :      23.73
+  solving          :      23.70
+  presolving       :       0.25 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         19 (9 internal, 10 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :          9
+  nodes (total)    :         20 (10 internal, 10 leaves)
+  nodes left       :          0
+  max depth        :          7
+  max depth (total):          7
+  backtracks       :          8 (42.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          5 (0 domain reductions, 0 cutoffs)
+  avg switch length:       4.32
+  switching time   :       0.39
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01          9          0       0.00       0.00       0.01          9
+  dual LP          :       1.24        185       4411      32.67    3557.26       0.06         50
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.47         31       1262      40.71    2685.11
+  strong branching :      16.38        571      48431      84.82    2956.72          -          -          0
+    (at root node) :          -         46       9253     201.15          -
+  conflict analysis:       0.02         10         62       6.20    3100.00
+Solution           :
+  Solutions found  :        159 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.22 %
+  Primal Bound     : -8.47572680000000e+04   (in run 2, after 14 nodes, 18.75 seconds, depth 5, found by <relaxation>)
+  Dual Bound       : -8.47572680000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       6.29 % (149.11 primal-dual integral)
+
+Objective values: (opt is -41700.4)
+inf 1.0 0.0
+-34952.2 0.161826 0.43
+-37297 0.105596 1.56
+-41059.1 0.0153786 1.71
+-41253.3 0.010722 10.06
+-41487 0.00511908 15.88
+-41700.4 0 18.75
+-41700.4 0 23.7
+Primal integral: 0.834208
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/20000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/20000.data
+data/hybrid_bids/bids_530/valid/solutions/20000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/20000/20000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/20000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 2.45372, abs.max = 25720.6)
+Total Time         :      26.75
+  solving          :      26.72
+  presolving       :       0.24 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         19 (9 internal, 10 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :         10
+  nodes (total)    :         20 (10 internal, 10 leaves)
+  nodes left       :          0
+  max depth        :          8
+  max depth (total):          8
+  backtracks       :          4 (21.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          4 (0 domain reductions, 0 cutoffs)
+  avg switch length:       4.42
+  switching time   :       0.16
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02         13          0       0.00       0.00       0.02         13
+  dual LP          :       1.61        188       5200      34.90    3229.81       0.05         39
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.27         19        801      42.16    2966.67
+  strong branching :      18.51        550      70756     128.65    3822.58          -          -          0
+    (at root node) :          -         98      25577     260.99          -
+  conflict analysis:       0.02         10         82       8.20    4100.00
+Solution           :
+  Solutions found  :        199 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       3.10 %
+  Primal Bound     : -8.31381937200000e+04   (in run 2, after 13 nodes, 20.33 seconds, depth 8, found by <relaxation>)
+  Dual Bound       : -8.31381937200000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       7.54 % (201.38 primal-dual integral)
+
+Objective values: (opt is -40708.8)
+inf 1.0 0.0
+-31519 0.225744 0.45
+-38365.3 0.0575686 3.29
+-39690 0.0250277 3.29
+-40191.8 0.0126994 3.5
+-40319.6 0.00956081 3.52
+-40708.8 0 20.33
+-40708.8 0 26.72
+Primal integral: 1.25734
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/100000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/100000.data
+data/hybrid_bids/bids_530/valid/solutions/100000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/100000/100000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/100000.lp
+  Variables        : 532 (0 binary, 532 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 202 initial, 202 maximal
+  Objective        : minimize, 532 non-zeros (abs.min = 16.2076, abs.max = 4048.86)
+Total Time         :    1000.41
+  solving          :    1000.38
+  presolving       :       0.38 (included in solving)
+  reading          :       0.03
+  copying          :       1.93 (15 #copies) (minimal 0.01, maximal 0.16, average 0.13)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2366 (1253 internal, 1113 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       1112
+  nodes (total)    :       2366 (1253 internal, 1113 leaves)
+  nodes left       :        140
+  max depth        :         69
+  max depth (total):         69
+  backtracks       :       2363 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      27.32
+  switching time   :     516.57
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       5.80        636          0       0.00       0.00       5.78        636
+  dual LP          :      87.46       4042     122208      41.30    1397.30       3.40       1083
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      80.73       3086     118388      38.36    1466.47
+  strong branching :      66.74       1902     175181      92.10    2624.83          -          -        230
+    (at root node) :          -         30      13946     464.87          -
+  conflict analysis:       0.02          9         45       5.00    2250.00
+Solution           :
+  Solutions found  :        368 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      19.88 %
+  Primal Bound     : -5.88567570000000e+03   (in run 1, after 1360 nodes, 590.78 seconds, depth 40, found by <farkasdiving>)
+  Dual Bound       : -6.99680720166924e+03
+  Gap              :      18.88 %
+  Avg. Gap         :      17.02 % (17023.79 primal-dual integral)
+
+Objective values: (opt is -5518.77)
+inf 1.0 0.0
+-4500.19 0.184567 0.61
+-4531.13 0.17896 4.08
+-5396.99 0.0220663 5.02
+-5502.76 0.00290164 20.88
+-5518.77 0 591.03
+-5518.77 0 1000.38
+Primal integral: 3.42301
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/420000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/420000.data
+data/hybrid_bids/bids_530/valid/solutions/420000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/420000/420000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/420000.lp
+  Variables        : 533 (0 binary, 533 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 200 initial, 200 maximal
+  Objective        : minimize, 533 non-zeros (abs.min = 11.0945, abs.max = 3193.05)
+Total Time         :    1000.05
+  solving          :    1000.00
+  presolving       :       0.37 (included in solving)
+  reading          :       0.05
+  copying          :       1.96 (15 #copies) (minimal 0.00, maximal 0.16, average 0.13)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2467 (1272 internal, 1195 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :       1194
+  nodes (total)    :       2467 (1272 internal, 1195 leaves)
+  nodes left       :         73
+  max depth        :         62
+  max depth (total):         62
+  backtracks       :       2464 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      25.78
+  switching time   :     526.94
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.73        581          0       0.00       0.00       4.72        581
+  dual LP          :      84.62       4207     122482      39.97    1447.44       3.77       1143
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      78.95       3166     114205      36.07    1446.55
+  strong branching :      70.10       1889     175568      92.94    2504.54          -          -        232
+    (at root node) :          -         24      13990     582.92          -
+  conflict analysis:       0.00          9         44       4.89          -
+Solution           :
+  Solutions found  :        388 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.16 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      20.27 %
+  Primal Bound     : -5.87400620000000e+03   (in run 1, after 1088 nodes, 511.02 seconds, depth 24, found by <relaxation>)
+  Dual Bound       : -7.06439464417996e+03
+  Gap              :      20.27 %
+  Avg. Gap         :      17.39 % (17391.98 primal-dual integral)
+
+Objective values: (opt is -5657.38)
+inf 1.0 0.0
+-3906.79 0.309433 0.62
+-4966.29 0.122156 5.71
+-5454.02 0.035946 7.67
+-5487.94 0.0299494 23.66
+-5627.89 0.00521279 23.84
+-5657.38 0 511.67
+-5657.38 0 1000
+Primal integral: 5.55756
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/210000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/210000.data
+data/hybrid_bids/bids_530/valid/solutions/210000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/210000/210000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/210000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 33.0213, abs.max = 27352.3)
+Total Time         :      27.03
+  solving          :      26.99
+  presolving       :       0.24 (included in solving)
+  reading          :       0.04
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         23 (11 internal, 12 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :         12
+  nodes (total)    :         24 (12 internal, 12 leaves)
+  nodes left       :          0
+  max depth        :          9
+  max depth (total):          9
+  backtracks       :          8 (34.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          7 (0 domain reductions, 0 cutoffs)
+  avg switch length:       5.48
+  switching time   :       0.37
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02         11          0       0.00       0.00       0.02         11
+  dual LP          :       1.30        184       4361      31.83    3354.62       0.07         47
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.50         25       1431      57.24    2862.00
+  strong branching :      17.71        601      54883      91.32    3098.98          -          -          0
+    (at root node) :          -         42       8908     212.10          -
+  conflict analysis:       0.02         10         63       6.30    3150.00
+Solution           :
+  Solutions found  :        190 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       3.03 %
+  Primal Bound     : -8.23594870000000e+04   (in run 2, after 14 nodes, 18.37 seconds, depth 7, found by <relaxation>)
+  Dual Bound       : -8.23594870000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       6.95 % (187.51 primal-dual integral)
+
+Objective values: (opt is -42215.4)
+inf 1.0 0.0
+-35820.8 0.151474 0.44
+-39808.8 0.0570072 3.15
+-41655 0.0132745 3.26
+-41951 0.00626298 17.38
+-42215.4 0 18.37
+-42215.4 0 26.99
+Primal integral: 1.0504
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/300000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/300000.data
+data/hybrid_bids/bids_530/valid/solutions/300000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/300000/300000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/300000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 199 initial, 199 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 6.03816, abs.max = 4077.51)
+Total Time         :     106.52
+  solving          :     106.48
+  presolving       :       0.44 (included in solving)
+  reading          :       0.04
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :        147 (73 internal, 74 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :         74
+  nodes (total)    :        148 (74 internal, 74 leaves)
+  nodes left       :          0
+  max depth        :         39
+  max depth (total):         39
+  backtracks       :        122 (83.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       4.98
+  switching time   :      10.60
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.28         38          0       0.00       0.00       0.28         38
+  dual LP          :      11.60        671      19593      43.25    1689.05       0.63        218
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      15.52        460      22483      48.88    1448.65
+  strong branching :      36.81       1083     135402     125.02    3678.40          -          -         23
+    (at root node) :          -         50      25592     511.84          -
+  conflict analysis:       0.03          9         45       5.00    1500.00
+Solution           :
+  Solutions found  :        166 (6 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.56 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       8.34 %
+  Primal Bound     : -6.17739936000000e+03   (in run 1, after 1 nodes, 4.98 seconds, depth 0, found by <rens>)
+  Dual Bound       : -6.17739936000000e+03
+  Gap              :       0.00 %
+  Avg. Gap         :       7.39 % (786.54 primal-dual integral)
+
+Objective values: (opt is -5423.74)
+inf 1.0 0.0
+-3674.08 0.322593 1.05
+-4734.98 0.12699 4.53
+-5423.74 0 4.98
+-5423.74 0 106.48
+Primal integral: 2.22977
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/490000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/490000.data
+data/hybrid_bids/bids_530/valid/solutions/490000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/490000/490000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/490000.lp
+  Variables        : 531 (0 binary, 531 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 198 initial, 198 maximal
+  Objective        : minimize, 531 non-zeros (abs.min = 6.65082, abs.max = 2893.84)
+Total Time         :    1000.07
+  solving          :    1000.04
+  presolving       :       0.37 (included in solving)
+  reading          :       0.03
+  copying          :       1.63 (13 #copies) (minimal 0.01, maximal 0.16, average 0.13)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2365 (1218 internal, 1147 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          1
+  objective leaves :       1146
+  nodes (total)    :       2365 (1218 internal, 1147 leaves)
+  nodes left       :         72
+  max depth        :         74
+  max depth (total):         74
+  backtracks       :       2362 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      32.76
+  switching time   :     500.42
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       5.72        704          0       0.00       0.00       5.70        704
+  dual LP          :      94.07       4281     127221      42.69    1352.41       3.97       1301
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      97.94       3182     134732      42.34    1375.66
+  strong branching :      74.58       2118     183461      86.62    2459.92          -          -        206
+    (at root node) :          -         37      19900     537.84          -
+  conflict analysis:       0.02          9         59       6.56    2950.00
+Solution           :
+  Solutions found  :        335 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      14.35 %
+  Primal Bound     : -6.32393920000000e+03   (in run 1, after 81 nodes, 86.64 seconds, depth 17, found by <pscostdiving>)
+  Dual Bound       : -6.90524608157927e+03
+  Gap              :       9.19 %
+  Avg. Gap         :      11.29 % (11289.43 primal-dual integral)
+
+Objective values: (opt is -5483.46)
+inf 1.0 0.0
+-3932.63 0.28282 0.62
+-4401.09 0.197388 5.08
+-5332.25 0.0275746 6.46
+-5352.46 0.0238888 6.47
+-5472.39 0.00201738 40.63
+-5483.46 0 86.64
+-5483.46 0 1000.04
+Primal integral: 3.06291
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/50000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/50000.data
+data/hybrid_bids/bids_530/valid/solutions/50000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/50000/50000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/50000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 19.2525, abs.max = 25045.9)
+Total Time         :       8.05
+  solving          :       8.02
+  presolving       :       0.23 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          3
+  nodes (total)    :          6 (3 internal, 3 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.40
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02          9          0       0.00       0.00       0.02          9
+  dual LP          :       0.47        107       2331      26.19    4959.57       0.01         18
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.07         14        454      32.43    6485.71
+  strong branching :       3.49        210      21795     103.79    6244.99          -          -          0
+    (at root node) :          -         47       7891     167.89          -
+  conflict analysis:       0.03         12         81       6.75    2700.00
+Solution           :
+  Solutions found  :        155 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       0.46 %
+  Primal Bound     : -8.61311455000000e+04   (in run 2, after 5 nodes, 8.00 seconds, depth 4, found by <relaxation>)
+  Dual Bound       : -8.61311455000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      12.02 % (96.38 primal-dual integral)
+
+Objective values: (opt is -41602.9)
+inf 1.0 0.0
+-36416.2 0.124671 0.42
+-39748.4 0.0445774 3.16
+-41221 0.00917959 3.2
+-41228.6 0.00899713 3.83
+-41415.9 0.00449592 5.37
+-41602.9 0 8
+-41602.9 0 8.02
+Primal integral: 0.794845
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/400000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/400000.data
+data/hybrid_bids/bids_530/valid/solutions/400000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/400000/400000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/400000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 2.28696, abs.max = 997.915)
+Total Time         :     656.35
+  solving          :     656.33
+  presolving       :       0.15 (included in solving)
+  reading          :       0.02
+  copying          :       0.75 (8 #copies) (minimal 0.00, maximal 0.16, average 0.09)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :       1287 (708 internal, 579 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        579
+  nodes (total)    :       1288 (709 internal, 579 leaves)
+  nodes left       :          0
+  max depth        :         24
+  max depth (total):         24
+  backtracks       :       1284 (99.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:      16.05
+  switching time   :     302.74
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       2.74        358          0       0.00       0.00       2.73        358
+  dual LP          :      34.05       3488      41627      20.43    1222.53       3.29       1450
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      26.75       2281      32152      14.10    1201.94
+  strong branching :      47.71       2095      86753      41.41    1818.34          -          -         67
+    (at root node) :          -         68       6697      98.49          -
+  conflict analysis:       0.02         13         82       6.31    4100.00
+Solution           :
+  Solutions found  :        395 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.12 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.21 %
+  Primal Bound     : -2.71937250000000e+04   (in run 2, after 1040 nodes, 555.39 seconds, depth 20, found by <alns>)
+  Dual Bound       : -2.71937250000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       2.08 % (1364.98 primal-dual integral)
+
+Objective values: (opt is -27193.7)
+inf 1.0 0.0
+-21183.9 0.220999 0.34
+-21592.4 0.205978 1.59
+-21773.1 0.199333 1.6
+-26072.4 0.0412358 1.99
+-26960.4 0.00857937 2.66
+-27193.7 0 571.17
+-27193.7 0 656.33
+Primal integral: 5.60113
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/380000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/380000.data
+data/hybrid_bids/bids_530/valid/solutions/380000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/380000/380000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/380000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 16.8259, abs.max = 26615.2)
+Total Time         :      12.56
+  solving          :      12.53
+  presolving       :       0.22 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          7 (3 internal, 4 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          4
+  nodes (total)    :          8 (4 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          3
+  max depth (total):          3
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.86
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         11          0       0.00       0.00       0.01         11
+  dual LP          :       0.82        121       3336      31.77    4068.29       0.01         16
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.11         20        975      48.75    8863.64
+  strong branching :       7.02        185      23873     129.04    3400.71          -          -          0
+    (at root node) :          -         39       9354     239.85          -
+  conflict analysis:       0.01          9         60       6.67    6000.00
+Solution           :
+  Solutions found  :        125 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       0.12 %
+  Primal Bound     : -8.74925406000000e+04   (in run 2, after 7 nodes, 12.53 seconds, depth 5, found by <relaxation>)
+  Dual Bound       : -8.74925406000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      10.17 % (127.44 primal-dual integral)
+
+Objective values: (opt is -44030)
+inf 1.0 0.0
+-33080.4 0.248685 0.42
+-39810.5 0.0958336 3.11
+-43270.8 0.0172444 3.17
+-43727.4 0.00687423 3.18
+-44030 0 12.53
+-44030 0 12.53
+Primal integral: 1.15916
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/330000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/330000.data
+data/hybrid_bids/bids_530/valid/solutions/330000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/330000/330000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/330000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 2.01903, abs.max = 999.585)
+Total Time         :     895.31
+  solving          :     895.31
+  presolving       :       0.00 (included in solving)
+  reading          :       0.00
+  copying          :       0.30 (4 #copies) (minimal 0.01, maximal 0.15, average 0.07)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1720 (912 internal, 808 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :        806
+  nodes (total)    :       1720 (912 internal, 808 leaves)
+  nodes left       :          0
+  max depth        :         19
+  max depth (total):         19
+  backtracks       :       1717 (99.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          4 (0 domain reductions, 0 cutoffs)
+  avg switch length:      16.07
+  switching time   :     388.20
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.30        565          0       0.00       0.00       4.30        565
+  dual LP          :      49.02       4689      54698      20.06    1115.83       4.48       1962
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      33.20       2819      36696      13.02    1105.30
+  strong branching :      51.87       2270      86419      38.07    1666.07          -          -        118
+    (at root node) :          -         26       2413      92.81          -
+  conflict analysis:       0.15         18        148       8.22     986.67
+Solution           :
+  Solutions found  :        475 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.86 %
+  Primal Bound     : -2.64849090000000e+04   (in run 1, after 746 nodes, 487.24 seconds, depth 10, found by <relaxation>)
+  Dual Bound       : -2.64849090000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       2.19 % (1956.35 primal-dual integral)
+
+Objective values: (opt is -26484.9)
+inf 1.0 0.0
+-21061.9 0.204759 0.01
+-21772.9 0.177914 0.63
+-22652.5 0.144702 0.63
+-24188.6 0.0867014 0.63
+-26201.8 0.0106887 0.74
+-26227.6 0.00971346 236.54
+-26412.2 0.00274462 323.85
+-26439.1 0.001728 389.12
+-26484.9 0 489.24
+-26484.9 0 895.31
+Primal integral: 3.86712
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/30000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/30000.data
+data/hybrid_bids/bids_530/valid/solutions/30000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/30000/30000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/30000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 45.5919, abs.max = 38223.9)
+Total Time         :      12.77
+  solving          :      12.74
+  presolving       :       0.27 (included in solving)
+  reading          :       0.03
+  copying          :       0.03 (3 #copies) (minimal 0.01, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          7 (3 internal, 4 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          4
+  nodes (total)    :          8 (4 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          3
+  max depth (total):          3
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.57
+  switching time   :       0.02
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         11          0       0.00       0.00       0.01         11
+  dual LP          :       0.72        129       3330      31.42    4625.00       0.02         23
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.12         15        845      56.33    7041.67
+  strong branching :       7.43        308      37248     120.94    5013.19          -          -          0
+    (at root node) :          -         72      16011     222.38          -
+  conflict analysis:       0.02         12         81       6.75    4050.00
+Solution           :
+  Solutions found  :        149 (6 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.15 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       3.35 %
+  Primal Bound     : -8.30273840000000e+04   (in run 1, after 1 nodes, 3.14 seconds, depth 0, found by <rens>)
+  Dual Bound       : -8.30273840000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       9.55 % (121.68 primal-dual integral)
+
+Objective values: (opt is -38571.1)
+inf 1.0 0.0
+-31450.8 0.184601 0.44
+-34725.9 0.099691 3.06
+-38571.1 0 3.14
+-38571.1 0 12.74
+Primal integral: 0.931631
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/320000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/320000.data
+data/hybrid_bids/bids_530/valid/solutions/320000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/320000/320000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/320000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 33.5503, abs.max = 26570.8)
+Total Time         :      13.91
+  solving          :      13.88
+  presolving       :       0.03 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         13 (6 internal, 7 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          7
+  nodes (total)    :         14 (7 internal, 7 leaves)
+  nodes left       :          0
+  max depth        :          4
+  max depth (total):          4
+  backtracks       :         10 (76.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.38
+  switching time   :       0.56
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01          9          0       0.00       0.00       0.01          9
+  dual LP          :       0.66        158       3325      27.71    5037.88       0.05         38
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.36         34       1169      34.38    3247.22
+  strong branching :       9.08        429      40124      93.53    4418.94          -          -          0
+    (at root node) :          -         63      12975     205.95          -
+  conflict analysis:       0.00         10         63       6.30          -
+Solution           :
+  Solutions found  :        188 (6 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.04 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.52 %
+  Primal Bound     : -8.62512710000000e+04   (in run 2, after 9 nodes, 11.37 seconds, depth 5, found by <relaxation>)
+  Dual Bound       : -8.62512710000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       3.41 % (47.39 primal-dual integral)
+
+Objective values: (opt is -38887)
+inf 1.0 0.0
+-30679.7 0.211054 0.05
+-37141.3 0.0448895 0.58
+-38242.9 0.0165618 0.66
+-38887 0 11.37
+-38887 0 13.88
+Primal integral: 0.342827
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/390000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/390000.data
+data/hybrid_bids/bids_530/valid/solutions/390000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/390000/390000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/390000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 21.8603, abs.max = 27891.4)
+Total Time         :      20.87
+  solving          :      20.85
+  presolving       :       0.25 (included in solving)
+  reading          :       0.02
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         11 (5 internal, 6 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          6
+  nodes (total)    :         12 (6 internal, 6 leaves)
+  nodes left       :          0
+  max depth        :          4
+  max depth (total):          4
+  backtracks       :          4 (36.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.27
+  switching time   :       0.18
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         11          0       0.00       0.00       0.01         11
+  dual LP          :       1.15        167       4572      34.90    3975.65       0.06         36
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       1.13         47       4052      86.21    3585.84
+  strong branching :      13.79        505      65093     128.90    4720.30          -          -          0
+    (at root node) :          -         41      10734     261.80          -
+  conflict analysis:       0.03         10         61       6.10    2033.33
+Solution           :
+  Solutions found  :        140 (6 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       5.13 %
+  Primal Bound     : -8.28889127000000e+04   (in run 1, after 1 nodes, 2.42 seconds, depth 0, found by <oneopt>)
+  Dual Bound       : -8.28889127000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       8.47 % (176.62 primal-dual integral)
+
+Objective values: (opt is -48791.3)
+inf 1.0 0.0
+-37579.8 0.229785 0.46
+-43880.4 0.100652 2.18
+-47409 0.0283302 2.33
+-48791.3 1.49124e-16 2.42
+-48791.3 0 20.85
+Primal integral: 0.872877
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/280000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/280000.data
+data/hybrid_bids/bids_530/valid/solutions/280000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/280000/280000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/280000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 48.2546, abs.max = 23996.1)
+Total Time         :      14.84
+  solving          :      14.84
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         10 (5 internal, 5 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          5
+  nodes (total)    :         11 (6 internal, 5 leaves)
+  nodes left       :          0
+  max depth        :          4
+  max depth (total):          4
+  backtracks       :          7 (70.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.20
+  switching time   :       0.29
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         11          0       0.00       0.00       0.01         11
+  dual LP          :       0.74        148       3996      33.86    5400.00       0.02         30
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.29         27       1116      41.33    3848.28
+  strong branching :      10.46        414      45728     110.45    4371.70          -          -          0
+    (at root node) :          -         45      10455     232.33          -
+  conflict analysis:       0.00         10         74       7.40          -
+Solution           :
+  Solutions found  :        141 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.56 %
+  Primal Bound     : -8.25692810000000e+04   (in run 2, after 7 nodes, 13.81 seconds, depth 5, found by <relaxation>)
+  Dual Bound       : -8.25692810000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       3.65 % (54.19 primal-dual integral)
+
+Objective values: (opt is -46279.5)
+inf 1.0 0.0
+-38606.5 0.165796 0.01
+-42263.6 0.0867744 0.75
+-45292 0.0213371 0.75
+-46098.6 0.00390804 4.11
+-46279.5 0 13.81
+-46279.5 0 14.84
+Primal integral: 0.24229
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/260000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/260000.data
+data/hybrid_bids/bids_530/valid/solutions/260000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/260000/260000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/260000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 55.0588, abs.max = 22617)
+Total Time         :       5.22
+  solving          :       5.19
+  presolving       :       0.32 (included in solving)
+  reading          :       0.03
+  copying          :       0.00 (4 #copies) (minimal 0.00, maximal 0.00, average 0.00)
+B&B Tree           :
+  number of runs   :          5
+  nodes            :          1 (0 internal, 1 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          1
+  nodes (total)    :          5 (0 internal, 5 leaves)
+  nodes left       :          0
+  max depth        :          0
+  max depth (total):          0
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.00
+  switching time   :       0.00
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.00         21          0       0.00          -       0.00         21
+  dual LP          :       0.36        199       4380      26.23   12166.67       0.00         32
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.07         30       1346      44.87   19228.57
+  strong branching :       0.73        173      26764     154.71   36663.01          -          -          0
+    (at root node) :          -        173      26764     154.71          -
+  conflict analysis:       0.01         10         61       6.10    6100.00
+Solution           :
+  Solutions found  :        233 (10 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.11 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.72 %
+  Primal Bound     : -8.51025290000000e+04   (in run 2, after 1 nodes, 3.59 seconds, depth 0, found by <oneopt>)
+  Dual Bound       : -8.51025290000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      16.45 % (85.37 primal-dual integral)
+
+Objective values: (opt is -85102.5)
+inf 1.0 0.0
+-32028.2 0.623652 0.42
+-33371.4 0.607868 2.53
+-36784.1 0.567767 2.59
+-36937.5 0.565965 3.59
+-37044.2 0.564711 3.59
+-85102.5 0 5.19
+Primal integral: 3.24368
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/70000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/70000.data
+data/hybrid_bids/bids_530/valid/solutions/70000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/70000/70000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/70000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 11.2043, abs.max = 23185.9)
+Total Time         :      22.65
+  solving          :      22.65
+  presolving       :       0.04 (included in solving)
+  reading          :       0.00
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :         17 (8 internal, 9 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          9
+  nodes (total)    :         18 (9 internal, 9 leaves)
+  nodes left       :          0
+  max depth        :          6
+  max depth (total):          6
+  backtracks       :          8 (47.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.06
+  switching time   :       0.43
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         13          0       0.00       0.00       0.01         13
+  dual LP          :       1.04        197       4254      27.62    4090.38       0.08         43
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.40         38       1069      28.13    2672.50
+  strong branching :      16.29        584      58940     100.92    3618.17          -          -          0
+    (at root node) :          -        104      22372     215.12          -
+  conflict analysis:       0.00         10         61       6.10          -
+Solution           :
+  Solutions found  :        167 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.88 %
+  Primal Bound     : -8.53084790000000e+04   (in run 2, after 8 nodes, 12.27 seconds, depth 6, found by <relaxation>)
+  Dual Bound       : -8.53084790000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       3.13 % (70.82 primal-dual integral)
+
+Objective values: (opt is -37658.3)
+inf 1.0 0.0
+-30875.6 0.180112 0.01
+-35689.2 0.052289 0.64
+-37202.9 0.0120931 0.72
+-37225.6 0.0114903 0.73
+-37267.3 0.0103843 1.72
+-37356.7 0.00801063 1.87
+-37658.3 0 12.27
+-37658.3 0 22.65
+Primal integral: 0.224018
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/290000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/290000.data
+data/hybrid_bids/bids_530/valid/solutions/290000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/290000/290000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/290000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 10.7623, abs.max = 21627.9)
+Total Time         :      13.46
+  solving          :      13.43
+  presolving       :       0.23 (included in solving)
+  reading          :       0.03
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          7 (3 internal, 4 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          4
+  nodes (total)    :          8 (4 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          4 (57.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.57
+  switching time   :       0.19
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.00         13          0       0.00          -       0.00         13
+  dual LP          :       0.72        146       3176      26.92    4411.11       0.03         28
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.43         29       1644      56.69    3823.26
+  strong branching :       7.91        323      38136     118.07    4821.24          -          -          0
+    (at root node) :          -         39       8412     215.69          -
+  conflict analysis:       0.02          9         60       6.67    3000.00
+Solution           :
+  Solutions found  :        134 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.92 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       3.10 %
+  Primal Bound     : -8.21235680000000e+04   (in run 2, after 1 nodes, 3.83 seconds, depth 0, found by <oneopt>)
+  Dual Bound       : -8.21235680000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      14.14 % (189.86 primal-dual integral)
+
+Objective values: (opt is -45071.9)
+inf 1.0 0.0
+-33931.1 0.247179 1.22
+-39343.6 0.127092 1.27
+-40793.5 0.0949241 2.41
+-43712.5 0.0301605 2.53
+-44052.4 0.0226201 3.65
+-44241.5 0.018424 3.83
+-45071.9 0 3.83
+-45071.9 0 13.43
+Primal integral: 1.42649
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/480000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/480000.data
+data/hybrid_bids/bids_530/valid/solutions/480000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/480000/480000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/480000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 0.59767, abs.max = 999.213)
+Total Time         :     324.22
+  solving          :     324.20
+  presolving       :       0.14 (included in solving)
+  reading          :       0.02
+  copying          :       0.29 (4 #copies) (minimal 0.00, maximal 0.14, average 0.07)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        598 (318 internal, 280 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        280
+  nodes (total)    :        598 (318 internal, 280 leaves)
+  nodes left       :          0
+  max depth        :         16
+  max depth (total):         16
+  backtracks       :        595 (99.5%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (0 domain reductions, 0 cutoffs)
+  avg switch length:      12.25
+  switching time   :     120.28
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.90        140          0       0.00       0.00       0.90        140
+  dual LP          :      18.40       1966      22695      19.96    1233.42       1.93        829
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      14.89       1035      17912      17.31    1202.96
+  strong branching :      48.31       1969      78185      39.71    1618.40          -          -         65
+    (at root node) :          -         33       3449     104.52          -
+  conflict analysis:       0.02         10         61       6.10    3050.00
+Solution           :
+  Solutions found  :        436 (9 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.12 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       1.97 %
+  Primal Bound     : -2.75835500000000e+04   (in run 1, after 275 nodes, 208.27 seconds, depth 10, found by <rounding>)
+  Dual Bound       : -2.75835500000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :       2.90 % (939.77 primal-dual integral)
+
+Objective values: (opt is -27583.6)
+inf 1.0 0.0
+-20495.5 0.256966 0.34
+-20682.5 0.250189 0.95
+-24748.5 0.102781 0.98
+-25400 0.0791623 1.46
+-27005.5 0.0209549 1.65
+-27092.3 0.0178097 6.7
+-27271.3 0.0113209 54.71
+-27583.6 0 213.11
+-27583.6 0 324.2
+Primal integral: 3.32273
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/220000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/220000.data
+data/hybrid_bids/bids_530/valid/solutions/220000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/220000/220000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/220000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 66.1021, abs.max = 30858.9)
+Total Time         :      10.07
+  solving          :      10.05
+  presolving       :       0.23 (included in solving)
+  reading          :       0.02
+  copying          :       0.01 (3 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          5 (2 internal, 3 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          3
+  nodes (total)    :          6 (2 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          0 (0.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.00
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.04         11          0       0.00       0.00       0.04         11
+  dual LP          :       0.49        124       3162      30.11    6453.06       0.00         19
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.04          9        548      60.89   13700.00
+  strong branching :       5.25        194      21629     111.49    4119.81          -          -          0
+    (at root node) :          -         54      10324     191.19          -
+  conflict analysis:       0.00         10         61       6.10          -
+Solution           :
+  Solutions found  :        141 (5 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.14 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.60 %
+  Primal Bound     : -8.32593540000000e+04   (in run 1, after 1 nodes, 3.08 seconds, depth 0, found by <rens>)
+  Dual Bound       : -8.32593540000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      11.93 % (119.93 primal-dual integral)
+
+Objective values: (opt is -46713)
+inf 1.0 0.0
+-36778.3 0.212675 0.44
+-45673.6 0.0222513 3.02
+-46713 0 3.08
+-46713 0 10.05
+Primal integral: 0.990036
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/250000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/250000.data
+data/hybrid_bids/bids_530/valid/solutions/250000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/250000/250000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/250000.lp
+  Variables        : 535 (0 binary, 535 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 197 initial, 197 maximal
+  Objective        : minimize, 535 non-zeros (abs.min = 2.40669, abs.max = 3409.22)
+Total Time         :     926.64
+  solving          :     926.64
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       1.31 (11 #copies) (minimal 0.00, maximal 0.16, average 0.12)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2333 (1166 internal, 1167 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       1167
+  nodes (total)    :       2333 (1166 internal, 1167 leaves)
+  nodes left       :          0
+  max depth        :        158
+  max depth (total):        158
+  backtracks       :       2324 (99.6%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          3 (0 domain reductions, 0 cutoffs)
+  avg switch length:      26.85
+  switching time   :     381.29
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       6.07        616          0       0.00       0.00       6.07        616
+  dual LP          :     132.90       3976     166062      57.14    1249.53       4.13       1070
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:     140.54       3631     185435      51.07    1319.45
+  strong branching :      85.99       2156     201833      93.61    2347.17          -          -        327
+    (at root node) :          -         36      18825     522.92          -
+  conflict analysis:       0.00          9         41       4.56          -
+Solution           :
+  Solutions found  :        369 (11 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      15.10 %
+  Primal Bound     : -6.07173180000000e+03   (in run 1, after 5 nodes, 13.41 seconds, depth 4, found by <relaxation>)
+  Dual Bound       : -6.07173180000000e+03
+  Gap              :       0.00 %
+  Avg. Gap         :      11.23 % (10407.12 primal-dual integral)
+
+Objective values: (opt is -5186.59)
+inf 1.0 0.0
+-3637.97 0.298581 0.02
+-3819.85 0.263515 2.5
+-4409.48 0.14983 2.5
+-4826.68 0.069393 3.65
+-4929.65 0.0495393 3.66
+-5069.71 0.0225357 5.98
+-5172.44 0.00272821 13.18
+-5172.86 0.00264688 13.41
+-5186.59 0 13.42
+-5186.59 0 926.64
+Primal integral: 1.21132
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/40000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/40000.data
+data/hybrid_bids/bids_530/valid/solutions/40000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/40000/40000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/40000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 1.67638, abs.max = 999.341)
+Total Time         :    1000.03
+  solving          :    1000.00
+  presolving       :       0.12 (included in solving)
+  reading          :       0.03
+  copying          :       0.28 (4 #copies) (minimal 0.00, maximal 0.14, average 0.07)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2064 (1050 internal, 1014 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       1014
+  nodes (total)    :       2064 (1050 internal, 1014 leaves)
+  nodes left       :         21
+  max depth        :         19
+  max depth (total):         19
+  backtracks       :       2061 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          3 (0 domain reductions, 0 cutoffs)
+  avg switch length:      14.96
+  switching time   :     428.19
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.90        690          0       0.00       0.00       4.87        690
+  dual LP          :      59.70       5835      65403      19.09    1095.53       5.73       2409
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      36.28       2993      35008      11.70     964.94
+  strong branching :      56.09       2627      91272      34.74    1627.24          -          -        126
+    (at root node) :          -         35       3658     104.51          -
+  conflict analysis:       0.06         12         81       6.75    1350.00
+Solution           :
+  Solutions found  :        549 (8 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.16 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.23 %
+  Primal Bound     : -2.74285270000000e+04   (in run 1, after 752 nodes, 431.97 seconds, depth 17, found by <pscostdiving>)
+  Dual Bound       : -2.76333869377883e+04
+  Gap              :       0.75 %
+  Avg. Gap         :       2.31 % (2314.29 primal-dual integral)
+
+Objective values: (opt is -27428.5)
+inf 1.0 0.0
+-21587.1 0.212969 0.35
+-21857.2 0.20312 2.28
+-25564.6 0.0679549 2.31
+-27119.3 0.0112726 3.01
+-27276.7 0.00553471 7.67
+-27355.8 0.00265114 66.3
+-27428.5 0 434
+-27428.5 0 1000
+Primal integral: 2.16655
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/470000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/470000.data
+data/hybrid_bids/bids_530/valid/solutions/470000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/470000/470000.sol
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/470000.lp
+  Variables        : 530 (0 binary, 530 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 100 initial, 100 maximal
+  Objective        : minimize, 530 non-zeros (abs.min = 57.8496, abs.max = 26997.7)
+Total Time         :      12.24
+  solving          :      12.21
+  presolving       :       0.23 (included in solving)
+  reading          :       0.03
+  copying          :       0.02 (3 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          2
+  nodes            :          7 (3 internal, 4 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :          4
+  nodes (total)    :          8 (4 internal, 4 leaves)
+  nodes left       :          0
+  max depth        :          2
+  max depth (total):          2
+  backtracks       :          4 (57.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (0 domain reductions, 0 cutoffs)
+  avg switch length:       2.86
+  switching time   :       0.18
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.03          9          0       0.00       0.00       0.03          9
+  dual LP          :       0.66        128       3086      30.86    4675.76       0.03         28
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:       0.23         18        816      45.33    3547.83
+  strong branching :       6.65        302      32324     107.03    4860.75          -          -          0
+    (at root node) :          -         41       8686     211.85          -
+  conflict analysis:       0.03         10         83       8.30    2766.67
+Solution           :
+  Solutions found  :        157 (7 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.15 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       2.03 %
+  Primal Bound     : -8.34418220000000e+04   (in run 2, after 3 nodes, 10.84 seconds, depth 11, found by <coefdiving>)
+  Dual Bound       : -8.34418220000000e+04
+  Gap              :       0.00 %
+  Avg. Gap         :      10.82 % (132.16 primal-dual integral)
+
+Objective values: (opt is -41827.3)
+inf 1.0 0.0
+-33014.6 0.210692 0.45
+-40816.4 0.0241685 3.23
+-41417.2 0.00980445 3.3
+-41827.3 0 10.84
+-41827.3 0 12.21
+Primal integral: 1.11134
+
+WARNING: unknown parameter <separating/maxincrounds>
+WARNING: unknown parameter <constraints/orbisack/orbisack/coverseparation>
+WARNING: unknown parameter <presolving/implfree/priority>
+WARNING: unknown parameter <presolving/implfree/maxrounds>
+WARNING: unknown parameter <presolving/implfree/timing>
+WARNING: unknown parameter <presolving/symmetry/computepresolved>
+WARNING: unknown parameter <heuristics/alns/stallnodefactor>
+[INFO]: Read problem from file: "data/hybrid_bids/bids_530/valid/310000.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/hybrid_bids/bids_530/valid/iter2/310000.data
+data/hybrid_bids/bids_530/valid/solutions/310000
+[INFO]: Oracle: Loaded solution file: data/hybrid_bids/bids_530/valid/solutions/310000/310000.sol
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/hybrid_bids/bids_530/valid/310000.lp
+  Variables        : 534 (0 binary, 534 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 196 initial, 196 maximal
+  Objective        : minimize, 534 non-zeros (abs.min = 27.7935, abs.max = 3373.17)
+Total Time         :    1000.43
+  solving          :    1000.40
+  presolving       :       0.36 (included in solving)
+  reading          :       0.03
+  copying          :       1.72 (14 #copies) (minimal 0.00, maximal 0.15, average 0.12)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       2254 (1214 internal, 1040 leaves)
+  feasible leaves  :          3
+  infeas. leaves   :          1
+  objective leaves :       1035
+  nodes (total)    :       2254 (1214 internal, 1040 leaves)
+  nodes left       :        158
+  max depth        :         70
+  max depth (total):         70
+  backtracks       :       2251 (99.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:      27.17
+  switching time   :     536.36
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       4.64        587          0       0.00       0.00       4.63        587
+  dual LP          :      68.95       3860     100920      35.72    1463.67       2.76       1035
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  resolve instable :       0.00          0          0       0.00          -
+  diving/probing LP:      65.04       2815      97255      34.55    1495.31
+  strong branching :      69.68       1596     164578     103.12    2361.91          -          -        197
+    (at root node) :          -         36      17492     485.89          -
+  conflict analysis:       0.01          9         42       4.67    4200.00
+Solution           :
+  Solutions found  :        395 (11 improvements)
+  First Solution   : +0.00000000000000e+00   (in run 1, after 0 nodes, 0.13 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      17.83 %
+  Primal Bound     : -6.37008140000000e+03   (in run 1, after 1736 nodes, 805.87 seconds, depth 47, found by <pscostdiving>)
+  Dual Bound       : -7.50587674990017e+03
+  Gap              :      17.83 %
+  Avg. Gap         :      15.78 % (15789.71 primal-dual integral)
+
+Objective values: (opt is -5536.84)
+inf 1.0 0.0
+-4034.11 0.271406 0.59
+-4457.85 0.194875 0.68
+-4960.7 0.104056 4.18
+-5386.05 0.0272342 5.28
+-5412.35 0.0224837 103.62
+-5510.91 0.0046844 114.33
+-5520.53 0.00294597 696.45
+-5533.05 0.00068577 721.41
+-5536.84 0 806.31
+-5536.84 0 1000.4
+Primal integral: 7.1886
+

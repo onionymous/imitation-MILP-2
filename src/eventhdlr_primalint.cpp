@@ -34,7 +34,7 @@ namespace imilp {
       obj_vals_.push_back(obj);
       times_.push_back(t);
 
-      std::cout << obj << " " << t << "\n";
+      // std::cout << obj << " " << t << "\n";
 
       // if (oracle_) {
       //   if (fabs(obj - oracle_->GetOptObjectiveValue()) < 0.00001) {

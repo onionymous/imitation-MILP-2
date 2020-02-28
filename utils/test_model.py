@@ -12,13 +12,13 @@ def test_problem(model_path, problem_path, save_path):
     print("Testing problem: {} (default SCIP)".format(problem_path))
     f.write("> Default SCIP:\n")
     f.flush()
-    subprocess.call(["bin/imilp", "-p", problem_path], stdout=f, shell=True)
+    subprocess.call(["bin/imilp", "-p", problem_path], stdout=f)
 
     f.write("\n\n> With model:\n")
     f.flush()
     print("Testing problem: {} (model)".format(problem_path))
     subprocess.call(["bin/imilp", "-p", problem_path,
-                     "-m", model_path], stdout=f, shell=True)
+                     "-m", model_path], stdout=f)
 
 
 def test_folder(model_path, problems_dir, save_dir):

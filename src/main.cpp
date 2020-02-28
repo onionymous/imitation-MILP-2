@@ -175,7 +175,7 @@ int main(int argc, char** argv) {
 
       return EXIT_SUCCESS;
     } else if (mode == "model") {
-      /* ORACLE MODE, WRITE TRAJECTORY TO FILE */
+      /* MODEL MODE, WRITE TRAJECTORY TO FILE */
 
       if (problems_path == "") {
         std::cerr << "[ERROR]: Path to problems must be specified."
@@ -206,6 +206,9 @@ int main(int argc, char** argv) {
       }
 
       return EXIT_SUCCESS;
+    } else {
+      std::cerr << "[ERROR]: Unrecognized mode: " << mode << "." << "\n";
+        return EXIT_FAILURE;
     }
 
   } catch (std::exception& e) {

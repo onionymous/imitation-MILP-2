@@ -20,7 +20,7 @@
 #include <vector>
 
 #include <boost/python.hpp>
-#include <python/Python.h>
+#include <python3.6m/Python.h>
 
 namespace imilp {
 

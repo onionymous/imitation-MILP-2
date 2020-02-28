@@ -1,0 +1,3751 @@
+2019-06-20 08:56:33.050679: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcudart.so.10.1
+WARNING: Logging before flag parsing goes to stderr.
+W0620 08:56:41.113193 140604803561280 __init__.py:308] Limited tf.compat.v2.summary API due to missing TensorBoard installation.
+Using TensorFlow backend.
+W0620 08:56:41.963459 140604803561280 deprecation_wrapper.py:119] From /home/orion/Documents/dev/imitation-milp-2/./py_scripts/ranknet.py:110: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+W0620 08:56:41.963827 140604803561280 deprecation_wrapper.py:119] From /home/orion/Documents/dev/imitation-milp-2/./py_scripts/ranknet.py:117: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-06-20 08:56:41.973145: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2019-06-20 08:56:41.991842: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2809000000 Hz
+2019-06-20 08:56:41.992724: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5560f8d2fc40 executing computations on platform Host. Devices:
+2019-06-20 08:56:41.992756: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-06-20 08:56:41.993669: I tensorflow/stream_executor/platform/default/dso_loader.cc:42] Successfully opened dynamic library libcuda.so.1
+2019-06-20 08:56:41.994506: E tensorflow/stream_executor/cuda/cuda_driver.cc:318] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2019-06-20 08:56:41.994544: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:169] retrieving CUDA diagnostic information for host: haru
+2019-06-20 08:56:41.994548: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:176] hostname: haru
+2019-06-20 08:56:41.994635: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:200] libcuda reported version is: 430.26.0
+2019-06-20 08:56:41.994671: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:204] kernel reported version is: 430.14.0
+2019-06-20 08:56:41.994688: E tensorflow/stream_executor/cuda/cuda_diagnostics.cc:313] kernel version 430.14.0 does not match DSO version 430.26.0 -- cannot find working devices in this configuration
+Starting ImitationMILP...
+
+[INFO]: ImitationMILP: Validating directory structure for folder: data/mvc_train
+[INFO]: ImitationMILP: Creating data directory: "data/mvc_train/data"
+[INFO]: ImitationMILP: Validating directory structure for folder: data/mvc_valid
+[INFO]: ImitationMILP: Creating data directory: "data/mvc_valid/data"
+[INFO]: ImitationMILP: Previous model was not specified, training a new model and saving to file: models/mvc4.h5
+[INFO]: Read problem from file: "data/mvc_train/input4.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+WARNING: The Gurobi LPI is a beta version only - use with care.
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input4/input4.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input4.data
+104 0.02
+99 0.02
+98 0.02
+97 2.87
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input4.lp
+  Variables        : 124 (124 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1115 initial, 1115 maximal
+  Objective        : minimize, 124 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      17.87
+  solving          :      17.87
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.10 (15 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       6412 (3208 internal, 3204 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       3204
+  nodes (total)    :       6412 (3208 internal, 3204 leaves)
+  nodes left       :          0
+  max depth        :         42
+  max depth (total):         42
+  backtracks       :        836 (13.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          8 (2 domain reductions, 0 cutoffs)
+  avg switch length:       3.43
+  switching time   :       0.18
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.04        524          0       0.00       0.00       0.04        524
+  dual LP          :       4.79       7570     154126      22.55   32176.62       0.05        734
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.02          1         16      16.00     800.00
+  strong branching :       2.02        525      55192     105.13   27322.77          -          -          3
+    (at root node) :          -         24       4603     191.79          -
+  conflict analysis:       0.03         83        728       8.77   24266.67
+Solution           :
+  Solutions found  :        450 (5 improvements)
+  First Solution   : +1.24000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.60 %
+  Primal Bound     : +9.70000000000000e+01   (in run 1, after 27 nodes, 2.87 seconds, depth 28, found by <relaxation>)
+  Dual Bound       : +9.70000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.84 % (157.97 primal-dual integral)
+
+Objective values: (opt is 97)
+inf 1.0 0.0
+104 0.0673077 0.02
+99 0.020202 0.02
+98 0.0102041 0.02
+97 0 2.87
+97 0 17.87
+Primal integral: 0.0490816
+
+[INFO]: Read problem from file: "data/mvc_train/input8.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input8/input8.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input8.data
+139 0.02
+133 0.02
+129 3.66
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input8.lp
+  Variables        : 157 (157 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1887 initial, 1887 maximal
+  Objective        : minimize, 157 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     199.97
+  solving          :     199.97
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.22 (36 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      92515 (46258 internal, 46257 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :      46257
+  nodes (total)    :      92515 (46258 internal, 46257 leaves)
+  nodes left       :          0
+  max depth        :         62
+  max depth (total):         62
+  backtracks       :      10830 (11.7%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.39
+  switching time   :       3.09
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.30       4850          0       0.00       0.00       1.27       4850
+  dual LP          :      84.08     106110    2147912      22.61   25546.05       1.49      11093
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.41          1         20      20.00      48.78
+  strong branching :       5.45       3244     127142      39.19   23328.81          -          -        316
+    (at root node) :          -         35      12577     359.34          -
+  conflict analysis:       0.14        632       6113       9.67   43664.29
+Solution           :
+  Solutions found  :        706 (4 improvements)
+  First Solution   : +1.57000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      14.54 %
+  Primal Bound     : +1.29000000000000e+02   (in run 1, after 25 nodes, 3.66 seconds, depth 26, found by <relaxation>)
+  Dual Bound       : +1.29000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.89 % (2176.79 primal-dual integral)
+
+Objective values: (opt is 129)
+inf 1.0 0.0
+139 0.0719424 0.02
+133 0.0300752 0.02
+129 0 3.66
+129 0 199.97
+Primal integral: 0.129474
+
+[INFO]: Read problem from file: "data/mvc_train/input10.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input10/input10.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input10.data
+165 0.05
+163 0.05
+162 0.06
+156 9.01
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input10.lp
+  Variables        : 186 (186 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 2563 initial, 2563 maximal
+  Objective        : minimize, 186 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.03 (included in solving)
+  reading          :       0.00
+  copying          :       0.37 (67 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     423284 (211651 internal, 211633 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :     211631
+  nodes (total)    :     423284 (211651 internal, 211633 leaves)
+  nodes left       :         18
+  max depth        :         66
+  max depth (total):         66
+  backtracks       :      47438 (11.2%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.30
+  switching time   :      16.87
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       7.58      21858          0       0.00       0.00       7.54      21858
+  dual LP          :     441.85     472073    9608820      22.39   21746.79       7.14      43006
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.93          1         28      28.00      30.11
+  strong branching :      12.01       5565     222160      39.92   18497.92          -          -        497
+    (at root node) :          -         45      20981     466.24          -
+  conflict analysis:       0.36       1223      12071       9.87   33530.56
+Solution           :
+  Solutions found  :        758 (5 improvements)
+  First Solution   : +1.86000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      16.05 %
+  Primal Bound     : +1.56000000000000e+02   (in run 1, after 44 nodes, 9.01 seconds, depth 43, found by <relaxation>)
+  Dual Bound       : +1.34799394565859e+02
+  Gap              :      15.73 %
+  Avg. Gap         :      13.81 % (13811.99 primal-dual integral)
+
+Objective values: (opt is 156)
+inf 1.0 0.0
+165 0.0545455 0.05
+163 0.0429448 0.05
+162 0.037037 0.06
+156 0 9.01
+156 0 1000
+Primal integral: 0.381911
+
+[INFO]: Read problem from file: "data/mvc_train/input12.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input12/input12.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input12.data
+124 0.08
+118 0.08
+117 0.09
+115 3.54
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input12.lp
+  Variables        : 142 (142 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1491 initial, 1491 maximal
+  Objective        : minimize, 142 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      89.97
+  solving          :      89.97
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.20 (28 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      53281 (26643 internal, 26638 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :      26638
+  nodes (total)    :      53281 (26643 internal, 26638 leaves)
+  nodes left       :          0
+  max depth        :         50
+  max depth (total):         50
+  backtracks       :       6801 (12.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          4 (2 domain reductions, 0 cutoffs)
+  avg switch length:       3.38
+  switching time   :       1.72
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.78       2795          0       0.00       0.00       0.78       2795
+  dual LP          :      37.07      60460    1094078      20.21   29513.84       0.58       6316
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.21          1         25      25.00     119.05
+  strong branching :       3.12       1650      83334      50.51   26709.62          -          -        119
+    (at root node) :          -         35      10192     291.20          -
+  conflict analysis:       0.08        392       3770       9.62   47125.00
+Solution           :
+  Solutions found  :        561 (5 improvements)
+  First Solution   : +1.42000000000000e+02   (in run 1, after 0 nodes, 0.06 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      12.59 %
+  Primal Bound     : +1.15000000000000e+02   (in run 1, after 36 nodes, 3.54 seconds, depth 37, found by <relaxation>)
+  Dual Bound       : +1.15000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.77 % (968.99 primal-dual integral)
+
+Objective values: (opt is 115)
+inf 1.0 0.0
+124 0.0725806 0.08
+118 0.0254237 0.08
+117 0.017094 0.09
+115 0 3.54
+115 0 89.97
+Primal integral: 0.139229
+
+[INFO]: Read problem from file: "data/mvc_train/input3.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input3/input3.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input3.data
+107 0.03
+104 0.03
+100 2.02
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input3.lp
+  Variables        : 126 (126 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1164 initial, 1164 maximal
+  Objective        : minimize, 126 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      20.89
+  solving          :      20.89
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.08 (13 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       9483 (4744 internal, 4739 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       4739
+  nodes (total)    :       9483 (4744 internal, 4739 leaves)
+  nodes left       :          0
+  max depth        :         47
+  max depth (total):         47
+  backtracks       :       1124 (11.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.47
+  switching time   :       0.27
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.11        605          0       0.00       0.00       0.11        605
+  dual LP          :       6.31      11112     211847      21.07   33573.22       0.13       1059
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.02          1         36      36.00    1800.00
+  strong branching :       1.71        827      50726      61.34   29664.33          -          -         21
+    (at root node) :          -         42       9451     225.02          -
+  conflict analysis:       0.03        100        920       9.20   30666.67
+Solution           :
+  Solutions found  :        537 (4 improvements)
+  First Solution   : +1.26000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      10.84 %
+  Primal Bound     : +1.00000000000000e+02   (in run 1, after 20 nodes, 2.02 seconds, depth 21, found by <relaxation>)
+  Dual Bound       : +1.00000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       9.50 % (198.50 primal-dual integral)
+
+Objective values: (opt is 100)
+inf 1.0 0.0
+107 0.0654206 0.03
+104 0.0384615 0.03
+100 0 2.02
+100 0 20.89
+Primal integral: 0.106538
+
+[INFO]: Read problem from file: "data/mvc_train/input1.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input1/input1.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input1.data
+84 0.02
+79 0.02
+77 0.03
+75 1.15
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input1.lp
+  Variables        : 100 (100 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 694 initial, 694 maximal
+  Objective        : minimize, 100 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       2.99
+  solving          :       2.99
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.02 (4 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        333 (169 internal, 164 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        164
+  nodes (total)    :        333 (169 internal, 164 leaves)
+  nodes left       :          0
+  max depth        :         21
+  max depth (total):         21
+  backtracks       :         53 (15.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          4 (2 domain reductions, 0 cutoffs)
+  avg switch length:       3.70
+  switching time   :       0.00
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.00         52          0       0.00          -       0.00         52
+  dual LP          :       0.38        533      13269      27.36   34918.42       0.00         48
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.01          1          7       7.00     700.00
+  strong branching :       0.70        413      27443      66.45   39204.29          -          -          3
+    (at root node) :          -         37       5925     160.14          -
+  conflict analysis:       0.02         40        305       7.62   15250.00
+Solution           :
+  Solutions found  :        310 (5 improvements)
+  First Solution   : +1.00000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       8.14 %
+  Primal Bound     : +7.50000000000000e+01   (in run 1, after 15 nodes, 1.15 seconds, depth 16, found by <relaxation>)
+  Dual Bound       : +7.50000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.23 % (27.61 primal-dual integral)
+
+Objective values: (opt is 75)
+inf 1.0 0.0
+84 0.107143 0.02
+79 0.0506329 0.02
+77 0.025974 0.03
+75 0 1.15
+75 0 2.99
+Primal integral: 0.0495972
+
+[INFO]: Read problem from file: "data/mvc_train/input0.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input0/input0.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input0.data
+126 0.03
+122 0.03
+118 3.45
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input0.lp
+  Variables        : 146 (146 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1585 initial, 1585 maximal
+  Objective        : minimize, 146 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      76.36
+  solving          :      76.36
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.13 (24 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      38374 (19187 internal, 19187 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :      19187
+  nodes (total)    :      38374 (19187 internal, 19187 leaves)
+  nodes left       :          0
+  max depth        :         52
+  max depth (total):         52
+  backtracks       :       4460 (11.6%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.47
+  switching time   :       1.07
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.51       2184          0       0.00       0.00       0.49       2184
+  dual LP          :      29.73      43398     875797      22.18   29458.36       0.42       3908
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.15          1         20      20.00     133.33
+  strong branching :       3.42       1527      84029      55.03   24569.88          -          -         81
+    (at root node) :          -         43      12423     288.91          -
+  conflict analysis:       0.06        258       2386       9.25   39766.67
+Solution           :
+  Solutions found  :        641 (4 improvements)
+  First Solution   : +1.46000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      11.87 %
+  Primal Bound     : +1.18000000000000e+02   (in run 1, after 18 nodes, 3.45 seconds, depth 19, found by <relaxation>)
+  Dual Bound       : +1.18000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.37 % (791.81 primal-dual integral)
+
+Objective values: (opt is 118)
+inf 1.0 0.0
+126 0.0634921 0.03
+122 0.0327869 0.03
+118 0 3.45
+118 0 76.36
+Primal integral: 0.142131
+
+[INFO]: Read problem from file: "data/mvc_train/input5.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input5/input5.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input5.data
+119 0.02
+114 0.02
+110 3.44
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input5.lp
+  Variables        : 137 (137 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1407 initial, 1407 maximal
+  Objective        : minimize, 137 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      52.27
+  solving          :      52.27
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.15 (25 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      29969 (14987 internal, 14982 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :      14981
+  nodes (total)    :      29969 (14987 internal, 14982 leaves)
+  nodes left       :          0
+  max depth        :         47
+  max depth (total):         47
+  backtracks       :       3936 (13.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          9 (3 domain reductions, 0 cutoffs)
+  avg switch length:       3.33
+  switching time   :       0.77
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.36       1555          0       0.00       0.00       0.36       1555
+  dual LP          :      19.70      33917     625908      20.45   31771.98       0.22       3303
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.13          1         41      41.00     315.38
+  strong branching :       3.23       1500      81256      54.17   25156.66          -          -         77
+    (at root node) :          -         69      18057     261.70          -
+  conflict analysis:       0.07        291       2772       9.53   39600.00
+Solution           :
+  Solutions found  :        712 (4 improvements)
+  First Solution   : +1.37000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      11.78 %
+  Primal Bound     : +1.10000000000000e+02   (in run 1, after 20 nodes, 3.44 seconds, depth 19, found by <relaxation>)
+  Dual Bound       : +1.10000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.37 % (541.82 primal-dual integral)
+
+Objective values: (opt is 110)
+inf 1.0 0.0
+119 0.0756303 0.02
+114 0.0350877 0.02
+110 0 3.44
+110 0 52.27
+Primal integral: 0.14
+
+[INFO]: Read problem from file: "data/mvc_train/input13.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input13/input13.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input13.data
+141 0.02
+136 0.02
+133 5.14
+132 5.14
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input13.lp
+  Variables        : 161 (161 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1908 initial, 1908 maximal
+  Objective        : minimize, 161 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     315.04
+  solving          :     315.04
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.21 (45 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     175583 (87793 internal, 87790 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :      87790
+  nodes (total)    :     175583 (87793 internal, 87790 leaves)
+  nodes left       :          0
+  max depth        :         64
+  max depth (total):         64
+  backtracks       :      22349 (12.7%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.40
+  switching time   :       4.86
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       2.19       8514          0       0.00       0.00       2.18       8514
+  dual LP          :     140.11     195653    3763502      21.26   26861.05       2.19      18667
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.52          1         47      47.00      90.38
+  strong branching :       5.50       2871     129424      45.08   23531.64          -          -        260
+    (at root node) :          -         20       6629     331.45          -
+  conflict analysis:       0.15        709       6972       9.83   46480.00
+Solution           :
+  Solutions found  :        710 (5 improvements)
+  First Solution   : +1.61000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      14.24 %
+  Primal Bound     : +1.32000000000000e+02   (in run 1, after 35 nodes, 5.14 seconds, depth 36, found by <relaxation>)
+  Dual Bound       : +1.32000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      11.35 % (3576.82 primal-dual integral)
+
+Objective values: (opt is 132)
+inf 1.0 0.0
+141 0.0638298 0.02
+136 0.0294118 0.02
+133 0.0075188 5.14
+132 0 5.14
+132 0 315.04
+Primal integral: 0.170588
+
+[INFO]: Read problem from file: "data/mvc_train/input2.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input2/input2.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input2.data
+121 0.03
+119 0.03
+117 0.04
+113 2.69
+112 2.7
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input2.lp
+  Variables        : 140 (140 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1458 initial, 1458 maximal
+  Objective        : minimize, 140 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      33.61
+  solving          :      33.60
+  presolving       :       0.01 (included in solving)
+  reading          :       0.01
+  copying          :       0.09 (16 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      12956 (6478 internal, 6478 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       6478
+  nodes (total)    :      12956 (6478 internal, 6478 leaves)
+  nodes left       :          0
+  max depth        :         50
+  max depth (total):         50
+  backtracks       :       1504 (11.6%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          8 (3 domain reductions, 0 cutoffs)
+  avg switch length:       3.50
+  switching time   :       0.50
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.21        872          0       0.00       0.00       0.21        872
+  dual LP          :      11.02      15141     331848      24.11   30113.25       0.16       1379
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.10          1          7       7.00      70.00
+  strong branching :       2.65       1279      69543      54.37   26242.64          -          -         37
+    (at root node) :          -         42      11338     269.95          -
+  conflict analysis:       0.04        198       1805       9.12   45125.00
+Solution           :
+  Solutions found  :        658 (6 improvements)
+  First Solution   : +1.40000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      12.34 %
+  Primal Bound     : +1.12000000000000e+02   (in run 1, after 13 nodes, 2.70 seconds, depth 14, found by <relaxation>)
+  Dual Bound       : +1.12000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       9.60 % (322.67 primal-dual integral)
+
+Objective values: (opt is 112)
+inf 1.0 0.0
+121 0.0743802 0.03
+119 0.0588235 0.03
+117 0.042735 0.04
+113 0.00884956 2.69
+112 0 2.7
+112 0 33.6
+Primal integral: 0.143925
+
+[INFO]: Read problem from file: "data/mvc_train/input9.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input9/input9.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input9.data
+93 0.01
+89 0.01
+88 0.02
+87 1.79
+83 1.79
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input9.lp
+  Variables        : 109 (109 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 828 initial, 828 maximal
+  Objective        : minimize, 109 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       5.48
+  solving          :       5.48
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.04 (6 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1049 (526 internal, 523 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          1
+  objective leaves :        522
+  nodes (total)    :       1049 (526 internal, 523 leaves)
+  nodes left       :          0
+  max depth        :         26
+  max depth (total):         26
+  backtracks       :        162 (15.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.58
+  switching time   :       0.03
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.03        128          0       0.00       0.00       0.03        128
+  dual LP          :       0.94       1368      29962      24.10   31874.47       0.01        125
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.01          1         34      34.00    3400.00
+  strong branching :       0.96        368      33182      90.17   34564.58          -          -          0
+    (at root node) :          -         25       4404     176.16          -
+  conflict analysis:       0.02         30        268       8.93   13400.00
+Solution           :
+  Solutions found  :        392 (6 improvements)
+  First Solution   : +1.09000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       7.20 %
+  Primal Bound     : +8.30000000000000e+01   (in run 1, after 22 nodes, 1.79 seconds, depth 21, found by <oneopt>)
+  Dual Bound       : +8.30000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.13 % (50.01 primal-dual integral)
+
+Objective values: (opt is 83)
+inf 1.0 0.0
+93 0.107527 0.01
+89 0.0674157 0.01
+88 0.0568182 0.02
+87 0.045977 1.79
+83 0 1.79
+83 0 5.48
+Primal integral: 0.111242
+
+[INFO]: Read problem from file: "data/mvc_train/input6.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input6/input6.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_train/data/input6.data
+101 0.02
+100 0.02
+99 0.02
+94 1.76
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input6.lp
+  Variables        : 119 (119 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1098 initial, 1098 maximal
+  Objective        : minimize, 119 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      10.48
+  solving          :      10.48
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.08 (11 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       3434 (1720 internal, 1714 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :       1713
+  nodes (total)    :       3434 (1720 internal, 1714 leaves)
+  nodes left       :          0
+  max depth        :         39
+  max depth (total):         39
+  backtracks       :        450 (13.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          6 (2 domain reductions, 0 cutoffs)
+  avg switch length:       3.57
+  switching time   :       0.19
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.11        313          0       0.00       0.00       0.11        313
+  dual LP          :       2.67       4241      90074      23.31   33735.58       0.01        377
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.01          1          7       7.00     700.00
+  strong branching :       1.58        849      45721      53.85   28937.34          -          -         13
+    (at root node) :          -         31       5650     182.26          -
+  conflict analysis:       0.03        116       1039       8.96   34633.33
+Solution           :
+  Solutions found  :        478 (5 improvements)
+  First Solution   : +1.19000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.93 %
+  Primal Bound     : +9.40000000000000e+01   (in run 1, after 21 nodes, 1.76 seconds, depth 20, found by <relaxation>)
+  Dual Bound       : +9.40000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.56 % (100.24 primal-dual integral)
+
+Objective values: (opt is 94)
+inf 1.0 0.0
+101 0.0693069 0.02
+100 0.06 0.02
+99 0.0505051 0.02
+94 0 1.76
+94 0 10.48
+Primal integral: 0.107879
+
+[INFO]: Read problem from file: "data/mvc_valid/input14.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_valid/solutions/input14/input14.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_valid/data/input14.data
+91 0.02
+87 0.02
+86 0.02
+84 1.47
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_valid/input14.lp
+  Variables        : 108 (108 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 901 initial, 901 maximal
+  Objective        : minimize, 108 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       7.43
+  solving          :       7.43
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.05 (8 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1814 (908 internal, 906 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        906
+  nodes (total)    :       1814 (908 internal, 906 leaves)
+  nodes left       :          0
+  max depth        :         28
+  max depth (total):         28
+  backtracks       :        269 (14.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          1 (1 domain reductions, 0 cutoffs)
+  avg switch length:       3.28
+  switching time   :       0.07
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.03        221          0       0.00       0.00       0.03        221
+  dual LP          :       1.46       2353      48625      22.73   33304.79       0.03        214
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.02          1         10      10.00     500.00
+  strong branching :       0.97        529      32570      61.57   33577.32          -          -          5
+    (at root node) :          -         22       3604     163.82          -
+  conflict analysis:       0.01         78        689       8.83   68900.00
+Solution           :
+  Solutions found  :        468 (5 improvements)
+  First Solution   : +1.08000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.67 %
+  Primal Bound     : +8.40000000000000e+01   (in run 1, after 15 nodes, 1.47 seconds, depth 16, found by <relaxation>)
+  Dual Bound       : +8.40000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.34 % (69.43 primal-dual integral)
+
+Objective values: (opt is 84)
+inf 1.0 0.0
+91 0.0769231 0.02
+87 0.0344828 0.02
+86 0.0232558 0.02
+84 0 1.47
+84 0 7.43
+Primal integral: 0.0537209
+
+[INFO]: Read problem from file: "data/mvc_valid/input11.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: Oracle: Loaded solution file: data/mvc_valid/solutions/input11/input11.sol
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_valid/data/input11.data
+162 0.03
+155 0.03
+153 0.04
+150 6.51
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_valid/input11.lp
+  Variables        : 179 (179 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 2396 initial, 2396 maximal
+  Objective        : minimize, 179 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.03 (included in solving)
+  reading          :       0.00
+  copying          :       0.34 (65 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     407170 (203613 internal, 203557 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          1
+  objective leaves :     203555
+  nodes (total)    :     407170 (203613 internal, 203557 leaves)
+  nodes left       :         54
+  max depth        :         66
+  max depth (total):         66
+  backtracks       :      47390 (11.6%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       3.30
+  switching time   :      14.68
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       6.60      21757          0       0.00       0.00       6.56      21757
+  dual LP          :     397.18     458330    9160339      22.07   23063.44       7.10      43192
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.90          1         53      53.00      58.89
+  strong branching :      10.49       5805     209414      36.07   19963.20          -          -        674
+    (at root node) :          -         21       9355     445.48          -
+  conflict analysis:       0.48       1342      13142       9.79   27379.17
+Solution           :
+  Solutions found  :        592 (5 improvements)
+  First Solution   : +1.79000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      17.25 %
+  Primal Bound     : +1.50000000000000e+02   (in run 1, after 36 nodes, 6.51 seconds, depth 37, found by <relaxation>)
+  Dual Bound       : +1.31325000000000e+02
+  Gap              :      14.22 %
+  Avg. Gap         :      13.43 % (13430.22 primal-dual integral)
+
+Objective values: (opt is 150)
+inf 1.0 0.0
+162 0.0740741 0.03
+155 0.0322581 0.03
+153 0.0196078 0.04
+150 0 6.51
+150 0 1000
+Primal integral: 0.157185
+
+W0620 09:48:35.317465 140604803561280 deprecation_wrapper.py:119] From /usr/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:68: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+W0620 09:48:35.325306 140604803561280 deprecation_wrapper.py:119] From /usr/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:508: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0620 09:48:35.328623 140604803561280 deprecation_wrapper.py:119] From /usr/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3837: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+W0620 09:48:35.348793 140604803561280 deprecation.py:506] From /usr/lib/python3.7/site-packages/keras/backend/tensorflow_backend.py:3144: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+W0620 09:48:35.439413 140604803561280 deprecation_wrapper.py:119] From /usr/lib/python3.7/site-packages/keras/optimizers.py:757: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+W0620 09:48:35.450468 140604803561280 deprecation.py:323] From /usr/lib/python3.7/site-packages/tensorflow/python/ops/nn_impl.py:180: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+2019-06-20 09:48:36.011563: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+Train on 3979 samples, validate on 735 samples
+Epoch 1/100
+ - 1s - loss: 0.3211 - acc: 0.9713 - val_loss: 0.1401 - val_acc: 0.9850
+
+Epoch 00001: val_loss improved from inf to 0.14007, saving model to models/mvc4-0.h5
+Epoch 2/100
+ - 0s - loss: 0.1776 - acc: 0.9819 - val_loss: 0.1373 - val_acc: 0.9850
+
+Epoch 00002: val_loss improved from 0.14007 to 0.13732, saving model to models/mvc4-0.h5
+Epoch 3/100
+ - 0s - loss: 0.1466 - acc: 0.9857 - val_loss: 0.1351 - val_acc: 0.9850
+
+Epoch 00003: val_loss improved from 0.13732 to 0.13515, saving model to models/mvc4-0.h5
+Epoch 4/100
+ - 0s - loss: 0.1586 - acc: 0.9822 - val_loss: 0.1362 - val_acc: 0.9850
+
+Epoch 00004: val_loss did not improve from 0.13515
+Epoch 5/100
+ - 0s - loss: 0.1501 - acc: 0.9844 - val_loss: 0.1387 - val_acc: 0.9850
+
+Epoch 00005: val_loss did not improve from 0.13515
+Epoch 6/100
+ - 0s - loss: 0.1460 - acc: 0.9852 - val_loss: 0.1340 - val_acc: 0.9850
+
+Epoch 00006: val_loss improved from 0.13515 to 0.13398, saving model to models/mvc4-0.h5
+Epoch 7/100
+ - 0s - loss: 0.1470 - acc: 0.9864 - val_loss: 0.1340 - val_acc: 0.9850
+
+Epoch 00007: val_loss did not improve from 0.13398
+Epoch 8/100
+ - 0s - loss: 0.1410 - acc: 0.9829 - val_loss: 0.1318 - val_acc: 0.9850
+
+Epoch 00008: val_loss improved from 0.13398 to 0.13176, saving model to models/mvc4-0.h5
+Epoch 9/100
+ - 0s - loss: 0.1311 - acc: 0.9847 - val_loss: 0.1278 - val_acc: 0.9850
+
+Epoch 00009: val_loss improved from 0.13176 to 0.12783, saving model to models/mvc4-0.h5
+Epoch 10/100
+ - 0s - loss: 0.1346 - acc: 0.9839 - val_loss: 0.1296 - val_acc: 0.9850
+
+Epoch 00010: val_loss did not improve from 0.12783
+Epoch 11/100
+ - 0s - loss: 0.1275 - acc: 0.9859 - val_loss: 0.1277 - val_acc: 0.9850
+
+Epoch 00011: val_loss improved from 0.12783 to 0.12769, saving model to models/mvc4-0.h5
+Epoch 12/100
+ - 0s - loss: 0.1363 - acc: 0.9844 - val_loss: 0.1264 - val_acc: 0.9850
+
+Epoch 00012: val_loss improved from 0.12769 to 0.12644, saving model to models/mvc4-0.h5
+Epoch 13/100
+ - 0s - loss: 0.1430 - acc: 0.9834 - val_loss: 0.1280 - val_acc: 0.9850
+
+Epoch 00013: val_loss did not improve from 0.12644
+Epoch 14/100
+ - 0s - loss: 0.1401 - acc: 0.9839 - val_loss: 0.1237 - val_acc: 0.9850
+
+Epoch 00014: val_loss improved from 0.12644 to 0.12367, saving model to models/mvc4-0.h5
+Epoch 15/100
+ - 0s - loss: 0.1225 - acc: 0.9879 - val_loss: 0.1255 - val_acc: 0.9850
+
+Epoch 00015: val_loss did not improve from 0.12367
+Epoch 16/100
+ - 0s - loss: 0.1212 - acc: 0.9864 - val_loss: 0.1296 - val_acc: 0.9850
+
+Epoch 00016: val_loss did not improve from 0.12367
+Epoch 17/100
+ - 0s - loss: 0.1260 - acc: 0.9847 - val_loss: 0.1287 - val_acc: 0.9850
+
+Epoch 00017: val_loss did not improve from 0.12367
+Epoch 18/100
+ - 0s - loss: 0.1285 - acc: 0.9859 - val_loss: 0.1259 - val_acc: 0.9850
+
+Epoch 00018: val_loss did not improve from 0.12367
+Epoch 19/100
+ - 0s - loss: 0.1275 - acc: 0.9852 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00019: val_loss did not improve from 0.12367
+Epoch 20/100
+ - 0s - loss: 0.1226 - acc: 0.9867 - val_loss: 0.1234 - val_acc: 0.9850
+
+Epoch 00020: val_loss improved from 0.12367 to 0.12344, saving model to models/mvc4-0.h5
+Epoch 21/100
+ - 0s - loss: 0.1271 - acc: 0.9864 - val_loss: 0.1237 - val_acc: 0.9850
+
+Epoch 00021: val_loss did not improve from 0.12344
+Epoch 22/100
+ - 0s - loss: 0.1310 - acc: 0.9847 - val_loss: 0.1250 - val_acc: 0.9850
+
+Epoch 00022: val_loss did not improve from 0.12344
+Epoch 23/100
+ - 0s - loss: 0.1282 - acc: 0.9849 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00023: val_loss did not improve from 0.12344
+Epoch 24/100
+ - 0s - loss: 0.1244 - acc: 0.9872 - val_loss: 0.1251 - val_acc: 0.9850
+
+Epoch 00024: val_loss did not improve from 0.12344
+Epoch 25/100
+ - 0s - loss: 0.1264 - acc: 0.9844 - val_loss: 0.1276 - val_acc: 0.9850
+
+Epoch 00025: val_loss did not improve from 0.12344
+Epoch 26/100
+ - 0s - loss: 0.1224 - acc: 0.9857 - val_loss: 0.1252 - val_acc: 0.9850
+
+Epoch 00026: val_loss did not improve from 0.12344
+Epoch 27/100
+ - 0s - loss: 0.1189 - acc: 0.9867 - val_loss: 0.1275 - val_acc: 0.9850
+
+Epoch 00027: val_loss did not improve from 0.12344
+Epoch 28/100
+ - 0s - loss: 0.1289 - acc: 0.9864 - val_loss: 0.1264 - val_acc: 0.9850
+
+Epoch 00028: val_loss did not improve from 0.12344
+Epoch 29/100
+ - 0s - loss: 0.1186 - acc: 0.9862 - val_loss: 0.1279 - val_acc: 0.9850
+
+Epoch 00029: val_loss did not improve from 0.12344
+Epoch 30/100
+ - 0s - loss: 0.1183 - acc: 0.9859 - val_loss: 0.1285 - val_acc: 0.9850
+
+Epoch 00030: val_loss did not improve from 0.12344
+Epoch 31/100
+ - 0s - loss: 0.1234 - acc: 0.9857 - val_loss: 0.1276 - val_acc: 0.9850
+
+Epoch 00031: val_loss did not improve from 0.12344
+Epoch 32/100
+ - 0s - loss: 0.1301 - acc: 0.9849 - val_loss: 0.1254 - val_acc: 0.9850
+
+Epoch 00032: val_loss did not improve from 0.12344
+Epoch 33/100
+ - 0s - loss: 0.1254 - acc: 0.9864 - val_loss: 0.1255 - val_acc: 0.9850
+
+Epoch 00033: val_loss did not improve from 0.12344
+Epoch 34/100
+ - 0s - loss: 0.1192 - acc: 0.9869 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00034: val_loss did not improve from 0.12344
+Epoch 35/100
+ - 0s - loss: 0.1156 - acc: 0.9884 - val_loss: 0.1259 - val_acc: 0.9850
+
+Epoch 00035: val_loss did not improve from 0.12344
+Epoch 36/100
+ - 0s - loss: 0.1176 - acc: 0.9869 - val_loss: 0.1276 - val_acc: 0.9850
+
+Epoch 00036: val_loss did not improve from 0.12344
+Epoch 37/100
+ - 0s - loss: 0.1204 - acc: 0.9859 - val_loss: 0.1284 - val_acc: 0.9850
+
+Epoch 00037: val_loss did not improve from 0.12344
+Epoch 38/100
+ - 0s - loss: 0.1151 - acc: 0.9879 - val_loss: 0.1284 - val_acc: 0.9850
+
+Epoch 00038: val_loss did not improve from 0.12344
+Epoch 39/100
+ - 0s - loss: 0.1322 - acc: 0.9852 - val_loss: 0.1280 - val_acc: 0.9850
+
+Epoch 00039: val_loss did not improve from 0.12344
+Epoch 40/100
+ - 0s - loss: 0.1141 - acc: 0.9869 - val_loss: 0.1279 - val_acc: 0.9850
+
+Epoch 00040: val_loss did not improve from 0.12344
+Epoch 41/100
+ - 0s - loss: 0.1134 - acc: 0.9864 - val_loss: 0.1283 - val_acc: 0.9850
+
+Epoch 00041: val_loss did not improve from 0.12344
+Epoch 42/100
+ - 0s - loss: 0.1182 - acc: 0.9864 - val_loss: 0.1255 - val_acc: 0.9850
+
+Epoch 00042: val_loss did not improve from 0.12344
+Epoch 43/100
+ - 0s - loss: 0.1150 - acc: 0.9872 - val_loss: 0.1240 - val_acc: 0.9850
+
+Epoch 00043: val_loss did not improve from 0.12344
+Epoch 44/100
+ - 0s - loss: 0.1101 - acc: 0.9859 - val_loss: 0.1248 - val_acc: 0.9850
+
+Epoch 00044: val_loss did not improve from 0.12344
+Epoch 45/100
+ - 0s - loss: 0.1235 - acc: 0.9862 - val_loss: 0.1221 - val_acc: 0.9850
+
+Epoch 00045: val_loss improved from 0.12344 to 0.12206, saving model to models/mvc4-0.h5
+Epoch 46/100
+ - 0s - loss: 0.1222 - acc: 0.9872 - val_loss: 0.1223 - val_acc: 0.9850
+
+Epoch 00046: val_loss did not improve from 0.12206
+Epoch 47/100
+ - 0s - loss: 0.1219 - acc: 0.9869 - val_loss: 0.1203 - val_acc: 0.9850
+
+Epoch 00047: val_loss improved from 0.12206 to 0.12031, saving model to models/mvc4-0.h5
+Epoch 48/100
+ - 0s - loss: 0.1144 - acc: 0.9874 - val_loss: 0.1211 - val_acc: 0.9850
+
+Epoch 00048: val_loss did not improve from 0.12031
+Epoch 49/100
+ - 0s - loss: 0.1228 - acc: 0.9862 - val_loss: 0.1206 - val_acc: 0.9850
+
+Epoch 00049: val_loss did not improve from 0.12031
+Epoch 50/100
+ - 0s - loss: 0.1068 - acc: 0.9864 - val_loss: 0.1235 - val_acc: 0.9850
+
+Epoch 00050: val_loss did not improve from 0.12031
+Epoch 51/100
+ - 0s - loss: 0.1075 - acc: 0.9872 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00051: val_loss did not improve from 0.12031
+Epoch 52/100
+ - 0s - loss: 0.1091 - acc: 0.9879 - val_loss: 0.1255 - val_acc: 0.9850
+
+Epoch 00052: val_loss did not improve from 0.12031
+Epoch 53/100
+ - 0s - loss: 0.1101 - acc: 0.9877 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00053: val_loss did not improve from 0.12031
+Epoch 54/100
+ - 0s - loss: 0.1116 - acc: 0.9874 - val_loss: 0.1243 - val_acc: 0.9850
+
+Epoch 00054: val_loss did not improve from 0.12031
+Epoch 55/100
+ - 0s - loss: 0.1201 - acc: 0.9872 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00055: val_loss did not improve from 0.12031
+Epoch 56/100
+ - 0s - loss: 0.1130 - acc: 0.9872 - val_loss: 0.1259 - val_acc: 0.9850
+
+Epoch 00056: val_loss did not improve from 0.12031
+Epoch 57/100
+ - 0s - loss: 0.1120 - acc: 0.9877 - val_loss: 0.1260 - val_acc: 0.9850
+
+Epoch 00057: val_loss did not improve from 0.12031
+Epoch 58/100
+ - 0s - loss: 0.1161 - acc: 0.9874 - val_loss: 0.1256 - val_acc: 0.9850
+
+Epoch 00058: val_loss did not improve from 0.12031
+Epoch 59/100
+ - 0s - loss: 0.1104 - acc: 0.9874 - val_loss: 0.1260 - val_acc: 0.9850
+
+Epoch 00059: val_loss did not improve from 0.12031
+Epoch 60/100
+ - 0s - loss: 0.1124 - acc: 0.9869 - val_loss: 0.1255 - val_acc: 0.9850
+
+Epoch 00060: val_loss did not improve from 0.12031
+Epoch 61/100
+ - 0s - loss: 0.1139 - acc: 0.9872 - val_loss: 0.1252 - val_acc: 0.9850
+
+Epoch 00061: val_loss did not improve from 0.12031
+Epoch 62/100
+ - 0s - loss: 0.1134 - acc: 0.9872 - val_loss: 0.1256 - val_acc: 0.9850
+
+Epoch 00062: val_loss did not improve from 0.12031
+Epoch 63/100
+ - 0s - loss: 0.1124 - acc: 0.9869 - val_loss: 0.1249 - val_acc: 0.9850
+
+Epoch 00063: val_loss did not improve from 0.12031
+Epoch 64/100
+ - 0s - loss: 0.1004 - acc: 0.9882 - val_loss: 0.1256 - val_acc: 0.9850
+
+Epoch 00064: val_loss did not improve from 0.12031
+Epoch 65/100
+ - 0s - loss: 0.1102 - acc: 0.9872 - val_loss: 0.1274 - val_acc: 0.9850
+
+Epoch 00065: val_loss did not improve from 0.12031
+Epoch 66/100
+ - 0s - loss: 0.1079 - acc: 0.9874 - val_loss: 0.1261 - val_acc: 0.9850
+
+Epoch 00066: val_loss did not improve from 0.12031
+Epoch 67/100
+ - 0s - loss: 0.1028 - acc: 0.9892 - val_loss: 0.1258 - val_acc: 0.9850
+
+Epoch 00067: val_loss did not improve from 0.12031
+Epoch 68/100
+ - 0s - loss: 0.1058 - acc: 0.9877 - val_loss: 0.1271 - val_acc: 0.9850
+
+Epoch 00068: val_loss did not improve from 0.12031
+Epoch 69/100
+ - 0s - loss: 0.1083 - acc: 0.9877 - val_loss: 0.1262 - val_acc: 0.9850
+
+Epoch 00069: val_loss did not improve from 0.12031
+Epoch 70/100
+ - 0s - loss: 0.1014 - acc: 0.9864 - val_loss: 0.1281 - val_acc: 0.9850
+
+Epoch 00070: val_loss did not improve from 0.12031
+Epoch 71/100
+ - 0s - loss: 0.1040 - acc: 0.9889 - val_loss: 0.1266 - val_acc: 0.9850
+
+Epoch 00071: val_loss did not improve from 0.12031
+Epoch 72/100
+ - 0s - loss: 0.1119 - acc: 0.9877 - val_loss: 0.1255 - val_acc: 0.9850
+
+Epoch 00072: val_loss did not improve from 0.12031
+Epoch 73/100
+ - 0s - loss: 0.1085 - acc: 0.9869 - val_loss: 0.1236 - val_acc: 0.9850
+
+Epoch 00073: val_loss did not improve from 0.12031
+Epoch 74/100
+ - 0s - loss: 0.1071 - acc: 0.9882 - val_loss: 0.1254 - val_acc: 0.9850
+
+Epoch 00074: val_loss did not improve from 0.12031
+Epoch 75/100
+ - 0s - loss: 0.1075 - acc: 0.9877 - val_loss: 0.1264 - val_acc: 0.9850
+
+Epoch 00075: val_loss did not improve from 0.12031
+Epoch 76/100
+ - 0s - loss: 0.1108 - acc: 0.9879 - val_loss: 0.1275 - val_acc: 0.9850
+
+Epoch 00076: val_loss did not improve from 0.12031
+Epoch 77/100
+ - 0s - loss: 0.1169 - acc: 0.9872 - val_loss: 0.1276 - val_acc: 0.9850
+
+Epoch 00077: val_loss did not improve from 0.12031
+Epoch 78/100
+ - 0s - loss: 0.1034 - acc: 0.9897 - val_loss: 0.1273 - val_acc: 0.9850
+
+Epoch 00078: val_loss did not improve from 0.12031
+Epoch 79/100
+ - 0s - loss: 0.1020 - acc: 0.9887 - val_loss: 0.1284 - val_acc: 0.9850
+
+Epoch 00079: val_loss did not improve from 0.12031
+Epoch 80/100
+ - 0s - loss: 0.0980 - acc: 0.9892 - val_loss: 0.1301 - val_acc: 0.9850
+
+Epoch 00080: val_loss did not improve from 0.12031
+Epoch 81/100
+ - 0s - loss: 0.1029 - acc: 0.9874 - val_loss: 0.1305 - val_acc: 0.9850
+
+Epoch 00081: val_loss did not improve from 0.12031
+Epoch 82/100
+ - 0s - loss: 0.1071 - acc: 0.9882 - val_loss: 0.1275 - val_acc: 0.9850
+
+Epoch 00082: val_loss did not improve from 0.12031
+Epoch 83/100
+ - 0s - loss: 0.1024 - acc: 0.9877 - val_loss: 0.1294 - val_acc: 0.9850
+
+Epoch 00083: val_loss did not improve from 0.12031
+Epoch 84/100
+ - 0s - loss: 0.1128 - acc: 0.9869 - val_loss: 0.1274 - val_acc: 0.9850
+
+Epoch 00084: val_loss did not improve from 0.12031
+Epoch 85/100
+ - 0s - loss: 0.1031 - acc: 0.9882 - val_loss: 0.1284 - val_acc: 0.9850
+
+Epoch 00085: val_loss did not improve from 0.12031
+Epoch 86/100
+ - 0s - loss: 0.1087 - acc: 0.9879 - val_loss: 0.1276 - val_acc: 0.9850
+
+Epoch 00086: val_loss did not improve from 0.12031
+Epoch 87/100
+ - 0s - loss: 0.1056 - acc: 0.9887 - val_loss: 0.1280 - val_acc: 0.9850
+
+Epoch 00087: val_loss did not improve from 0.12031
+Epoch 88/100
+ - 0s - loss: 0.1051 - acc: 0.9872 - val_loss: 0.1270 - val_acc: 0.9850
+
+Epoch 00088: val_loss did not improve from 0.12031
+Epoch 89/100
+ - 0s - loss: 0.1075 - acc: 0.9877 - val_loss: 0.1273 - val_acc: 0.9850
+
+Epoch 00089: val_loss did not improve from 0.12031
+Epoch 90/100
+ - 0s - loss: 0.1080 - acc: 0.9867 - val_loss: 0.1289 - val_acc: 0.9850
+
+Epoch 00090: val_loss did not improve from 0.12031
+Epoch 91/100
+ - 0s - loss: 0.1065 - acc: 0.9887 - val_loss: 0.1294 - val_acc: 0.9850
+
+Epoch 00091: val_loss did not improve from 0.12031
+Epoch 92/100
+ - 0s - loss: 0.1097 - acc: 0.9872 - val_loss: 0.1306 - val_acc: 0.9850
+
+Epoch 00092: val_loss did not improve from 0.12031
+Epoch 93/100
+ - 0s - loss: 0.1094 - acc: 0.9887 - val_loss: 0.1314 - val_acc: 0.9850
+
+Epoch 00093: val_loss did not improve from 0.12031
+Epoch 94/100
+ - 0s - loss: 0.1016 - acc: 0.9899 - val_loss: 0.1304 - val_acc: 0.9850
+
+Epoch 00094: val_loss did not improve from 0.12031
+Epoch 95/100
+ - 0s - loss: 0.1127 - acc: 0.9874 - val_loss: 0.1277 - val_acc: 0.9850
+
+Epoch 00095: val_loss did not improve from 0.12031
+Epoch 96/100
+ - 0s - loss: 0.1106 - acc: 0.9882 - val_loss: 0.1272 - val_acc: 0.9850
+
+Epoch 00096: val_loss did not improve from 0.12031
+Epoch 97/100
+ - 0s - loss: 0.1111 - acc: 0.9882 - val_loss: 0.1253 - val_acc: 0.9850
+
+Epoch 00097: val_loss did not improve from 0.12031
+Epoch 98/100
+ - 0s - loss: 0.1096 - acc: 0.9869 - val_loss: 0.1272 - val_acc: 0.9850
+
+Epoch 00098: val_loss did not improve from 0.12031
+Epoch 99/100
+ - 0s - loss: 0.0991 - acc: 0.9889 - val_loss: 0.1280 - val_acc: 0.9850
+
+Epoch 00099: val_loss did not improve from 0.12031
+Epoch 100/100
+ - 0s - loss: 0.1057 - acc: 0.9882 - val_loss: 0.1279 - val_acc: 0.9850
+[INFO]: ImitationMILP: Running training loop for 2 iterations.
+[INFO]: Starting train iteration 0
+[INFO]: Read problem from file: "data/mvc_train/input4.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input4.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input4/input4.sol
+104 0.07
+99 0.07
+98 0.08
+97 7.11
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input4.lp
+  Variables        : 124 (124 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1115 initial, 1115 maximal
+  Objective        : minimize, 124 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      41.06
+  solving          :      41.05
+  presolving       :       0.01 (included in solving)
+  reading          :       0.01
+  copying          :       0.06 (14 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       5881 (2958 internal, 2923 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       2923
+  nodes (total)    :       5881 (2958 internal, 2923 leaves)
+  nodes left       :          0
+  max depth        :         38
+  max depth (total):         38
+  backtracks       :       1908 (32.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       7.58
+  switching time   :      13.58
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.29        855          0       0.00       0.00       0.29        855
+  dual LP          :       5.38       7015     151541      23.85   28167.47       0.08        660
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.05          1         16      16.00     320.00
+  strong branching :       2.00        466      57559     123.52   28779.50          -          -          1
+    (at root node) :          -         24       4603     191.79          -
+  conflict analysis:       0.01         55        483       8.78   48300.00
+Solution           :
+  Solutions found  :        551 (5 improvements)
+  First Solution   : +1.24000000000000e+02   (in run 1, after 0 nodes, 0.06 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.11 %
+  Primal Bound     : +9.70000000000000e+01   (in run 1, after 365 nodes, 7.05 seconds, depth 24, found by <relaxation>)
+  Dual Bound       : +9.70000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.25 % (338.48 primal-dual integral)
+
+Objective values: (opt is 97)
+inf 1.0 0.0
+104 0.0673077 0.07
+99 0.020202 0.07
+98 0.0102041 0.08
+97 0 7.11
+97 0 41.05
+Primal integral: 0.141937
+
+[INFO]: Read problem from file: "data/mvc_train/input8.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input8.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input8/input8.sol
+139 0.03
+133 0.04
+132 6.48
+131 9.16
+130 233.68
+129 619.58
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input8.lp
+  Variables        : 157 (157 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1887 initial, 1887 maximal
+  Objective        : minimize, 157 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.51 (68 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     131640 (66225 internal, 65415 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :      65413
+  nodes (total)    :     131640 (66225 internal, 65415 leaves)
+  nodes left       :        751
+  max depth        :         74
+  max depth (total):         74
+  backtracks       :      47770 (36.3%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       5.30
+  switching time   :     474.80
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       2.89       9666          0       0.00       0.00       2.88       9666
+  dual LP          :     116.67     148698    2589213      19.28   22192.62       2.38      14384
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.10          1         20      20.00     200.00
+  strong branching :       5.13       1045     111631     106.82   21760.43          -          -        184
+    (at root node) :          -         35      12577     359.34          -
+  conflict analysis:       0.04        164       1571       9.58   39275.00
+Solution           :
+  Solutions found  :        621 (7 improvements)
+  First Solution   : +1.57000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      12.74 %
+  Primal Bound     : +1.29000000000000e+02   (in run 1, after 82715 nodes, 619.54 seconds, depth 25, found by <crossover>)
+  Dual Bound       : +1.15771300448430e+02
+  Gap              :      11.43 %
+  Avg. Gap         :      11.71 % (11705.56 primal-dual integral)
+
+Objective values: (opt is 129)
+inf 1.0 0.0
+139 0.0719424 0.03
+133 0.0300752 0.04
+132 0.0227273 6.48
+131 0.0152672 9.16
+130 0.00769231 233.68
+129 0 619.58
+129 0 1000
+Primal integral: 6.68156
+
+[INFO]: Read problem from file: "data/mvc_train/input10.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input10.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input10/input10.sol
+165 0.06
+163 0.06
+162 0.07
+161 11.88
+160 11.9
+159 138.15
+158 138.94
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input10.lp
+  Variables        : 186 (186 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 2563 initial, 2563 maximal
+  Objective        : minimize, 186 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.30 (47 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     131963 (66727 internal, 65236 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      65233
+  nodes (total)    :     131963 (66727 internal, 65236 leaves)
+  nodes left       :        351
+  max depth        :         99
+  max depth (total):         99
+  backtracks       :      53005 (40.2%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:      10.41
+  switching time   :     406.24
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       2.15       6523          0       0.00       0.00       2.15       6523
+  dual LP          :     100.70     140438    2076406      16.32   20619.72       2.51      13191
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.16          1         28      28.00     175.00
+  strong branching :       9.47       1438     146053     101.57   15422.70          -          -        158
+    (at root node) :          -         45      20981     466.24          -
+  conflict analysis:       0.11        245       2411       9.84   21918.18
+Solution           :
+  Solutions found  :        539 (8 improvements)
+  First Solution   : +1.86000000000000e+02   (in run 1, after 0 nodes, 0.04 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      16.27 %
+  Primal Bound     : +1.58000000000000e+02   (in run 1, after 16137 nodes, 138.15 seconds, depth 81, found by <oneopt>)
+  Dual Bound       : +1.35887931034483e+02
+  Gap              :      16.27 %
+  Avg. Gap         :      14.18 % (14180.49 primal-dual integral)
+
+Objective values: (opt is 158)
+inf 1.0 0.0
+165 0.0424242 0.06
+163 0.0306748 0.06
+162 0.0246914 0.07
+161 0.0186335 11.88
+160 0.0125 11.9
+159 0.00628931 138.15
+158 0 138.94
+158 0 1000
+Primal integral: 1.93538
+
+[INFO]: Read problem from file: "data/mvc_train/input12.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input12.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input12/input12.sol
+124 0.06
+118 0.06
+117 0.07
+116 68.97
+115 69.07
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input12.lp
+  Variables        : 142 (142 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1491 initial, 1491 maximal
+  Objective        : minimize, 142 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     463.71
+  solving          :     463.71
+  presolving       :       0.03 (included in solving)
+  reading          :       0.00
+  copying          :       0.24 (36 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      70124 (35110 internal, 35014 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :      35013
+  nodes (total)    :      70124 (35110 internal, 35014 leaves)
+  nodes left       :          0
+  max depth        :         57
+  max depth (total):         57
+  backtracks       :      23910 (34.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       4.62
+  switching time   :     231.33
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.06       4141          0       0.00       0.00       1.06       4141
+  dual LP          :      56.74      78637    1396445      19.56   24611.30       0.88       7235
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.12          1         25      25.00     208.33
+  strong branching :       3.41       1003      87047      86.79   25526.98          -          -         90
+    (at root node) :          -         35      10192     291.20          -
+  conflict analysis:       0.03        194       1822       9.39   60733.33
+Solution           :
+  Solutions found  :        689 (6 improvements)
+  First Solution   : +1.42000000000000e+02   (in run 1, after 0 nodes, 0.03 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      12.00 %
+  Primal Bound     : +1.15000000000000e+02   (in run 1, after 7201 nodes, 68.98 seconds, depth 32, found by <oneopt>)
+  Dual Bound       : +1.15000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.53 % (4882.20 primal-dual integral)
+
+Objective values: (opt is 115)
+inf 1.0 0.0
+124 0.0725806 0.06
+118 0.0254237 0.06
+117 0.017094 0.07
+116 0.00862069 68.97
+115 0 69.07
+115 0 463.71
+Primal integral: 1.23889
+
+[INFO]: Read problem from file: "data/mvc_train/input3.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input3.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input3/input3.sol
+107 0.03
+104 0.03
+103 3.03
+102 3.04
+101 4.25
+100 5.85
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input3.lp
+  Variables        : 126 (126 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1164 initial, 1164 maximal
+  Objective        : minimize, 126 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      80.29
+  solving          :      80.29
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.12 (18 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      11560 (5804 internal, 5756 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          1
+  objective leaves :       5754
+  nodes (total)    :      11560 (5804 internal, 5756 leaves)
+  nodes left       :          0
+  max depth        :         39
+  max depth (total):         39
+  backtracks       :       5381 (46.5%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:      10.23
+  switching time   :      33.36
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.33       1377          0       0.00       0.00       0.33       1377
+  dual LP          :       8.14      13328     233544      19.46   28690.91       0.15       1326
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.02          1         36      36.00    1800.00
+  strong branching :       2.19        526      59854     113.79   27330.59          -          -          2
+    (at root node) :          -         42       9451     225.02          -
+  conflict analysis:       0.02         82        758       9.24   37900.00
+Solution           :
+  Solutions found  :        479 (7 improvements)
+  First Solution   : +1.26000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.69 %
+  Primal Bound     : +1.00000000000000e+02   (in run 1, after 352 nodes, 5.80 seconds, depth 30, found by <crossover>)
+  Dual Bound       : +1.00000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       8.79 % (705.77 primal-dual integral)
+
+Objective values: (opt is 100)
+inf 1.0 0.0
+107 0.0654206 0.03
+104 0.0384615 0.03
+103 0.0291262 3.03
+102 0.0196078 3.04
+101 0.00990099 4.25
+100 0 5.85
+100 0 80.29
+Primal integral: 0.185243
+
+[INFO]: Read problem from file: "data/mvc_train/input1.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input1.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input1/input1.sol
+84 0.03
+79 0.03
+77 0.03
+76 2.65
+75 6.36
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input1.lp
+  Variables        : 100 (100 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 694 initial, 694 maximal
+  Objective        : minimize, 100 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       7.78
+  solving          :       7.78
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.02 (5 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        817 (450 internal, 367 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :        366
+  nodes (total)    :        817 (450 internal, 367 leaves)
+  nodes left       :          0
+  max depth        :         26
+  max depth (total):         26
+  backtracks       :        363 (44.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       7.77
+  switching time   :       2.00
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02        139          0       0.00       0.00       0.02        139
+  dual LP          :       0.91       1138      23249      22.35   25548.35       0.02         98
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.03          1          7       7.00     233.33
+  strong branching :       0.82        350      30941      88.40   37732.93          -          -          0
+    (at root node) :          -         37       5925     160.14          -
+  conflict analysis:       0.00         23        140       6.09          -
+Solution           :
+  Solutions found  :        382 (6 improvements)
+  First Solution   : +1.00000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       7.14 %
+  Primal Bound     : +7.50000000000000e+01   (in run 1, after 546 nodes, 6.29 seconds, depth 14, found by <relaxation>)
+  Dual Bound       : +7.50000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.69 % (67.59 primal-dual integral)
+
+Objective values: (opt is 75)
+inf 1.0 0.0
+84 0.107143 0.03
+79 0.0506329 0.03
+77 0.025974 0.03
+76 0.0131579 2.65
+75 0 6.36
+75 0 7.78
+Primal integral: 0.146868
+
+[INFO]: Read problem from file: "data/mvc_train/input0.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input0.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input0/input0.sol
+126 0.03
+122 0.04
+121 5.49
+120 5.75
+119 6.93
+118 64.97
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input0.lp
+  Variables        : 146 (146 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1585 initial, 1585 maximal
+  Objective        : minimize, 146 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     321.82
+  solving          :     321.82
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.16 (29 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      42704 (21412 internal, 21292 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      21290
+  nodes (total)    :      42704 (21412 internal, 21292 leaves)
+  nodes left       :          0
+  max depth        :         61
+  max depth (total):         61
+  backtracks       :      17214 (40.3%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       8.64
+  switching time   :     138.83
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.33       4271          0       0.00       0.00       1.33       4271
+  dual LP          :      39.63      48026     919268      20.99   23196.27       0.73       4232
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.08          1         20      20.00     250.00
+  strong branching :       3.94        853      88428     103.67   22443.65          -          -         51
+    (at root node) :          -         43      12423     288.91          -
+  conflict analysis:       0.00        115       1040       9.04          -
+Solution           :
+  Solutions found  :        483 (7 improvements)
+  First Solution   : +1.46000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      11.50 %
+  Primal Bound     : +1.18000000000000e+02   (in run 1, after 7142 nodes, 64.85 seconds, depth 37, found by <relaxation>)
+  Dual Bound       : +1.18000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.25 % (3299.33 primal-dual integral)
+
+Objective values: (opt is 118)
+inf 1.0 0.0
+126 0.0634921 0.03
+122 0.0327869 0.04
+121 0.0247934 5.49
+120 0.0166667 5.75
+119 0.00840336 6.93
+118 0 64.97
+118 0 321.82
+Primal integral: 0.723167
+
+[INFO]: Read problem from file: "data/mvc_train/input5.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input5.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input5/input5.sol
+119 0.04
+114 0.04
+112 5.23
+111 174.31
+110 316.24
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input5.lp
+  Variables        : 137 (137 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1407 initial, 1407 maximal
+  Objective        : minimize, 137 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     421.59
+  solving          :     421.59
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.28 (41 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      61060 (30561 internal, 30499 leaves)
+  feasible leaves  :          3
+  infeas. leaves   :          0
+  objective leaves :      30496
+  nodes (total)    :      61060 (30561 internal, 30499 leaves)
+  nodes left       :          0
+  max depth        :         58
+  max depth (total):         58
+  backtracks       :      22679 (37.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       5.42
+  switching time   :     206.59
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.33       4793          0       0.00       0.00       1.33       4793
+  dual LP          :      47.35      68303    1065373      17.05   22499.96       0.93       5835
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.10          1         41      41.00     410.00
+  strong branching :       3.65        926      80338      86.76   22010.41          -          -         48
+    (at root node) :          -         69      18057     261.70          -
+  conflict analysis:       0.07        161       1531       9.51   21871.43
+Solution           :
+  Solutions found  :        609 (6 improvements)
+  First Solution   : +1.37000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      11.32 %
+  Primal Bound     : +1.10000000000000e+02   (in run 1, after 45654 nodes, 316.17 seconds, depth 30, found by <relaxation>)
+  Dual Bound       : +1.10000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      11.11 % (4682.78 primal-dual integral)
+
+Objective values: (opt is 110)
+inf 1.0 0.0
+119 0.0756303 0.04
+114 0.0350877 0.04
+112 0.0178571 5.23
+111 0.00900901 174.31
+110 0 316.24
+110 0 421.59
+Primal integral: 4.52004
+
+[INFO]: Read problem from file: "data/mvc_train/input13.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input13.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input13/input13.sol
+141 0.04
+136 0.04
+135 8.44
+134 8.47
+133 109.9
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input13.lp
+  Variables        : 161 (161 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1908 initial, 1908 maximal
+  Objective        : minimize, 161 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.33 (54 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     124746 (62536 internal, 62210 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :      62209
+  nodes (total)    :     124746 (62536 internal, 62210 leaves)
+  nodes left       :        281
+  max depth        :         73
+  max depth (total):         73
+  backtracks       :      44871 (36.0%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       4.41
+  switching time   :     475.81
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       2.83       8910          0       0.00       0.00       2.82       8910
+  dual LP          :     117.86     141521    2519589      19.60   21377.81       2.17      12960
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.22          1         47      47.00     213.64
+  strong branching :       5.73       1266     119125      94.10   20789.70          -          -        234
+    (at root node) :          -         20       6629     331.45          -
+  conflict analysis:       0.09        291       2835       9.74   31500.00
+Solution           :
+  Solutions found  :        648 (6 improvements)
+  First Solution   : +1.61000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      13.25 %
+  Primal Bound     : +1.33000000000000e+02   (in run 1, after 18660 nodes, 109.90 seconds, depth 53, found by <relaxation>)
+  Dual Bound       : +1.17523148148148e+02
+  Gap              :      13.17 %
+  Avg. Gap         :      11.78 % (11781.50 primal-dual integral)
+
+Objective values: (opt is 133)
+inf 1.0 0.0
+141 0.0567376 0.04
+136 0.0220588 0.04
+135 0.0148148 8.44
+134 0.00746269 8.47
+133 0 109.9
+133 0 1000
+Primal integral: 0.982679
+
+[INFO]: Read problem from file: "data/mvc_train/input2.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input2.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input2/input2.sol
+121 0.05
+119 0.05
+117 0.05
+116 4.72
+115 4.73
+114 6.39
+113 88.03
+112 342.51
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input2.lp
+  Variables        : 140 (140 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1458 initial, 1458 maximal
+  Objective        : minimize, 140 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     344.97
+  solving          :     344.97
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.22 (35 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      47942 (24065 internal, 23877 leaves)
+  feasible leaves  :          3
+  infeas. leaves   :          1
+  objective leaves :      23873
+  nodes (total)    :      47942 (24065 internal, 23877 leaves)
+  nodes left       :          0
+  max depth        :         56
+  max depth (total):         56
+  backtracks       :      16493 (34.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       6.60
+  switching time   :     155.78
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.06       3940          0       0.00       0.00       1.06       3940
+  dual LP          :      42.78      53844     965464      19.83   22568.12       0.85       5167
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.05          1          7       7.00     140.00
+  strong branching :       3.46        775      80545     103.93   23278.90          -          -         39
+    (at root node) :          -         42      11338     269.95          -
+  conflict analysis:       0.03        119       1088       9.14   36266.67
+Solution           :
+  Solutions found  :        549 (9 improvements)
+  First Solution   : +1.40000000000000e+02   (in run 1, after 0 nodes, 0.03 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       7.18 %
+  Primal Bound     : +1.12000000000000e+02   (in run 1, after 47671 nodes, 342.46 seconds, depth 19, found by <relaxation>)
+  Dual Bound       : +1.12000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.06 % (3471.85 primal-dual integral)
+
+Objective values: (opt is 112)
+inf 1.0 0.0
+121 0.0743802 0.05
+119 0.0588235 0.05
+117 0.042735 0.05
+116 0.0344828 4.72
+115 0.026087 4.73
+114 0.0175439 6.39
+113 0.00884956 88.03
+112 0 342.51
+112 0 344.97
+Primal integral: 3.97754
+
+[INFO]: Read problem from file: "data/mvc_train/input9.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input9.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input9/input9.sol
+93 0.02
+89 0.03
+88 0.03
+86 2.2
+85 2.94
+84 2.95
+83 8.6
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input9.lp
+  Variables        : 109 (109 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 828 initial, 828 maximal
+  Objective        : minimize, 109 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      13.16
+  solving          :      13.16
+  presolving       :       0.00 (included in solving)
+  reading          :       0.00
+  copying          :       0.05 (8 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       1328 (699 internal, 629 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :        628
+  nodes (total)    :       1328 (699 internal, 629 leaves)
+  nodes left       :          0
+  max depth        :         30
+  max depth (total):         30
+  backtracks       :        610 (45.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (1 domain reductions, 0 cutoffs)
+  avg switch length:       8.45
+  switching time   :       4.08
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.06        238          0       0.00       0.00       0.05        238
+  dual LP          :       1.13       1700      35808      22.97   31688.50       0.02        141
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.01          1         34      34.00    3400.00
+  strong branching :       1.19        346      36027     104.12   30274.79          -          -          1
+    (at root node) :          -         25       4404     176.16          -
+  conflict analysis:       0.00         19        145       7.63          -
+Solution           :
+  Solutions found  :        415 (8 improvements)
+  First Solution   : +1.09000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       6.41 %
+  Primal Bound     : +8.30000000000000e+01   (in run 1, after 732 nodes, 8.53 seconds, depth 25, found by <rins>)
+  Dual Bound       : +8.30000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.05 % (105.96 primal-dual integral)
+
+Objective values: (opt is 83)
+inf 1.0 0.0
+93 0.107527 0.02
+89 0.0674157 0.03
+88 0.0568182 0.03
+86 0.0348837 2.2
+85 0.0235294 2.94
+84 0.0119048 2.95
+83 0 8.6
+83 0 13.16
+Primal integral: 0.237682
+
+[INFO]: Read problem from file: "data/mvc_train/input6.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input6.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input6/input6.sol
+101 0.01
+100 0.01
+99 0.02
+96 2.78
+95 3.78
+94 12.73
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input6.lp
+  Variables        : 119 (119 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1098 initial, 1098 maximal
+  Objective        : minimize, 119 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      35.37
+  solving          :      35.36
+  presolving       :       0.01 (included in solving)
+  reading          :       0.01
+  copying          :       0.11 (15 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       5001 (2521 internal, 2480 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :       2478
+  nodes (total)    :       5001 (2521 internal, 2480 leaves)
+  nodes left       :          0
+  max depth        :         40
+  max depth (total):         40
+  backtracks       :       2142 (42.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       7.58
+  switching time   :      13.53
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.13        650          0       0.00       0.00       0.13        650
+  dual LP          :       4.38       5827     110186      21.10   25156.62       0.08        606
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.02          1          7       7.00     350.00
+  strong branching :       1.66        489      48796      99.79   29395.18          -          -          2
+    (at root node) :          -         31       5650     182.26          -
+  conflict analysis:       0.02         54        462       8.56   23100.00
+Solution           :
+  Solutions found  :        455 (7 improvements)
+  First Solution   : +1.19000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       8.79 %
+  Primal Bound     : +9.40000000000000e+01   (in run 1, after 1613 nodes, 12.68 seconds, depth 27, found by <relaxation>)
+  Dual Bound       : +9.40000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.48 % (299.84 primal-dual integral)
+
+Objective values: (opt is 94)
+inf 1.0 0.0
+101 0.0693069 0.01
+100 0.06 0.01
+99 0.0505051 0.02
+96 0.0208333 2.78
+95 0.0105263 3.78
+94 0 12.73
+94 0 35.36
+Primal integral: 0.265038
+
+[INFO]: Read problem from file: "data/mvc_valid/input14.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_valid/data/input14.data
+[INFO]: Oracle: Loaded solution file: data/mvc_valid/solutions/input14/input14.sol
+91 0.02
+87 0.02
+86 0.03
+85 2.85
+84 35.24
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_valid/input14.lp
+  Variables        : 108 (108 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 901 initial, 901 maximal
+  Objective        : minimize, 108 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      35.70
+  solving          :      35.70
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.09 (14 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       5627 (2822 internal, 2805 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :       2804
+  nodes (total)    :       5627 (2822 internal, 2805 leaves)
+  nodes left       :          0
+  max depth        :         38
+  max depth (total):         38
+  backtracks       :       2184 (38.8%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (17 domain reductions, 0 cutoffs)
+  avg switch length:       7.53
+  switching time   :      13.67
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.22        859          0       0.00       0.00       0.21        859
+  dual LP          :       4.06       6537     104345      17.53   25700.74       0.12        586
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.01          1         10      10.00    1000.00
+  strong branching :       1.24        412      38552      93.57   31090.32          -          -         10
+    (at root node) :          -         22       3604     163.82          -
+  conflict analysis:       0.00         43        368       8.56          -
+Solution           :
+  Solutions found  :        536 (6 improvements)
+  First Solution   : +1.08000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       4.77 %
+  Primal Bound     : +8.40000000000000e+01   (in run 1, after 5524 nodes, 35.23 seconds, depth 13, found by <relaxation>)
+  Dual Bound       : +8.40000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.00 % (321.23 primal-dual integral)
+
+Objective values: (opt is 84)
+inf 1.0 0.0
+91 0.0769231 0.02
+87 0.0344828 0.02
+86 0.0232558 0.03
+85 0.0117647 2.85
+84 0 35.24
+84 0 35.7
+Primal integral: 0.466985
+
+[INFO]: Read problem from file: "data/mvc_valid/input11.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_valid/data/input11.data
+[INFO]: Oracle: Loaded solution file: data/mvc_valid/solutions/input11/input11.sol
+162 0.05
+155 0.05
+153 0.06
+150 10.54
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_valid/input11.lp
+  Variables        : 179 (179 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 2396 initial, 2396 maximal
+  Objective        : minimize, 179 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.03 (included in solving)
+  reading          :       0.00
+  copying          :       0.29 (41 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :     108508 (54393 internal, 54115 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :      54114
+  nodes (total)    :     108508 (54393 internal, 54115 leaves)
+  nodes left       :        280
+  max depth        :         92
+  max depth (total):         92
+  backtracks       :      45264 (41.7%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       9.52
+  switching time   :     352.32
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       3.97       9817          0       0.00       0.00       3.97       9817
+  dual LP          :     154.54     123752    2704866      24.00   17502.69       2.87      11064
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.46          1         53      53.00     115.22
+  strong branching :      11.15       2438     175092      71.82   15703.32          -          -        462
+    (at root node) :          -         21       9355     445.48          -
+  conflict analysis:       0.16        375       3647       9.73   22793.75
+Solution           :
+  Solutions found  :        505 (5 improvements)
+  First Solution   : +1.79000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      15.25 %
+  Primal Bound     : +1.50000000000000e+02   (in run 1, after 41 nodes, 10.54 seconds, depth 40, found by <alns>)
+  Dual Bound       : +1.30153846153846e+02
+  Gap              :      15.25 %
+  Avg. Gap         :      13.27 % (13271.14 primal-dual integral)
+
+Objective values: (opt is 150)
+inf 1.0 0.0
+162 0.0740741 0.05
+155 0.0322581 0.05
+153 0.0196078 0.06
+150 0 10.54
+150 0 1000
+Primal integral: 0.255813
+
+
+Epoch 00100: val_loss did not improve from 0.12031
+[0.02642638724341056, 0.9874340286504146]
+[0.029760361219270053, 0.9850340136054422]
+Train on 6490829 samples, validate on 1138600 samples
+Epoch 1/100
+ - 268s - loss: 0.0270 - acc: 0.9965 - val_loss: 2.6599 - val_acc: 0.8307
+
+Epoch 00001: val_loss improved from inf to 2.65990, saving model to models/mvc4-0.h5
+Epoch 2/100
+ - 251s - loss: 0.0108 - acc: 0.9986 - val_loss: 2.6777 - val_acc: 0.8412
+
+Epoch 00002: val_loss did not improve from 2.65990
+Epoch 3/100
+ - 252s - loss: 0.0086 - acc: 0.9989 - val_loss: 2.6214 - val_acc: 0.8407
+
+Epoch 00003: val_loss improved from 2.65990 to 2.62136, saving model to models/mvc4-0.h5
+Epoch 4/100
+ - 250s - loss: 0.0074 - acc: 0.9990 - val_loss: 2.9260 - val_acc: 0.8405
+
+Epoch 00004: val_loss did not improve from 2.62136
+Epoch 5/100
+ - 249s - loss: 0.0066 - acc: 0.9991 - val_loss: 2.7357 - val_acc: 0.8577
+
+Epoch 00005: val_loss did not improve from 2.62136
+Epoch 6/100
+ - 254s - loss: 0.0059 - acc: 0.9992 - val_loss: 3.1787 - val_acc: 0.8588
+
+Epoch 00006: val_loss did not improve from 2.62136
+Epoch 7/100
+ - 253s - loss: 0.0056 - acc: 0.9993 - val_loss: 3.0450 - val_acc: 0.8591
+
+Epoch 00007: val_loss did not improve from 2.62136
+Epoch 8/100
+ - 254s - loss: 0.0052 - acc: 0.9993 - val_loss: 2.9828 - val_acc: 0.8652
+
+Epoch 00008: val_loss did not improve from 2.62136
+Epoch 9/100
+ - 253s - loss: 0.0048 - acc: 0.9994 - val_loss: 3.1371 - val_acc: 0.8694
+
+Epoch 00009: val_loss did not improve from 2.62136
+Epoch 10/100
+ - 254s - loss: 0.0046 - acc: 0.9994 - val_loss: 3.2357 - val_acc: 0.8736
+
+Epoch 00010: val_loss did not improve from 2.62136
+Epoch 11/100
+ - 250s - loss: 0.0044 - acc: 0.9994 - val_loss: 3.0050 - val_acc: 0.8707
+
+Epoch 00011: val_loss did not improve from 2.62136
+Epoch 12/100
+ - 247s - loss: 0.0043 - acc: 0.9994 - val_loss: 3.0347 - val_acc: 0.8707
+
+Epoch 00012: val_loss did not improve from 2.62136
+Epoch 13/100
+ - 247s - loss: 0.0040 - acc: 0.9995 - val_loss: 3.0919 - val_acc: 0.8706
+
+Epoch 00013: val_loss did not improve from 2.62136
+Epoch 14/100
+ - 249s - loss: 0.0039 - acc: 0.9995 - val_loss: 3.0949 - val_acc: 0.8707
+
+Epoch 00014: val_loss did not improve from 2.62136
+Epoch 15/100
+ - 250s - loss: 0.0038 - acc: 0.9995 - val_loss: 3.2070 - val_acc: 0.8707
+
+Epoch 00015: val_loss did not improve from 2.62136
+Epoch 16/100
+ - 250s - loss: 0.0037 - acc: 0.9995 - val_loss: 3.3930 - val_acc: 0.8705
+
+Epoch 00016: val_loss did not improve from 2.62136
+Epoch 17/100
+ - 249s - loss: 0.0036 - acc: 0.9995 - val_loss: 3.1876 - val_acc: 0.8706
+
+Epoch 00017: val_loss did not improve from 2.62136
+Epoch 18/100
+ - 250s - loss: 0.0035 - acc: 0.9995 - val_loss: 3.4342 - val_acc: 0.8704
+
+Epoch 00018: val_loss did not improve from 2.62136
+Epoch 19/100
+ - 250s - loss: 0.0035 - acc: 0.9996 - val_loss: 3.5074 - val_acc: 0.8703
+
+Epoch 00019: val_loss did not improve from 2.62136
+Epoch 20/100
+ - 249s - loss: 0.0033 - acc: 0.9996 - val_loss: 3.4037 - val_acc: 0.8703
+
+Epoch 00020: val_loss did not improve from 2.62136
+Epoch 21/100
+ - 250s - loss: 0.0034 - acc: 0.9996 - val_loss: 3.4379 - val_acc: 0.8704
+
+Epoch 00021: val_loss did not improve from 2.62136
+Epoch 22/100
+ - 263s - loss: 0.0032 - acc: 0.9996 - val_loss: 3.5273 - val_acc: 0.8699
+
+Epoch 00022: val_loss did not improve from 2.62136
+Epoch 23/100
+ - 253s - loss: 0.0032 - acc: 0.9996 - val_loss: 3.4422 - val_acc: 0.8702
+
+Epoch 00023: val_loss did not improve from 2.62136
+Epoch 24/100
+ - 254s - loss: 0.0031 - acc: 0.9996 - val_loss: 3.5012 - val_acc: 0.8699
+
+Epoch 00024: val_loss did not improve from 2.62136
+Epoch 25/100
+ - 253s - loss: 0.0030 - acc: 0.9996 - val_loss: 3.5063 - val_acc: 0.8704
+
+Epoch 00025: val_loss did not improve from 2.62136
+Epoch 26/100
+ - 254s - loss: 0.0030 - acc: 0.9996 - val_loss: 3.4229 - val_acc: 0.8702
+
+Epoch 00026: val_loss did not improve from 2.62136
+Epoch 27/100
+ - 254s - loss: 0.0029 - acc: 0.9996 - val_loss: 3.3705 - val_acc: 0.8701
+
+Epoch 00027: val_loss did not improve from 2.62136
+Epoch 28/100
+ - 254s - loss: 0.0029 - acc: 0.9996 - val_loss: 3.4816 - val_acc: 0.8699
+
+Epoch 00028: val_loss did not improve from 2.62136
+Epoch 29/100
+ - 254s - loss: 0.0029 - acc: 0.9996 - val_loss: 3.4979 - val_acc: 0.8692
+
+Epoch 00029: val_loss did not improve from 2.62136
+Epoch 30/100
+ - 254s - loss: 0.0028 - acc: 0.9996 - val_loss: 3.4735 - val_acc: 0.8693
+
+Epoch 00030: val_loss did not improve from 2.62136
+Epoch 31/100
+ - 254s - loss: 0.0028 - acc: 0.9996 - val_loss: 3.4985 - val_acc: 0.8701
+
+Epoch 00031: val_loss did not improve from 2.62136
+Epoch 32/100
+ - 254s - loss: 0.0027 - acc: 0.9997 - val_loss: 3.5006 - val_acc: 0.8691
+
+Epoch 00032: val_loss did not improve from 2.62136
+Epoch 33/100
+ - 254s - loss: 0.0027 - acc: 0.9997 - val_loss: 3.4862 - val_acc: 0.8694
+
+Epoch 00033: val_loss did not improve from 2.62136
+Epoch 34/100
+ - 256s - loss: 0.0027 - acc: 0.9997 - val_loss: 3.4821 - val_acc: 0.8693
+
+Epoch 00034: val_loss did not improve from 2.62136
+Epoch 35/100
+ - 254s - loss: 0.0026 - acc: 0.9997 - val_loss: 3.4703 - val_acc: 0.8694
+
+Epoch 00035: val_loss did not improve from 2.62136
+Epoch 36/100
+ - 255s - loss: 0.0026 - acc: 0.9997 - val_loss: 3.2158 - val_acc: 0.8694
+
+Epoch 00036: val_loss did not improve from 2.62136
+Epoch 37/100
+ - 255s - loss: 0.0026 - acc: 0.9997 - val_loss: 3.3980 - val_acc: 0.8693
+
+Epoch 00037: val_loss did not improve from 2.62136
+Epoch 38/100
+ - 255s - loss: 0.0025 - acc: 0.9997 - val_loss: 3.4502 - val_acc: 0.8695
+
+Epoch 00038: val_loss did not improve from 2.62136
+Epoch 39/100
+ - 255s - loss: 0.0025 - acc: 0.9997 - val_loss: 3.4528 - val_acc: 0.8695
+
+Epoch 00039: val_loss did not improve from 2.62136
+Epoch 40/100
+ - 255s - loss: 0.0024 - acc: 0.9997 - val_loss: 3.4534 - val_acc: 0.8694
+
+Epoch 00040: val_loss did not improve from 2.62136
+Epoch 41/100
+ - 254s - loss: 0.0024 - acc: 0.9997 - val_loss: 3.4259 - val_acc: 0.8687
+
+Epoch 00041: val_loss did not improve from 2.62136
+Epoch 42/100
+ - 254s - loss: 0.0024 - acc: 0.9997 - val_loss: 3.3684 - val_acc: 0.8692
+
+Epoch 00042: val_loss did not improve from 2.62136
+Epoch 43/100
+ - 254s - loss: 0.0024 - acc: 0.9997 - val_loss: 3.3501 - val_acc: 0.8692
+
+Epoch 00043: val_loss did not improve from 2.62136
+Epoch 44/100
+ - 254s - loss: 0.0024 - acc: 0.9997 - val_loss: 3.4011 - val_acc: 0.8692
+
+Epoch 00044: val_loss did not improve from 2.62136
+Epoch 45/100
+ - 254s - loss: 0.0023 - acc: 0.9997 - val_loss: 3.4004 - val_acc: 0.8694
+
+Epoch 00045: val_loss did not improve from 2.62136
+Epoch 46/100
+ - 254s - loss: 0.0023 - acc: 0.9997 - val_loss: 3.3848 - val_acc: 0.8694
+
+Epoch 00046: val_loss did not improve from 2.62136
+Epoch 47/100
+ - 253s - loss: 0.0023 - acc: 0.9997 - val_loss: 3.2077 - val_acc: 0.8693
+
+Epoch 00047: val_loss did not improve from 2.62136
+Epoch 48/100
+ - 255s - loss: 0.0023 - acc: 0.9997 - val_loss: 3.1367 - val_acc: 0.8696
+
+Epoch 00048: val_loss did not improve from 2.62136
+Epoch 49/100
+ - 254s - loss: 0.0022 - acc: 0.9997 - val_loss: 3.2230 - val_acc: 0.8694
+
+Epoch 00049: val_loss did not improve from 2.62136
+Epoch 50/100
+ - 254s - loss: 0.0022 - acc: 0.9997 - val_loss: 3.4341 - val_acc: 0.8695
+
+Epoch 00050: val_loss did not improve from 2.62136
+Epoch 51/100
+ - 254s - loss: 0.0022 - acc: 0.9997 - val_loss: 3.2946 - val_acc: 0.8696
+
+Epoch 00051: val_loss did not improve from 2.62136
+Epoch 52/100
+ - 254s - loss: 0.0022 - acc: 0.9997 - val_loss: 3.2487 - val_acc: 0.8694
+
+Epoch 00052: val_loss did not improve from 2.62136
+Epoch 53/100
+ - 254s - loss: 0.0021 - acc: 0.9997 - val_loss: 3.4679 - val_acc: 0.8692
+
+Epoch 00053: val_loss did not improve from 2.62136
+Epoch 54/100
+ - 255s - loss: 0.0021 - acc: 0.9997 - val_loss: 3.1662 - val_acc: 0.8700
+
+Epoch 00054: val_loss did not improve from 2.62136
+Epoch 55/100
+ - 255s - loss: 0.0021 - acc: 0.9997 - val_loss: 3.1886 - val_acc: 0.8695
+
+Epoch 00055: val_loss did not improve from 2.62136
+Epoch 56/100
+ - 254s - loss: 0.0021 - acc: 0.9997 - val_loss: 3.0860 - val_acc: 0.8694
+
+Epoch 00056: val_loss did not improve from 2.62136
+Epoch 57/100
+ - 256s - loss: 0.0021 - acc: 0.9997 - val_loss: 3.2458 - val_acc: 0.8691
+
+Epoch 00057: val_loss did not improve from 2.62136
+Epoch 58/100
+ - 264s - loss: 0.0021 - acc: 0.9997 - val_loss: 3.1569 - val_acc: 0.8696
+
+Epoch 00058: val_loss did not improve from 2.62136
+Epoch 59/100
+ - 256s - loss: 0.0020 - acc: 0.9998 - val_loss: 3.1738 - val_acc: 0.8692
+
+Epoch 00059: val_loss did not improve from 2.62136
+Epoch 60/100
+ - 252s - loss: 0.0020 - acc: 0.9998 - val_loss: 3.0360 - val_acc: 0.8690
+
+Epoch 00060: val_loss did not improve from 2.62136
+Epoch 61/100
+ - 255s - loss: 0.0020 - acc: 0.9998 - val_loss: 3.1467 - val_acc: 0.8695
+
+Epoch 00061: val_loss did not improve from 2.62136
+Epoch 62/100
+ - 260s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.9243 - val_acc: 0.8688
+
+Epoch 00062: val_loss did not improve from 2.62136
+Epoch 63/100
+ - 260s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.9818 - val_acc: 0.8689
+
+Epoch 00063: val_loss did not improve from 2.62136
+Epoch 64/100
+ - 261s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.8631 - val_acc: 0.8695
+
+Epoch 00064: val_loss did not improve from 2.62136
+Epoch 65/100
+ - 264s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.7224 - val_acc: 0.8689
+
+Epoch 00065: val_loss did not improve from 2.62136
+Epoch 66/100
+ - 262s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.6403 - val_acc: 0.8695
+
+Epoch 00066: val_loss did not improve from 2.62136
+Epoch 67/100
+ - 266s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.7704 - val_acc: 0.8690
+
+Epoch 00067: val_loss did not improve from 2.62136
+Epoch 68/100
+ - 254s - loss: 0.0019 - acc: 0.9998 - val_loss: 2.8310 - val_acc: 0.8700
+
+Epoch 00068: val_loss did not improve from 2.62136
+Epoch 69/100
+ - 254s - loss: 0.0020 - acc: 0.9998 - val_loss: 2.8299 - val_acc: 0.8705
+
+Epoch 00069: val_loss did not improve from 2.62136
+Epoch 70/100
+ - 254s - loss: 0.0019 - acc: 0.9998 - val_loss: 2.6604 - val_acc: 0.8700
+
+Epoch 00070: val_loss did not improve from 2.62136
+Epoch 71/100
+ - 254s - loss: 0.0019 - acc: 0.9998 - val_loss: 2.8615 - val_acc: 0.8702
+
+Epoch 00071: val_loss did not improve from 2.62136
+Epoch 72/100
+ - 253s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.8980 - val_acc: 0.8709
+
+Epoch 00072: val_loss did not improve from 2.62136
+Epoch 73/100
+ - 254s - loss: 0.0019 - acc: 0.9998 - val_loss: 2.7474 - val_acc: 0.8701
+
+Epoch 00073: val_loss did not improve from 2.62136
+Epoch 74/100
+ - 253s - loss: 0.0019 - acc: 0.9998 - val_loss: 2.6054 - val_acc: 0.8702
+
+Epoch 00074: val_loss improved from 2.62136 to 2.60544, saving model to models/mvc4-0.h5
+Epoch 75/100
+ - 255s - loss: 0.0019 - acc: 0.9998 - val_loss: 2.6930 - val_acc: 0.8707
+
+Epoch 00075: val_loss did not improve from 2.60544
+Epoch 76/100
+ - 254s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.7090 - val_acc: 0.8700
+
+Epoch 00076: val_loss did not improve from 2.60544
+Epoch 77/100
+ - 254s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.6277 - val_acc: 0.8697
+
+Epoch 00077: val_loss did not improve from 2.60544
+Epoch 78/100
+ - 254s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.6715 - val_acc: 0.8698
+
+Epoch 00078: val_loss did not improve from 2.60544
+Epoch 79/100
+ - 253s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.7622 - val_acc: 0.8689
+
+Epoch 00079: val_loss did not improve from 2.60544
+Epoch 80/100
+ - 254s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.6579 - val_acc: 0.8692
+
+Epoch 00080: val_loss did not improve from 2.60544
+Epoch 81/100
+ - 255s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.5822 - val_acc: 0.8699
+
+Epoch 00081: val_loss improved from 2.60544 to 2.58222, saving model to models/mvc4-0.h5
+Epoch 82/100
+ - 255s - loss: 0.0018 - acc: 0.9998 - val_loss: 2.5078 - val_acc: 0.8697
+
+Epoch 00082: val_loss improved from 2.58222 to 2.50785, saving model to models/mvc4-0.h5
+Epoch 83/100
+ - 255s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.6688 - val_acc: 0.8688
+
+Epoch 00083: val_loss did not improve from 2.50785
+Epoch 84/100
+ - 255s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.7177 - val_acc: 0.8688
+
+Epoch 00084: val_loss did not improve from 2.50785
+Epoch 85/100
+ - 256s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.6693 - val_acc: 0.8698
+
+Epoch 00085: val_loss did not improve from 2.50785
+Epoch 86/100
+ - 255s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.5884 - val_acc: 0.8704
+
+Epoch 00086: val_loss did not improve from 2.50785
+Epoch 87/100
+ - 255s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.6796 - val_acc: 0.8698
+
+Epoch 00087: val_loss did not improve from 2.50785
+Epoch 88/100
+ - 256s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.7539 - val_acc: 0.8696
+
+Epoch 00088: val_loss did not improve from 2.50785
+Epoch 89/100
+ - 267s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.6826 - val_acc: 0.8707
+
+Epoch 00089: val_loss did not improve from 2.50785
+Epoch 90/100
+ - 256s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.6575 - val_acc: 0.8719
+
+Epoch 00090: val_loss did not improve from 2.50785
+Epoch 91/100
+ - 254s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.7163 - val_acc: 0.8709
+
+Epoch 00091: val_loss did not improve from 2.50785
+Epoch 92/100
+ - 256s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.6574 - val_acc: 0.8720
+
+Epoch 00092: val_loss did not improve from 2.50785
+Epoch 93/100
+ - 254s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.7164 - val_acc: 0.8715
+
+Epoch 00093: val_loss did not improve from 2.50785
+Epoch 94/100
+ - 255s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.5992 - val_acc: 0.8717
+
+Epoch 00094: val_loss did not improve from 2.50785
+Epoch 95/100
+ - 257s - loss: 0.0017 - acc: 0.9998 - val_loss: 2.5067 - val_acc: 0.8721
+
+Epoch 00095: val_loss improved from 2.50785 to 2.50668, saving model to models/mvc4-0.h5
+Epoch 96/100
+ - 254s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.5578 - val_acc: 0.8719
+
+Epoch 00096: val_loss did not improve from 2.50668
+Epoch 97/100
+ - 255s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.5689 - val_acc: 0.8723
+
+Epoch 00097: val_loss did not improve from 2.50668
+Epoch 98/100
+ - 254s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.4467 - val_acc: 0.8728
+
+Epoch 00098: val_loss improved from 2.50668 to 2.44669, saving model to models/mvc4-0.h5
+Epoch 99/100
+ - 254s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.4575 - val_acc: 0.8725
+
+Epoch 00099: val_loss did not improve from 2.44669
+Epoch 100/100
+ - 255s - loss: 0.0016 - acc: 0.9998 - val_loss: 2.5640 - val_acc: 0.8724
+[INFO]: Starting train iteration 1
+[INFO]: Read problem from file: "data/mvc_train/input4.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input4.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input4/input4.sol
+104 0.15
+99 0.16
+98 0.17
+97 8.13
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input4.lp
+  Variables        : 124 (124 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1115 initial, 1115 maximal
+  Objective        : minimize, 124 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      56.08
+  solving          :      56.07
+  presolving       :       0.05 (included in solving)
+  reading          :       0.01
+  copying          :       0.16 (16 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       5782 (2922 internal, 2860 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       2860
+  nodes (total)    :       5782 (2922 internal, 2860 leaves)
+  nodes left       :          0
+  max depth        :         38
+  max depth (total):         38
+  backtracks       :       2462 (42.6%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :         23 (16 domain reductions, 0 cutoffs)
+  avg switch length:       6.92
+  switching time   :      24.49
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.11        500          0       0.00       0.00       0.11        500
+  dual LP          :       6.00       6859     139604      22.32   23267.33       0.12        603
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.41        331       7837      23.68   19114.63
+  strong branching :       2.42        889      70227      79.00   29019.42          -          -         26
+    (at root node) :          -         24       4603     191.79          -
+  conflict analysis:       0.03         88        782       8.89   26066.67
+Solution           :
+  Solutions found  :        556 (5 improvements)
+  First Solution   : +1.24000000000000e+02   (in run 1, after 0 nodes, 0.10 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.60 %
+  Primal Bound     : +9.70000000000000e+01   (in run 1, after 259 nodes, 8.03 seconds, depth 25, found by <rins>)
+  Dual Bound       : +9.70000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.10 % (510.05 primal-dual integral)
+
+Objective values: (opt is 97)
+inf 1.0 0.0
+104 0.0673077 0.15
+99 0.020202 0.16
+98 0.0102041 0.17
+97 0 8.13
+97 0 56.07
+Primal integral: 0.2321
+
+[INFO]: Read problem from file: "data/mvc_train/input8.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input8.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input8/input8.sol
+139 0.07
+133 0.07
+132 10.11
+131 10.17
+130 18.25
+129 18.38
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input8.lp
+  Variables        : 157 (157 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1887 initial, 1887 maximal
+  Objective        : minimize, 157 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.01
+  solving          :    1000.00
+  presolving       :       0.04 (included in solving)
+  reading          :       0.01
+  copying          :       0.28 (38 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      58325 (32200 internal, 26125 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :      26124
+  nodes (total)    :      58325 (32200 internal, 26125 leaves)
+  nodes left       :       5758
+  max depth        :         62
+  max depth (total):         62
+  backtracks       :      20232 (34.7%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       9.04
+  switching time   :     293.03
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.11       5092          0       0.00       0.00       1.11       5092
+  dual LP          :      48.04      68487    1353484      22.01   28174.10       0.96       6997
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.26          9        786      87.33    3023.08
+  strong branching :       4.65       1497     107900      72.08   23204.30          -          -        199
+    (at root node) :          -         35      12577     359.34          -
+  conflict analysis:       0.06        206       1918       9.31   31966.67
+Solution           :
+  Solutions found  :        722 (7 improvements)
+  First Solution   : +1.57000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      13.91 %
+  Primal Bound     : +1.29000000000000e+02   (in run 1, after 1054 nodes, 18.25 seconds, depth 38, found by <oneopt>)
+  Dual Bound       : +1.13892207687011e+02
+  Gap              :      13.26 %
+  Avg. Gap         :      11.81 % (11811.78 primal-dual integral)
+
+Objective values: (opt is 129)
+inf 1.0 0.0
+139 0.0719424 0.07
+133 0.0300752 0.07
+132 0.0227273 10.11
+131 0.0152672 10.17
+130 0.00769231 18.25
+129 0 18.38
+129 0 1000
+Primal integral: 0.497677
+
+[INFO]: Read problem from file: "data/mvc_train/input10.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input10.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input10/input10.sol
+165 0.06
+163 0.06
+162 0.08
+160 12.89
+159 12.92
+158 255.17
+157 848.69
+156 852.77
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input10.lp
+  Variables        : 186 (186 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 2563 initial, 2563 maximal
+  Objective        : minimize, 186 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.01
+  solving          :    1000.00
+  presolving       :       0.02 (included in solving)
+  reading          :       0.01
+  copying          :       0.33 (39 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      40463 (28192 internal, 12271 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      12268
+  nodes (total)    :      40463 (28192 internal, 12271 leaves)
+  nodes left       :       7596
+  max depth        :         94
+  max depth (total):         94
+  backtracks       :       8966 (22.2%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       6.60
+  switching time   :     211.68
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.03       3749          0       0.00       0.00       1.03       3749
+  dual LP          :      37.71      47639     904795      20.36   23993.50       0.50       3195
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.18          8       1166     145.75    6477.78
+  strong branching :       8.85        860     136689     158.94   15445.08          -          -        148
+    (at root node) :          -         45      20981     466.24          -
+  conflict analysis:       0.02         72        652       9.06   32600.00
+Solution           :
+  Solutions found  :        850 (9 improvements)
+  First Solution   : +1.86000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      15.55 %
+  Primal Bound     : +1.56000000000000e+02   (in run 1, after 34225 nodes, 848.70 seconds, depth 33, found by <oneopt>)
+  Dual Bound       : +1.35000788240012e+02
+  Gap              :      15.55 %
+  Avg. Gap         :      14.57 % (14572.83 primal-dual integral)
+
+Objective values: (opt is 156)
+inf 1.0 0.0
+165 0.0545455 0.06
+163 0.0429448 0.06
+162 0.037037 0.08
+160 0.025 12.89
+159 0.0188679 12.92
+158 0.0126582 255.17
+157 0.00636943 848.69
+156 0 852.77
+156 0 1000
+Primal integral: 12.6457
+
+[INFO]: Read problem from file: "data/mvc_train/input12.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input12.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input12/input12.sol
+124 0.04
+118 0.04
+117 0.04
+116 15.86
+115 22.97
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input12.lp
+  Variables        : 142 (142 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1491 initial, 1491 maximal
+  Objective        : minimize, 142 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     538.44
+  solving          :     538.43
+  presolving       :       0.02 (included in solving)
+  reading          :       0.01
+  copying          :       0.21 (35 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      54018 (27239 internal, 26779 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      26777
+  nodes (total)    :      54018 (27239 internal, 26779 leaves)
+  nodes left       :          0
+  max depth        :         58
+  max depth (total):         58
+  backtracks       :      21672 (40.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       7.90
+  switching time   :     260.02
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.65       3573          0       0.00       0.00       0.64       3573
+  dual LP          :      32.42      60177    1024617      18.56   31604.47       0.51       4957
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.43        255       7756      30.42   18037.21
+  strong branching :       3.27       1288      89403      69.41   27340.37          -          -        199
+    (at root node) :          -         35      10192     291.20          -
+  conflict analysis:       0.04        180       1655       9.19   41375.00
+Solution           :
+  Solutions found  :        788 (6 improvements)
+  First Solution   : +1.42000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      12.00 %
+  Primal Bound     : +1.15000000000000e+02   (in run 1, after 2245 nodes, 22.64 seconds, depth 28, found by <relaxation>)
+  Dual Bound       : +1.15000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.59 % (5701.14 primal-dual integral)
+
+Objective values: (opt is 115)
+inf 1.0 0.0
+124 0.0725806 0.04
+118 0.0254237 0.04
+117 0.017094 0.04
+116 0.00862069 15.86
+115 0 22.97
+115 0 538.43
+Primal integral: 0.37172
+
+[INFO]: Read problem from file: "data/mvc_train/input3.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input3.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input3/input3.sol
+107 0.05
+104 0.05
+103 3.36
+102 3.39
+101 4.82
+100 4.86
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input3.lp
+  Variables        : 126 (126 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1164 initial, 1164 maximal
+  Objective        : minimize, 126 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     107.60
+  solving          :     107.60
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.11 (16 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      10957 (5509 internal, 5448 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       5448
+  nodes (total)    :      10957 (5509 internal, 5448 leaves)
+  nodes left       :          0
+  max depth        :         40
+  max depth (total):         40
+  backtracks       :       4615 (42.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       9.58
+  switching time   :      48.89
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.33       1046          0       0.00       0.00       0.33       1046
+  dual LP          :       8.82      12904     236964      20.19   26866.67       0.17       1167
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.40        416       9919      23.84   24797.50
+  strong branching :       2.58        904      72730      80.45   28189.92          -          -         53
+    (at root node) :          -         42       9451     225.02          -
+  conflict analysis:       0.02        131       1230       9.39   61500.00
+Solution           :
+  Solutions found  :        536 (7 improvements)
+  First Solution   : +1.26000000000000e+02   (in run 1, after 0 nodes, 0.04 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.15 %
+  Primal Bound     : +1.00000000000000e+02   (in run 1, after 211 nodes, 4.82 seconds, depth 27, found by <oneopt>)
+  Dual Bound       : +1.00000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       8.05 % (866.24 primal-dual integral)
+
+Objective values: (opt is 100)
+inf 1.0 0.0
+107 0.0654206 0.05
+104 0.0384615 0.05
+103 0.0291262 3.36
+102 0.0196078 3.39
+101 0.00990099 4.82
+100 0 4.86
+100 0 107.6
+Primal integral: 0.206617
+
+[INFO]: Read problem from file: "data/mvc_train/input1.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input1.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input1/input1.sol
+84 0.04
+79 0.04
+77 0.05
+76 2.09
+75 3.02
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input1.lp
+  Variables        : 100 (100 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 694 initial, 694 maximal
+  Objective        : minimize, 100 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       5.58
+  solving          :       5.58
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.04 (4 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        402 (210 internal, 192 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :        192
+  nodes (total)    :        402 (210 internal, 192 leaves)
+  nodes left       :          0
+  max depth        :         27
+  max depth (total):         27
+  backtracks       :        171 (42.5%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (1 domain reductions, 0 cutoffs)
+  avg switch length:       5.18
+  switching time   :       1.31
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.01         59          0       0.00       0.00       0.01         59
+  dual LP          :       0.43        593      14465      25.74   33639.53       0.00         31
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.11         74       1724      23.30   15672.73
+  strong branching :       0.99        362      31474      86.94   31791.92          -          -          0
+    (at root node) :          -         37       5925     160.14          -
+  conflict analysis:       0.02         34        247       7.26   12350.00
+Solution           :
+  Solutions found  :        312 (6 improvements)
+  First Solution   : +1.00000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       7.14 %
+  Primal Bound     : +7.50000000000000e+01   (in run 1, after 94 nodes, 3.01 seconds, depth 19, found by <relaxation>)
+  Dual Bound       : +7.50000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.89 % (49.60 primal-dual integral)
+
+Objective values: (opt is 75)
+inf 1.0 0.0
+84 0.107143 0.04
+79 0.0506329 0.04
+77 0.025974 0.05
+76 0.0131579 2.09
+75 0 3.02
+75 0 5.58
+Primal integral: 0.10573
+
+[INFO]: Read problem from file: "data/mvc_train/input0.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input0.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input0/input0.sol
+126 0.03
+122 0.03
+121 8.24
+120 10.45
+119 21.09
+118 375.53
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input0.lp
+  Variables        : 146 (146 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1585 initial, 1585 maximal
+  Objective        : minimize, 146 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     597.29
+  solving          :     597.29
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.25 (37 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      44275 (23307 internal, 20968 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      20966
+  nodes (total)    :      44275 (23307 internal, 20968 leaves)
+  nodes left       :          0
+  max depth        :         70
+  max depth (total):         70
+  backtracks       :      17760 (40.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:      10.22
+  switching time   :     240.06
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.05       3494          0       0.00       0.00       1.05       3494
+  dual LP          :      33.11      49559     909409      19.80   27466.29       0.44       3631
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.40        217       5913      27.25   14782.50
+  strong branching :       5.06       2067     120371      58.23   23788.74          -          -        224
+    (at root node) :          -         43      12423     288.91          -
+  conflict analysis:       0.08        192       1814       9.45   22675.00
+Solution           :
+  Solutions found  :        745 (7 improvements)
+  First Solution   : +1.46000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      11.00 %
+  Primal Bound     : +1.18000000000000e+02   (in run 1, after 25264 nodes, 372.60 seconds, depth 26, found by <relaxation>)
+  Dual Bound       : +1.18000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :      10.37 % (6196.18 primal-dual integral)
+
+Objective values: (opt is 118)
+inf 1.0 0.0
+126 0.0634921 0.03
+122 0.0327869 0.03
+121 0.0247934 8.24
+120 0.0166667 10.45
+119 0.00840336 21.09
+118 0 375.53
+118 0 597.29
+Primal integral: 3.50979
+
+[INFO]: Read problem from file: "data/mvc_train/input5.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input5.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input5/input5.sol
+119 0.03
+114 0.03
+113 4.91
+112 6.54
+111 22.71
+110 55.62
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input5.lp
+  Variables        : 137 (137 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1407 initial, 1407 maximal
+  Objective        : minimize, 137 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     266.89
+  solving          :     266.89
+  presolving       :       0.00 (included in solving)
+  reading          :       0.00
+  copying          :       0.17 (33 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      26441 (13474 internal, 12967 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :      12965
+  nodes (total)    :      26441 (13474 internal, 12967 leaves)
+  nodes left       :          0
+  max depth        :         54
+  max depth (total):         54
+  backtracks       :      10930 (41.3%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       9.08
+  switching time   :     133.00
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.43       2024          0       0.00       0.00       0.43       2024
+  dual LP          :      20.13      29457     518139      19.17   25739.64       0.34       2422
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.59        472      15117      32.03   25622.03
+  strong branching :       3.66        982      86812      88.40   23719.13          -          -         94
+    (at root node) :          -         69      18057     261.70          -
+  conflict analysis:       0.00        110       1014       9.22          -
+Solution           :
+  Solutions found  :        700 (7 improvements)
+  First Solution   : +1.37000000000000e+02   (in run 1, after 0 nodes, 0.02 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      11.37 %
+  Primal Bound     : +1.10000000000000e+02   (in run 1, after 5670 nodes, 55.29 seconds, depth 28, found by <relaxation>)
+  Dual Bound       : +1.10000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       9.85 % (2629.19 primal-dual integral)
+
+Objective values: (opt is 110)
+inf 1.0 0.0
+119 0.0756303 0.03
+114 0.0350877 0.03
+113 0.0265487 4.91
+112 0.0178571 6.54
+111 0.00900901 22.71
+110 0 55.62
+110 0 266.89
+Primal integral: 0.829739
+
+[INFO]: Read problem from file: "data/mvc_train/input13.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input13.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input13/input13.sol
+141 0.05
+136 0.05
+133 8.87
+132 729.02
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_train/input13.lp
+  Variables        : 161 (161 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1908 initial, 1908 maximal
+  Objective        : minimize, 161 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.02 (included in solving)
+  reading          :       0.00
+  copying          :       0.28 (39 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      52686 (30462 internal, 22224 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :      22223
+  nodes (total)    :      52686 (30462 internal, 22224 leaves)
+  nodes left       :       5528
+  max depth        :         71
+  max depth (total):         71
+  backtracks       :      17557 (33.3%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       9.09
+  switching time   :     278.55
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       1.21       4944          0       0.00       0.00       1.21       4944
+  dual LP          :      41.43      61045    1154919      20.55   27876.39       0.60       4840
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.17          7        832     118.86    4894.12
+  strong branching :       5.38       1108     108807      98.20   20224.35          -          -        151
+    (at root node) :          -         20       6629     331.45          -
+  conflict analysis:       0.06        124       1198       9.66   19966.67
+Solution           :
+  Solutions found  :        747 (5 improvements)
+  First Solution   : +1.61000000000000e+02   (in run 1, after 0 nodes, 0.03 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      13.83 %
+  Primal Bound     : +1.32000000000000e+02   (in run 1, after 38594 nodes, 725.18 seconds, depth 30, found by <relaxation>)
+  Dual Bound       : +1.15959381373216e+02
+  Gap              :      13.83 %
+  Avg. Gap         :      12.67 % (12665.55 primal-dual integral)
+
+Objective values: (opt is 132)
+inf 1.0 0.0
+141 0.0638298 0.05
+136 0.0294118 0.05
+133 0.0075188 8.87
+132 0 729.02
+132 0 1000
+Primal integral: 5.72407
+
+[INFO]: Read problem from file: "data/mvc_train/input2.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input2.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input2/input2.sol
+121 0.04
+119 0.04
+117 0.05
+115 5.35
+114 27.38
+113 28.13
+112 495.46
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input2.lp
+  Variables        : 140 (140 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1458 initial, 1458 maximal
+  Objective        : minimize, 140 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :     509.87
+  solving          :     509.86
+  presolving       :       0.01 (included in solving)
+  reading          :       0.01
+  copying          :       0.17 (25 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      38767 (19935 internal, 18832 leaves)
+  feasible leaves  :          3
+  infeas. leaves   :          0
+  objective leaves :      18829
+  nodes (total)    :      38767 (19935 internal, 18832 leaves)
+  nodes left       :          0
+  max depth        :         62
+  max depth (total):         62
+  backtracks       :      16451 (42.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          1
+  repropagations   :          9 (13 domain reductions, 1 cutoffs)
+  avg switch length:       9.80
+  switching time   :     231.50
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.66       2647          0       0.00       0.00       0.64       2647
+  dual LP          :      27.23      43440     754685      18.75   27715.20       0.42       3185
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.76        618      15686      25.38   20639.47
+  strong branching :       3.76       1177      95568      81.20   25417.02          -          -        110
+    (at root node) :          -         42      11338     269.95          -
+  conflict analysis:       0.02        209       1968       9.42   98400.00
+Solution           :
+  Solutions found  :        717 (8 improvements)
+  First Solution   : +1.40000000000000e+02   (in run 1, after 0 nodes, 0.03 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       8.67 %
+  Primal Bound     : +1.12000000000000e+02   (in run 1, after 37566 nodes, 494.97 seconds, depth 18, found by <relaxation>)
+  Dual Bound       : +1.12000000000000e+02
+  Gap              :       0.00 %
+  Avg. Gap         :       9.92 % (5059.66 primal-dual integral)
+
+Objective values: (opt is 112)
+inf 1.0 0.0
+121 0.0743802 0.04
+119 0.0588235 0.04
+117 0.042735 0.05
+115 0.026087 5.35
+114 0.0175439 27.38
+113 0.00884956 28.13
+112 0 495.46
+112 0 509.86
+Primal integral: 4.9906
+
+[INFO]: Read problem from file: "data/mvc_train/input9.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input9.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input9/input9.sol
+93 0.04
+89 0.04
+88 0.05
+87 2.94
+85 2.97
+84 3.03
+83 3.32
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input9.lp
+  Variables        : 109 (109 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 828 initial, 828 maximal
+  Objective        : minimize, 109 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      10.32
+  solving          :      10.31
+  presolving       :       0.01 (included in solving)
+  reading          :       0.01
+  copying          :       0.04 (7 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        751 (396 internal, 355 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          1
+  objective leaves :        354
+  nodes (total)    :        751 (396 internal, 355 leaves)
+  nodes left       :          0
+  max depth        :         36
+  max depth (total):         36
+  backtracks       :        343 (45.7%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :         23 (8 domain reductions, 0 cutoffs)
+  avg switch length:       5.72
+  switching time   :       2.62
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.05        119          0       0.00       0.00       0.05        119
+  dual LP          :       0.94       1064      25126      25.41   26729.79       0.00         75
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.16        226       4566      20.20   28537.50
+  strong branching :       1.30        510      39146      76.76   30112.31          -          -          4
+    (at root node) :          -         25       4404     176.16          -
+  conflict analysis:       0.01         54        423       7.83   42300.00
+Solution           :
+  Solutions found  :        409 (8 improvements)
+  First Solution   : +1.09000000000000e+02   (in run 1, after 0 nodes, 0.03 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       6.41 %
+  Primal Bound     : +8.30000000000000e+01   (in run 1, after 88 nodes, 3.32 seconds, depth 20, found by <objpscostdiving>)
+  Dual Bound       : +8.30000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.65 % (89.19 primal-dual integral)
+
+Objective values: (opt is 83)
+inf 1.0 0.0
+93 0.107527 0.04
+89 0.0674157 0.04
+88 0.0568182 0.05
+87 0.045977 2.94
+85 0.0235294 2.97
+84 0.0119048 3.03
+83 0 3.32
+83 0 10.31
+Primal integral: 0.211122
+
+[INFO]: Read problem from file: "data/mvc_train/input6.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Appending data to existing file: data/mvc_train/data/input6.data
+[INFO]: Oracle: Loaded solution file: data/mvc_train/solutions/input6/input6.sol
+101 0.04
+100 0.04
+99 0.05
+98 3.21
+96 3.29
+95 3.36
+94 3.36
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_train/input6.lp
+  Variables        : 119 (119 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 1098 initial, 1098 maximal
+  Objective        : minimize, 119 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      33.14
+  solving          :      33.13
+  presolving       :       0.03 (included in solving)
+  reading          :       0.01
+  copying          :       0.08 (11 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       3415 (1723 internal, 1692 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          1
+  objective leaves :       1691
+  nodes (total)    :       3415 (1723 internal, 1692 leaves)
+  nodes left       :          0
+  max depth        :         40
+  max depth (total):         40
+  backtracks       :       1541 (45.1%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          8 (15 domain reductions, 0 cutoffs)
+  avg switch length:       8.36
+  switching time   :      14.36
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.14        350          0       0.00       0.00       0.14        350
+  dual LP          :       3.69       4063      85961      23.05   23295.66       0.08        333
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.36        418       9500      22.73   26388.89
+  strong branching :       2.02        629      56059      89.12   27751.98          -          -         61
+    (at root node) :          -         31       5650     182.26          -
+  conflict analysis:       0.01         83        706       8.51   70600.00
+Solution           :
+  Solutions found  :        518 (8 improvements)
+  First Solution   : +1.19000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       9.40 %
+  Primal Bound     : +9.40000000000000e+01   (in run 1, after 74 nodes, 3.36 seconds, depth 30, found by <relaxation>)
+  Dual Bound       : +9.40000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.14 % (269.71 primal-dual integral)
+
+Objective values: (opt is 94)
+inf 1.0 0.0
+101 0.0693069 0.04
+100 0.06 0.04
+99 0.0505051 0.05
+98 0.0408163 3.21
+96 0.0208333 3.29
+95 0.0105263 3.36
+94 0 3.36
+94 0 33.13
+Primal integral: 0.20492
+
+[INFO]: Read problem from file: "data/mvc_valid/input14.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_valid/data/input14.data
+[INFO]: Oracle: Loaded solution file: data/mvc_valid/solutions/input14/input14.sol
+91 0.03
+87 0.03
+86 0.03
+85 2.81
+84 53.07
+
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : data/mvc_valid/input14.lp
+  Variables        : 108 (108 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 901 initial, 901 maximal
+  Objective        : minimize, 108 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :      53.12
+  solving          :      53.12
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.09 (15 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :       6256 (3135 internal, 3121 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :       3120
+  nodes (total)    :       6256 (3135 internal, 3121 leaves)
+  nodes left       :          0
+  max depth        :         38
+  max depth (total):         38
+  backtracks       :       2402 (38.4%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          3 (13 domain reductions, 0 cutoffs)
+  avg switch length:       5.94
+  switching time   :      26.54
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.18        566          0       0.00       0.00       0.18        566
+  dual LP          :       4.15       7303     111554      16.89   26880.48       0.08        699
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.07        127       1706      13.43   24371.43
+  strong branching :       1.29        451      39331      87.21   30489.15          -          -          3
+    (at root node) :          -         22       3604     163.82          -
+  conflict analysis:       0.00         53        476       8.98          -
+Solution           :
+  Solutions found  :        607 (6 improvements)
+  First Solution   : +1.08000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       7.21 %
+  Primal Bound     : +8.40000000000000e+01   (in run 1, after 6241 nodes, 53.06 seconds, depth 13, found by <relaxation>)
+  Dual Bound       : +8.40000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.89 % (472.40 primal-dual integral)
+
+Objective values: (opt is 84)
+inf 1.0 0.0
+91 0.0769231 0.03
+87 0.0344828 0.03
+86 0.0232558 0.03
+85 0.0117647 2.81
+84 0 53.07
+84 0 53.12
+Primal integral: 0.685945
+
+[INFO]: Read problem from file: "data/mvc_valid/input11.lp"
+[INFO]: Solving problem...
+
+Academic license - for non-commercial use only
+[INFO]: RankedPairsCollector: Creating new file for data and writing headers: data/mvc_valid/data/input11.data
+[INFO]: Oracle: Loaded solution file: data/mvc_valid/solutions/input11/input11.sol
+162 0.04
+155 0.04
+153 0.05
+150 10.62
+
+SCIP Status        : solving was interrupted [time limit reached]
+Original Problem   :
+  Problem name     : data/mvc_valid/input11.lp
+  Variables        : 179 (179 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 2396 initial, 2396 maximal
+  Objective        : minimize, 179 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :    1000.00
+  solving          :    1000.00
+  presolving       :       0.03 (included in solving)
+  reading          :       0.00
+  copying          :       0.19 (28 #copies) (minimal 0.00, maximal 0.02, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :      34851 (25775 internal, 9076 leaves)
+  feasible leaves  :          0
+  infeas. leaves   :          0
+  objective leaves :       9075
+  nodes (total)    :      34851 (25775 internal, 9076 leaves)
+  nodes left       :      16699
+  max depth        :         90
+  max depth (total):         90
+  backtracks       :       7030 (20.2%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          0 (0 domain reductions, 0 cutoffs)
+  avg switch length:       6.71
+  switching time   :     170.08
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.89       3360          0       0.00       0.00       0.89       3360
+  dual LP          :      43.71      42643    1006228      25.41   23020.54       0.62       3045
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.11          1         53      53.00     481.82
+  strong branching :       9.83       1142     156419     136.97   15912.41          -          -        157
+    (at root node) :          -         21       9355     445.48          -
+  conflict analysis:       0.01         84        803       9.56   80300.00
+Solution           :
+  Solutions found  :        737 (5 improvements)
+  First Solution   : +1.79000000000000e+02   (in run 1, after 0 nodes, 0.01 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :      15.25 %
+  Primal Bound     : +1.50000000000000e+02   (in run 1, after 41 nodes, 10.62 seconds, depth 40, found by <alns>)
+  Dual Bound       : +1.30153846153846e+02
+  Gap              :      15.25 %
+  Avg. Gap         :      13.27 % (13271.03 primal-dual integral)
+
+Objective values: (opt is 150)
+inf 1.0 0.0
+162 0.0740741 0.04
+155 0.0322581 0.04
+153 0.0196078 0.05
+150 0 10.62
+150 0 1000
+Primal integral: 0.247577
+

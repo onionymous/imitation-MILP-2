@@ -1,0 +1,136 @@
+> Default SCIP:
+Starting ImitationMILP...
+
+[INFO]: ImitationMILP: Solving problem: /home/orion/Documents/dev/imitation-milp-2/data/mvc_train/input1.lp with default SCIP 
+Academic license - for non-commercial use only
+84 0.01
+79 0.01
+77 0.01
+76 1.26
+75 2.92
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : /home/orion/Documents/dev/imitation-milp-2/data/mvc_train/input1.lp
+  Variables        : 100 (100 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 694 initial, 694 maximal
+  Objective        : minimize, 100 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       3.80
+  solving          :       3.80
+  presolving       :       0.01 (included in solving)
+  reading          :       0.00
+  copying          :       0.02 (4 #copies) (minimal 0.00, maximal 0.01, average 0.01)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        689 (351 internal, 338 leaves)
+  feasible leaves  :          2
+  infeas. leaves   :          0
+  objective leaves :        336
+  nodes (total)    :        689 (351 internal, 338 leaves)
+  nodes left       :          0
+  max depth        :         22
+  max depth (total):         22
+  backtracks       :        137 (19.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          2 (1 domain reductions, 0 cutoffs)
+  avg switch length:       2.83
+  switching time   :       0.01
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02         77          0       0.00       0.00       0.02         77
+  dual LP          :       0.51       1029      20648      21.60   40486.27       0.01         73
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.03         18        224      12.44    7466.67
+  strong branching :       0.64        515      22941      44.55   35845.31          -          -         21
+    (at root node) :          -         37       5925     160.14          -
+  conflict analysis:       0.01         60        476       7.93   47600.00
+Solution           :
+  Solutions found  :        351 (6 improvements)
+  First Solution   : +1.00000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       6.37 %
+  Primal Bound     : +7.50000000000000e+01   (in run 1, after 407 nodes, 2.92 seconds, depth 16, found by <relaxation>)
+  Dual Bound       : +7.50000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       8.86 % (33.67 primal-dual integral)
+
+Objective values: (opt is 75)
+inf 1.0 0.0
+84 0.107143 0.01
+79 0.0506329 0.01
+77 0.025974 0.01
+76 0.0131579 1.26
+75 0 2.92
+75 0 3.8
+Primal integral: 0.0643096
+
+
+
+> With model:
+Starting ImitationMILP...
+
+[INFO]: ImitationMILP: Solving problem: /home/orion/Documents/dev/imitation-milp-2/data/mvc_train/input1.lp with model: models/mvc3.h5
+Academic license - for non-commercial use only
+84 0.01
+79 0.01
+77 0.01
+76 2.56
+75 7.26
+SCIP Status        : problem is solved [optimal solution found]
+Original Problem   :
+  Problem name     : /home/orion/Documents/dev/imitation-milp-2/data/mvc_train/input1.lp
+  Variables        : 100 (100 binary, 0 integer, 0 implicit integer, 0 continuous)
+  Constraints      : 694 initial, 694 maximal
+  Objective        : minimize, 100 non-zeros (abs.min = 1, abs.max = 1)
+Total Time         :       7.83
+  solving          :       7.83
+  presolving       :       0.00 (included in solving)
+  reading          :       0.00
+  copying          :       0.04 (9 #copies) (minimal 0.00, maximal 0.01, average 0.00)
+B&B Tree           :
+  number of runs   :          1
+  nodes            :        923 (490 internal, 433 leaves)
+  feasible leaves  :          1
+  infeas. leaves   :          0
+  objective leaves :        432
+  nodes (total)    :        923 (490 internal, 433 leaves)
+  nodes left       :          0
+  max depth        :         30
+  max depth (total):         30
+  backtracks       :        368 (39.9%)
+  early backtracks :          0 (0.0%)
+  nodes exc. ref.  :          0 (0.0%)
+  delayed cutoffs  :          0
+  repropagations   :          8 (5 domain reductions, 0 cutoffs)
+  avg switch length:       4.54
+  switching time   :       2.70
+LP                 :       Time      Calls Iterations  Iter/call   Iter/sec  Time-0-It Calls-0-It    ItLimit
+  primal LP        :       0.02        112          0       0.00       0.00       0.02        112
+  dual LP          :       0.73       1320      26663      21.84   36524.66       0.00         99
+  lex dual LP      :       0.00          0          0       0.00          -
+  barrier LP       :       0.00          0          0       0.00          -       0.00          0
+  diving/probing LP:       0.08        149       2703      18.14   33787.50
+  strong branching :       0.69        540      26290      48.69   38101.45          -          -         13
+    (at root node) :          -         37       5925     160.14          -
+  conflict analysis:       0.03         91        697       7.66   23233.33
+Solution           :
+  Solutions found  :        362 (6 improvements)
+  First Solution   : +1.00000000000000e+02   (in run 1, after 0 nodes, 0.00 seconds, depth 0, found by <trivial>)
+  Gap First Sol.   :   infinite
+  Gap Last Sol.    :       8.11 %
+  Primal Bound     : +7.50000000000000e+01   (in run 1, after 770 nodes, 7.23 seconds, depth 19, found by <relaxation>)
+  Dual Bound       : +7.50000000000000e+01
+  Gap              :       0.00 %
+  Avg. Gap         :       9.35 % (73.21 primal-dual integral)
+
+Objective values: (opt is 75)
+inf 1.0 0.0
+84 0.107143 0.01
+79 0.0506329 0.01
+77 0.025974 0.01
+76 0.0131579 2.56
+75 0 7.26
+75 0 7.83
+Primal integral: 0.138076
+
