@@ -56,9 +56,9 @@ PYTHON_VERSION = 3.7m
 # PYTHON_INCLUDE = /usr/include/python$(PYTHON_VERSION)
 
 FLAGS		+=	-g -shared -fPIC -O0 -std=c++11 -fno-lto -I$(BOOST_INC)
-FLAGS		+=	-Wfatal $(filter-out -Wstrict-prototypes, $(shell python3-config --cflags))
+FLAGS		+=	-Wfatal-errors $(filter-out -Wstrict-prototypes, $(shell python3-config --cflags))
 
-LDFLAGS		+=	-L$(BOOST_LIB) -lboost_system -lboost_filesystem -lboost_program_options -lboost_python3 -L/usr/lib/python$(PYTHON_VERSION)/config -lpython$(PYTHON_VERSION)
+LDFLAGS		+=	-L$(BOOST_LIB) -L/cs/ml/software/miniconda3/lib -lpython$(PYTHON_VERSION) -lboost_system -lboost_filesystem -lboost_program_options -lboost_python37
 LDFLAGS		+=	$(shell python3-config --ldflags)
 
 #-----------------------------------------------------------------------------
