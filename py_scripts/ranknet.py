@@ -15,18 +15,15 @@ class RankNetModule(nn.Module):
         super(RankNetModule, self).__init__()
         self.model = nn.Sequential(
             nn.Linear(inputs, hidden_size),
-            #nn.Dropout(0.5),
             nn.ReLU(inplace=True),
-            #nn.LeakyReLU(0.2,  inplace=True),#inplace为True，将会改变输入的数据 ，否则不会改变原输入，只会产生新的输出
             nn.Linear(hidden_size, outputs),
-            #nn.Sigmoid()
         )
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, input_1, input_2):
-        result_1 = self.model(input_1) #预测input_1得分
-        result_2 = self.model(input_2) #预测input_2得分
-        pred = self.sigmoid(result_1 - result_2) #input_1比input_2更相关概率
+        result_1 = self.model(input_1)
+        result_2 = self.model(input_2)
+        pred = self.sigmoid(result_1 - result_2)
         return pred
 
 class RankNet:
