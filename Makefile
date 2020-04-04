@@ -55,10 +55,11 @@ MAINOBJFILES	+=	$(addprefix $(OBJDIR)/,$(CXXMAINOBJ))
 PYTHON_VERSION = 3.7m
 # PYTHON_INCLUDE = /usr/include/python$(PYTHON_VERSION)
 
-FLAGS		+=	-g -shared -fPIC -O0 -std=c++11 -fno-lto -I$(BOOST_INC)
+FLAGS		+=	-g -shared -fPIC -O0 -std=c++11 -fno-lto -I$(BOOST_INC) -I/cs/ml/software/libtorch/include
 FLAGS		+=	-Wfatal-errors $(filter-out -Wstrict-prototypes, $(shell python3-config --cflags))
 
-LDFLAGS		+=	-L$(BOOST_LIB) -L/cs/ml/software/miniconda3/lib -lpython$(PYTHON_VERSION) -lboost_system -lboost_filesystem -lboost_program_options -lboost_python37
+LDFLAGS     +=  -L/cs/ml/software/libtorch/lib -ltorch -lc10 -lmkldnn -lgomp -lnvToolsExt # -lcaffe lcaffe_gpu
+LDFLAGS		+=	-L$(BOOST_LIB)  -L/cs/ml/software/miniconda3/lib -lpython$(PYTHON_VERSION) -lboost_system -lboost_filesystem -lboost_program_options -lboost_python37
 LDFLAGS		+=	$(shell python3-config --ldflags)
 
 #-----------------------------------------------------------------------------

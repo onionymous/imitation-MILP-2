@@ -21,6 +21,7 @@
 
 #include <boost/python.hpp>
 #include <python3.6m/Python.h>
+#include <torch/script.h>
 
 namespace imilp {
 
@@ -51,6 +52,7 @@ class RankNetModel {
 
   boost::python::object py_file_;
   boost::python::object RankNet_py_;
+  torch::jit::script::Module module_;
 
 };
 

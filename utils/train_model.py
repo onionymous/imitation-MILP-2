@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 from pathlib import Path
 from itertools import combinations
@@ -6,10 +8,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import numpy as np
-
-
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-# device = 'cpu'
 
 class RankNetModule(nn.Module):
     def __init__(self, inputs, hidden_size, outputs):
@@ -23,10 +21,32 @@ class RankNetModule(nn.Module):
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, input_1, input_2):
+        result_1 = self.model(input_1.double())
+        result_2 = self.model(input_2.double())
+        pred = self.sigmoid(result_1 - result_2)
+        return pred
+
+
+'''
+Modified version of the model for evaluation
+'''
+class RankNetModuleEval(nn.Module):
+    def __init__(self, inputs, hidden_size, outputs):
+        super(RankNetModuleEval, self).__init__()
+        self.model = nn.Sequential(
+            nn.Linear(inputs, hidden_size),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_size, outputs),
+        )
+        self.model.double()
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, input_1, input_2):
         result_1 = self.model(input_1.view(1, -1).double())
         result_2 = self.model(input_2.view(1, -1).double())
         pred = self.sigmoid(result_1 - result_2)
         return pred
+
 
 class RankNet:
     '''
@@ -46,24 +66,41 @@ class RankNet:
         self.hidden_size = 10
         self.outputs = 1
         self.model = None
-        self.iters = 7
+        self.iters = 0
+
+        self.device = None
+        if is_gpu and torch.cuda.is_available():
+            self.device = torch.device('cuda')
+        else:
+            self.device = torch.device('cpu')
 
         if prev_model and (not prev_model == ""):
             self.load_model()
 
+    '''
+    Load an existing model
+    '''
     def load_model(self):
         assert(self.prev_model and Path(self.prev_model).is_file()
                ), "Model {} could not be loaded.".format(self.prev_model)
          
-        self.model = RankNetModule(self.input_dim, self.hidden_size, self.outputs).to(device)
+        self.model = RankNetModule(self.input_dim, self.hidden_size, self.outputs).to(self.device)
         self.model.load_state_dict(torch.load(self.prev_model))
 
 
-    def train(self, train_dir, valid_dir, num_epochs, batch_size):
-        pass
+    def save_model(self, model_file):
+        device = torch.device('cpu')
+        model = RankNetModuleEval(self.input_dim, self.hidden_size, self.outputs).to(device)
+        model.load_state_dict(self.model.state_dict())
 
+        model.to(device)
+        e1 = torch.rand(1, self.input_dim).to(device)
+        e2 = torch.rand(1, self.input_dim).to(device)
+        traced_script_module = torch.jit.trace(model, (e1, e2))
 
-    def train_multi(self, train_dirs, valid_dirs, num_epochs, batch_size):
+        traced_script_module.save(model_file)
+
+    def train(self, train_dirs, valid_dirs, num_epochs, batch_size):
         '''
         Run the training loop for a specified number of epochs and iterations.
         Training is done on the GPU so session will be switched if it was on
@@ -104,10 +141,10 @@ class RankNet:
         # joblib.dump(self.scaler, model_file + ".scaler")
 
         # Separate validation data into components
-        valid_weights = torch.from_numpy(valid_data[:, 0]).double().to(device)
-        valid_y = torch.from_numpy(valid_data[:, -1].astype(int)).double().to(device)
-        valid_X1 = torch.from_numpy(valid_data[:, 1:self.input_dim + 1]).double().to(device)
-        valid_X2 = torch.from_numpy(valid_data[:, self.input_dim + 1:-1]).double().to(device)
+        valid_weights = torch.from_numpy(valid_data[:, 0]).double().to(self.device)
+        valid_y = torch.from_numpy(valid_data[:, -1].astype(int)).double().to(self.device)
+        valid_X1 = torch.from_numpy(valid_data[:, 1:self.input_dim + 1]).double().to(self.device)
+        valid_X2 = torch.from_numpy(valid_data[:, self.input_dim + 1:-1]).double().to(self.device)
         valid_criterion = nn.BCELoss(weight=valid_weights)
 
         # Scale training and validation data
@@ -123,7 +160,7 @@ class RankNet:
 
         # Train model
         learning_rate = 0.2
-        self.model = RankNetModule(self.input_dim, self.hidden_size, self.outputs).to(device)
+        self.model = RankNetModule(self.input_dim, self.hidden_size, self.outputs).to(self.device)
         optimizer = optim.Adadelta(self.model.parameters(), lr = learning_rate)
        
         self.model.train()
@@ -144,10 +181,10 @@ class RankNet:
 
             cur_batch = 0
             for i in range(N_train // batch_size):
-                batch_X1 = train_X1[cur_batch: cur_batch + batch_size].double().to(device)
-                batch_X2 = train_X2[cur_batch: cur_batch + batch_size].double().to(device)
-                batch_y = train_y[cur_batch: cur_batch + batch_size].double().to(device)
-                batch_w = train_w[cur_batch: cur_batch + batch_size].double().to(device)
+                batch_X1 = train_X1[cur_batch: cur_batch + batch_size].double().to(self.device)
+                batch_X2 = train_X2[cur_batch: cur_batch + batch_size].double().to(self.device)
+                batch_y = train_y[cur_batch: cur_batch + batch_size].double().to(self.device)
+                batch_w = train_w[cur_batch: cur_batch + batch_size].double().to(self.device)
                 train_criterion = nn.BCELoss(weight=batch_w)
                 cur_batch += batch_size
 
@@ -173,12 +210,15 @@ class RankNet:
 
                 prev_valid_loss = valid_loss.item()
 
-                model_file = self.model_file.rstrip(
-                    ".h5") + "-" + str(self.iters) + ".h5"
-                torch.save(self.model.state_dict(), model_file)
+        # model_file = self.model_file.split(".")[0] + "-" + str(self.iters) + ".pt"
+        # torch.save(self.model.state_dict(), model_file)
 
-        self.prev_model = model_file
-        self.load_model()
+        # save model
+        self.prev_model = self.model_file
+        self.save_model(self.model_file)
+
+        # self.prev_model = model_file
+        # self.load_model()
 
 
     def predict(self, X1, X2):
@@ -187,6 +227,8 @@ class RankNet:
         of the nodes.
         '''
         # predict on the CPU
+        device = torch.device('cpu')
+
         if self.prev_model is None or self.prev_model == "":
             self.prev_model = self.model_file
 
@@ -207,88 +249,19 @@ class RankNet:
             return 0
 
 
-# train_dirs = ["data/hybrid_bids/bids_500/train_small/oracle",
-#               "data/hybrid_bids/bids_500/train_small/iter1",
-#               "data/hybrid_bids/bids_500/train_small/iter2",
-#               "data/hybrid_bids/bids_500/train_small/iter3",
-#               "data/hybrid_bids/bids_500/train_small/iter4",
-#               "data/hybrid_bids/bids_500/train_small/iter5",
-#               "data/hybrid_bids/bids_500/train_small/iter6",
-#               "data/hybrid_bids/bids_500/train_small/iter7"]
-# valid_dirs = ["data/hybrid_bids/bids_500/valid_small/oracle",
-#               "data/hybrid_bids/bids_500/valid_small/iter1",
-#               "data/hybrid_bids/bids_500/valid_small/iter2",
-#               "data/hybrid_bids/bids_500/valid_small/iter3",
-#               "data/hybrid_bids/bids_500/valid_small/iter4",
-#               "data/hybrid_bids/bids_500/valid_small/iter5",
-#               "data/hybrid_bids/bids_500/valid_small/iter6",
-#               "data/hybrid_bids/bids_500/valid_small/iter7"]
-# # "data/hybrid_bids/bids_530/valid/scaling"]
+train_dirs = ["data/hybrid_bids/bids_500/train/oracle",
+              "data/hybrid_bids/bids_500/train/iter1"]
+valid_dirs = ["data/hybrid_bids/bids_500/valid/oracle",
+              "data/hybrid_bids/bids_500/valid/iter1"]
 
-# device = 'cpu'
-# m = RankNet("models/test_test-0.h5", 26, "models/test_test-0.h5")
-# e1 = torch.rand(1, 26).to(device)
-# e2 = torch.rand(1, 26).to(device)
-# traced_script_module = torch.jit.trace(m.model, (e1, e2))
-# print(traced_script_module(e1, e2))
-# traced_script_module.save("models/test_test.pt")
-
-# train_dirs = ["data/test_test/oracle"]
-# valid_dirs = ["data/test_test/oracle"]
-
-# m = RankNet("models/test_test.h5", 26, "")
-# m.train_multi(train_dirs, valid_dirs, 100, 32)
-# print(m.predict([1] * 26, [0] * 26))
+m = RankNet("models/bids_500-1.pt", 26, "")
+m.train(train_dirs, valid_dirs, 100, 32)
+print(m.predict([1] * 26, [0] * 26))
 
 
-# train_path = "/home/orion/Documents/dev/imitation-milp-2/data/3dp_train/data/"
-# valid_path = "/home/orion/Documents/dev/imitation-milp-2/data/3dp_valid/data/"
-# m = RankNet("models/3dp_2.h5", 26, "")
-# m.train(train_path, valid_path, 100, 32)
-# m.predict([0] * 26, [1] * 26)
-
-# print("TRAIN:")
-# for file in Path(train_path).glob("*.data"):
-#     data = np.genfromtxt(file, delimiter=",", skip_header=1)
-#     weights = data[:, 0]  # target
-#     y = data[:, -1]
-#     X1 = data[:, 1:27]
-#     X2 = data[:, 27:-1]
-
-#     y = y.reshape((len(y), 1))
-
-#     s1 = m.model.predict([X1, X2])
-#     # print(s1)
-#     # print(y)
-#     # s2 = m.model.predict([X2, X1])
-#     # s2 = s2.reshape((len(s2), 1))
-#     # s3 = (s1 > s2).astype(int)
-#     # print(y.shape)
-#     # print(s1.shape)
-#     s1 = s1.reshape((len(s1), 1))
-#     s1 = (s1 > 0.5).astype(int)
-#     # print(s1)
-#     errs = np.sum(s1 != np.array(y))
-#     print("{}, samples={}, wrong={}".format(file.stem, len(y), errs))
-
-# print("\nVALID:")
-# for file in Path(valid_path).glob("*.data"):
-#     data = np.genfromtxt(file, delimiter=",", skip_header=1)
-#     weights = data[:, 0]  # target
-#     y = data[:, -1]
-#     X1 = data[:, 1:27]
-#     X2 = data[:, 27:-1]
-
-#     s1 = m.model.predict([X1, X2])
-#     # s1 = s1.reshape((len(s1), 1))
-#     # print(s1)
-#     # print(y)
-#     # s2 = m.model.predict([X2, X1])
-#     # s2 = s2.reshape((len(s2), 1))
-#     y = y.reshape((len(y), 1))
-#     # s3 = (s1 > s2).astype(int)
-#     s1 = s1.reshape((len(s1), 1))
-#     s1 = (s1 > 0.5).astype(int)
-#     # print(s1)
-#     errs = np.sum(s1 != np.array(y))
-#     print("{}, samples={}, wrong={}".format(file.stem, len(y), errs))
+# if __name__ == '__main__':
+#     if len(sys.argv) != 2:
+#         print("Usage:")
+#         print("\t{} [log file]".format(sys.argv[0]))
+#     else:
+#         parse_logs(sys.argv[1])

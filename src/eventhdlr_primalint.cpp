@@ -28,19 +28,13 @@ namespace imilp {
     if (sol) {
       double obj = SCIPsolGetOrigObj(sol);
 
-      // double obj = SCIPgetPrimalbound(scip_);
-      double t = SCIPgetSolvingTime(scip_);
+      // double t = SCIPgetSolvingTime(scip_);
+
+      long n = SCIPgetNNodes(scip_);
 
       obj_vals_.push_back(obj);
-      times_.push_back(t);
-
-      // std::cout << obj << " " << t << "\n";
-
-      // if (oracle_) {
-      //   if (fabs(obj - oracle_->GetOptObjectiveValue()) < 0.00001) {
-      //     SCIPinterruptSolve(scip_);
-      //   }
-      // }
+      // times_.push_back(t);
+      nnodes_.push_back(n);
     }
   }
 
@@ -50,7 +44,9 @@ namespace imilp {
 
     std::cout << "\nObjective values: (opt is " << opt << ")" << "\n";
 
-    double prev_t = 0.0;
+    // double prev_t = 0.0;
+    
+    double prev_n = 0.0;
     double prev_p = 1.0;
     double primal_integral = 0.0;
 
@@ -59,18 +55,24 @@ namespace imilp {
     for (size_t i = 0; i < obj_vals_.size(); i++) {
       double p =
           fabs(opt - obj_vals_[i]) / std::max(fabs(opt), fabs(obj_vals_[i]));
-      primal_integral += (prev_p * (times_[i] - prev_t));
+      // primal_integral += (prev_p * (times_[i] - prev_t));
+      primal_integral += (prev_p * ((double)nnodes_[i] - prev_n));
 
       prev_p = p;
-      prev_t = times_[i];
+      // prev_t = times_[i];
+      prev_n = (double)nnodes_[i];
 
-      std::cout << obj_vals_[i] << " " << p << " " << times_[i] << "\n";
+      // std::cout << obj_vals_[i] << " " << p << " " << times_[i] << "\n";
+      std::cout << obj_vals_[i] << " " << p << " " << nnodes_[i] << "\n";
     }
 
-    double t_final = SCIPgetSolvingTime(scip_);
-    primal_integral += prev_p * (t_final - prev_t);
-    std::cout << opt << " " << 0.0 << " " << t_final << "\n";
+    // double t_final = SCIPgetSolvingTime(scip_);
+    long n_final = SCIPgetNNodes(scip_);
+    // primal_integral += prev_p * (t_final - prev_t);
+    primal_integral += prev_p * ((double)n_final - prev_n);
+    // std::cout << opt << " " << 0.0 << " " << t_final << "\n";
 
+    std::cout << opt << " " << 0.0 << " " << n_final << "\n";
     std::cout << "Primal integral: " << primal_integral << "\n\n";
   }
 }

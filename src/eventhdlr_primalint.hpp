@@ -108,6 +108,9 @@ class EventhdlrPrimalInt : public scip::ObjEventhdlr {
 
   /** Time at which a new best primal solution was found. */
   std::vector<SCIP_Real> times_;
+
+  /** Number of nodes when a new best primal solution was found. */
+  std::vector<SCIP_Longint> nnodes_;
 }; /*lint !e1712*/
 
 }  // namespace imilp
