@@ -250,18 +250,11 @@ class RankNet:
 
 
 train_dirs = ["data/hybrid_bids/bids_500/train/oracle",
-              "data/hybrid_bids/bids_500/train/iter1"]
+              "data/hybrid_bids/bids_500/train/iter1",
+              "data/hybrid_bids/bids_500/train/iter2"]
 valid_dirs = ["data/hybrid_bids/bids_500/valid/oracle",
-              "data/hybrid_bids/bids_500/valid/iter1"]
+              "data/hybrid_bids/bids_500/valid/iter1",
+              "data/hybrid_bids/bids_500/valid/iter2"]
 
-m = RankNet("models/bids_500-1.pt", 26, "")
+m = RankNet("models/bids_500-2.pt", 26, "")
 m.train(train_dirs, valid_dirs, 100, 32)
-print(m.predict([1] * 26, [0] * 26))
-
-
-# if __name__ == '__main__':
-#     if len(sys.argv) != 2:
-#         print("Usage:")
-#         print("\t{} [log file]".format(sys.argv[0]))
-#     else:
-#         parse_logs(sys.argv[1])

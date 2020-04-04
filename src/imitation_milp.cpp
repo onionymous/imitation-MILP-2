@@ -194,23 +194,8 @@ bool ImitationMILP::ValidateDirectoryStructure(
 
   fs::path path = fs::path(problems_path);
   fs::path solutions_dir = path / kSolutionsDirName;
-  fs::path data_dir = path / kDataDirName;
-
-  /* Remove existing data if it exists. */
-  if (fs::exists(data_dir) && fs::is_directory(data_dir)) {
-    fs::remove_all(data_dir);
-  }
-
-  /* Create data directory, where each problem will save its data to a separate
-   * file in this directory. */
-  if (fs::create_directory(data_dir)) {
-    std::cout << "[INFO]: "
-              << "ImitationMILP: "
-              << "Creating data directory: " << data_dir << "\n";
-  }
 
   /* Make sure the main data and solutions directories exists. */
-  fs::create_directory(data_dir);
   fs::create_directory(solutions_dir);
 
   for (auto& problem : fs::directory_iterator(path)) {

@@ -87,42 +87,43 @@ int main(int argc, char** argv) {
     imilp::ImitationMILP im(settings_file);
 
     /* TRAINING MODE */
-    if (mode == "train") {
-      /* Check required arguments. */
-      if (model_path == "") {
-        std::cerr
-            << "[ERROR]: Model save path must be specified in training mode."
-            << "\n\n";
-        std::cerr << desc << std::endl;
-        return EXIT_FAILURE;
-      }
+    // if (mode == "train") {
+    //   /* Check required arguments. */
+    //   if (model_path == "") {
+    //     std::cerr
+    //         << "[ERROR]: Model save path must be specified in training mode."
+    //         << "\n\n";
+    //     std::cerr << desc << std::endl;
+    //     return EXIT_FAILURE;
+    //   }
 
-      if (train_path == "") {
-        std::cerr << "[ERROR]: Path to training problems must be specified."
-                  << "\n\n";
-        std::cerr << desc << std::endl;
-        return EXIT_FAILURE;
-      }
+    //   if (train_path == "") {
+    //     std::cerr << "[ERROR]: Path to training problems must be specified."
+    //               << "\n\n";
+    //     std::cerr << desc << std::endl;
+    //     return EXIT_FAILURE;
+    //   }
 
-      if (valid_path == "") {
-        std::cerr << "[ERROR]: Path to validation problems must be specified."
-                  << "\n\n";
-        std::cerr << desc << std::endl;
-        return EXIT_FAILURE;
-      }
+    //   if (valid_path == "") {
+    //     std::cerr << "[ERROR]: Path to validation problems must be specified."
+    //               << "\n\n";
+    //     std::cerr << desc << std::endl;
+    //     return EXIT_FAILURE;
+    //   }
 
-      /* Train */
-      if (!im.Train(train_path, valid_path, model_path, prev_model, num_iters,
-                    num_epochs, 32 /* batch size */)) {
-        std::cerr << "[ERROR]: ImitationMILP encountered an error."
-                  << "\n";
-        return EXIT_FAILURE;
-      }
+    //   /* Train */
+    //   if (!im.Train(train_path, valid_path, model_path, prev_model, num_iters,
+    //                 num_epochs, 32 /* batch size */)) {
+    //     std::cerr << "[ERROR]: ImitationMILP encountered an error."
+    //               << "\n";
+    //     return EXIT_FAILURE;
+    //   }
 
-      return EXIT_SUCCESS;
+    //   return EXIT_SUCCESS;
 
-    } else if (mode == "solve") {
-      /* SOLVE MODE */
+    // } else 
+    if (mode == "solve") {
+      /* SOLVE MODE. Solve a single problem instance. */
 
       /* Check all required command-line arguments were passed. */
       if (problems_path == "") {
@@ -131,14 +132,6 @@ int main(int argc, char** argv) {
         std::cerr << desc << std::endl;
         return EXIT_FAILURE;
       }
-
-      /* Check required arguments. */
-      // if (output_path == "") {
-      //   std::cerr << "[ERROR]: Path to save solutions to must be specified."
-      //             << "\n\n";
-      //   std::cerr << desc << std::endl;
-      //   return EXIT_FAILURE;
-      // }
 
       /* Solve */
       if (!im.Solve(problems_path, output_path, model_path)) {
