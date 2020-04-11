@@ -17,6 +17,18 @@ This repository requires an installation of [SCIP](https://scip.zib.de/). We use
 
 Ensure that the environment variable `SCIPDIR` is set to your SCIP installation, since it is referenced in the Makefile.
 
+You may also have to modify the Makefile depending on your Python version. Change the following line:
+```
+PYTHON_VERSION = 3.8
+```
+
+and the corresponding `#include` in `ranknet_model.hpp`:
+```
+#include <python3.8/Python.h>
+```
+
+to match your local Python version.
+
 ### Compilation
 
 ```
