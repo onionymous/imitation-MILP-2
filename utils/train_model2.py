@@ -19,25 +19,28 @@ def file_len(fname):
     return int(result.strip().split()[0])
 
 class RankNetModule(nn.Module):
-    def __init__(self, inputs, hidden_size, outputs):
+    def __init__(self, inputs, hidden_size, outputs, layers=1, dropout=None, batchnorm=False):
         super(RankNetModule, self).__init__()
         self.model = nn.Sequential(
             nn.Linear(inputs, hidden_size),
             nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
             nn.Linear(hidden_size, hidden_size),
             nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
             # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
+            # nn.Linear(hidden_size, hidden_size),
+            # # nn.BatchNorm1d(hidden_size),
+            # nn.ReLU(inplace=True),
             # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.2),
+            # nn.Linear(hidden_size, hidden_size),
+            # # nn.BatchNorm1d(hidden_size),
+            # nn.ReLU(inplace=True),
+            # nn.Dropout(p=0.2),
+            # nn.Linear(hidden_size, hidden_size),
+            # # nn.BatchNorm1d(hidden_size),
+            # nn.ReLU(inplace=True),
+            # nn.Dropout(p=0.2),
             nn.Linear(hidden_size, outputs),
         )
         self.model.double()
@@ -60,19 +63,22 @@ class RankNetModuleEval(nn.Module):
             nn.Linear(inputs, hidden_size),
             nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
             nn.Linear(hidden_size, hidden_size),
             nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
             # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
+            # nn.Linear(hidden_size, hidden_size),
+            # # nn.BatchNorm1d(hidden_size),
+            # nn.ReLU(inplace=True),
             # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            nn.Dropout(p=0.2),
+            # nn.Linear(hidden_size, hidden_size),
+            # # nn.BatchNorm1d(hidden_size),
+            # nn.ReLU(inplace=True),
+            # nn.Dropout(p=0.2),
+            # nn.Linear(hidden_size, hidden_size),
+            # # nn.BatchNorm1d(hidden_size),
+            # nn.ReLU(inplace=True),
+            # nn.Dropout(p=0.2),
             nn.Linear(hidden_size, outputs),
         )
         self.model.double()
@@ -100,7 +106,7 @@ class RankNet:
         self.model_file = model_file
         self.prev_model = prev_model
         self.input_dim = input_dim
-        self.hidden_size = 64
+        self.hidden_size = 128
         self.outputs = 1
         self.model = None
         self.iters = 0
@@ -128,16 +134,21 @@ class RankNet:
 
     def save_model(self, model_file):
         device = torch.device('cpu')
-        model = RankNetModuleEval(self.input_dim, self.hidden_size, self.outputs).to(device)
-        model.load_state_dict(self.model.state_dict())
+        # model = RankNetModuleEval(self.input_dim, self.hidden_size, self.outputs).to(device)
+        # model.load_state_dict(self.model.state_dict())
 
-        model.to(device)
-        model.eval()
+        self.model.to(device)
+        self.model.eval()
         e1 = torch.rand(1, self.input_dim).to(device)
         e2 = torch.rand(1, self.input_dim).to(device)
-        traced_script_module = torch.jit.trace(model, (e1, e2))
+        traced_script_module = torch.jit.trace(self.model, (e1, e2))
 
         traced_script_module.save(model_file)
+
+        output = traced_script_module(e1, e2)
+        print(output[0, 0])
+
+        self.model.to(self.device)
 
     def load_data(self, dirs, filename=None):
         n_rows = 0
@@ -177,7 +188,7 @@ class RankNet:
 
         return data
 
-    def train(self, train_dirs, valid_dirs, num_epochs, batch_size):
+    def train(self, train_dirs, valid_dirs, test_dirs, num_epochs, batch_size):
         '''
         Run the training loop for a specified number of epochs and iterations.
         Training is done on the GPU so session will be switched if it was on
@@ -206,10 +217,9 @@ class RankNet:
         # train_data = self.load_data(train_dirs, filename='train.npy')
         # valid_data = self.load_data(valid_dirs, filename='valid.npy')
 
-        valid_data = self.load_data(valid_dirs, filename='test.npy')
-
         train_data = np.load('train.npy')
-        # valid_data = np.load('valid.npy')
+        valid_data = np.load('valid.npy')
+        # test_data = np.load('test.npy')
 
         # Separate training data into components
         train_weights = torch.from_numpy(train_data[:, 0])
@@ -294,6 +304,8 @@ class RankNet:
             train_loss /= n
             train_acc /= n
 
+            print(valid_X1.size(), valid_X2.size())
+
             with torch.no_grad():
                 valid_pred = self.model(valid_X1, valid_X2)
                 valid_loss = valid_criterion(valid_pred, valid_y)
@@ -370,11 +382,12 @@ valid_dirs = [("data/hybrid_bids/bids_500/valid/oracle", False),
               ("data/hybrid_bids/bids_500/valid/iter1", True),
               ("data/hybrid_bids/bids_500/valid/iter2", True)]
 
-
 test_dirs = [("data/hybrid_bids/bids_500/test/oracle", False),
               ("data/hybrid_bids/bids_500/test/iter1", True),
               ("data/hybrid_bids/bids_500/test/iter2", True)]
 
 
-m = RankNet("models/bids_500-5.pt", 26, "")
-m.train(train_dirs, test_dirs, 100, 32)
+m = RankNet("models/bids_500-test.pt", 26, "")
+m.train(train_dirs, valid_dirs, test_dirs, 100, 32)
+
+# m.test(test_dirs)

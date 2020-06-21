@@ -231,20 +231,17 @@ int RankNetModel::Predict(const std::vector<double>& x1,
     std::vector<torch::jit::IValue> inputs;
     // std::vector<torch::jit::IValue> tuple;
 
-    inputs.push_back(torch::tensor(x1));
-    inputs.push_back(torch::tensor(x2));
+    inputs.push_back(torch::tensor(x1).reshape({1, -1}));
+    inputs.push_back(torch::tensor(x2).reshape({1, -1}));
     // inputs.push_back(torch::ivalue::Tuple::create(tuple));
 
     // Execute the model and turn its output into a tensor.
     at::Tensor output = module_.forward(inputs).toTensor();
+    // double pred = output[0].item<double>();
     double pred = output[0].item<double>();
     // std::cout << pred << "\n";
 
-    if (pred >= 0.5) {
-      return 1;
-    } else {
-      return 0;
-    }
+    return (pred >= 0.5) ? 1 : 0;
   //} catch (const c10::Error& e) {
   /* If an error occurred. */
   // return std::make_pair(-1, -1);

@@ -18,24 +18,52 @@ def file_len(fname):
         raise IOError(err)
     return int(result.strip().split()[0])
 
-class RankNetModule(nn.Module):
+def load_data(dirs, input_dim, filename=None):
+        n_rows = 0
+
+        for d, should_sample in dirs:
+            files = Path(d).glob("*.data")
+            for file in files:
+                if should_sample:
+                    n_rows += int(0.1 * (file_len(file) - 1))
+                else:
+                    n_rows += int(file_len(file) - 1)
+
+        data = np.zeros((n_rows, 2 * input_dim + 2))
+        i = 0
+
+        for d, should_sample in dirs:
+            files = Path(d).glob("*.data")
+            for file in files:
+                curr = np.genfromtxt(file, delimiter=",", skip_header=1)
+
+                if curr.ndim == 1:
+                    continue
+
+                if should_sample:
+                    n = int(0.1 * np.size(curr, 0))
+                    sample = curr[curr[:,0].argsort()][:n, :]
+
+                    data[i:i+n, :] = sample 
+                    i += n
+                else:
+                    n = np.size(curr, 0)
+                    data[i:i+n, :] = curr
+                    i += n
+
+        if filename is not None:
+            np.save(filename, data)
+
+        return data
+
+class M1Module(nn.Module):
     def __init__(self, inputs, hidden_size, outputs):
         super(RankNetModule, self).__init__()
         self.model = nn.Sequential(
             nn.Linear(inputs, hidden_size),
-            nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
+            nn.Dropout(p=0.2),
             nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
             nn.Dropout(p=0.2),
             nn.Linear(hidden_size, outputs),
@@ -53,24 +81,14 @@ class RankNetModule(nn.Module):
 '''
 Modified version of the model for evaluation
 '''
-class RankNetModuleEval(nn.Module):
+class M1ModuleEval(nn.Module):
     def __init__(self, inputs, hidden_size, outputs):
         super(RankNetModuleEval, self).__init__()
         self.model = nn.Sequential(
             nn.Linear(inputs, hidden_size),
-            nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
+            nn.Dropout(p=0.2),
             nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
             nn.Dropout(p=0.2),
             nn.Linear(hidden_size, outputs),
@@ -100,7 +118,7 @@ class RankNet:
         self.model_file = model_file
         self.prev_model = prev_model
         self.input_dim = input_dim
-        self.hidden_size = 64
+        self.hidden_size = 256
         self.outputs = 1
         self.model = None
         self.iters = 0
@@ -139,45 +157,7 @@ class RankNet:
 
         traced_script_module.save(model_file)
 
-    def load_data(self, dirs, filename=None):
-        n_rows = 0
-
-        for d, should_sample in dirs:
-            files = Path(d).glob("*.data")
-            for file in files:
-                if should_sample:
-                    n_rows += int(0.1 * (file_len(file) - 1))
-                else:
-                    n_rows += int(file_len(file) - 1)
-
-        data = np.zeros((n_rows, 2 * self.input_dim + 2))
-        i = 0
-
-        for d, should_sample in dirs:
-            files = Path(d).glob("*.data")
-            for file in files:
-                curr = np.genfromtxt(file, delimiter=",", skip_header=1)
-
-                if curr.ndim == 1:
-                    continue
-
-                if should_sample:
-                    n = int(0.1 * np.size(curr, 0))
-                    sample = curr[curr[:,0].argsort()][:n, :]
-
-                    data[i:i+n, :] = sample 
-                    i += n
-                else:
-                    n = np.size(curr, 0)
-                    data[i:i+n, :] = curr
-                    i += n
-
-        if filename is not None:
-            np.save(filename, data)
-
-        return data
-
-    def train(self, train_dirs, valid_dirs, num_epochs, batch_size):
+    def train(self, train_dirs, valid_dirs, test_dirs, num_epochs, batch_size):
         '''
         Run the training loop for a specified number of epochs and iterations.
         Training is done on the GPU so session will be switched if it was on
@@ -203,13 +183,12 @@ class RankNet:
         #             continue
         #         valid_data = np.row_stack((valid_data, data))
 
-        # train_data = self.load_data(train_dirs, filename='train.npy')
-        # valid_data = self.load_data(valid_dirs, filename='valid.npy')
-
-        valid_data = self.load_data(valid_dirs, filename='test.npy')
+        # train_data = load_data(train_dirs, self.input_dim, filename='train.npy')
+        # valid_data = load_data(valid_dirs, self.input_dim, filename='valid.npy')
 
         train_data = np.load('train.npy')
-        # valid_data = np.load('valid.npy')
+        valid_data = np.load('valid.npy')
+        test_data = np.load('test.npy')
 
         # Separate training data into components
         train_weights = torch.from_numpy(train_data[:, 0])
@@ -363,18 +342,76 @@ class RankNet:
 #               ("data/hybrid_bids/bids_500/valid/iter3", True)]
 
 
-train_dirs = [("data/hybrid_bids/bids_500/train/oracle", False),
-              ("data/hybrid_bids/bids_500/train/iter1", True),
-              ("data/hybrid_bids/bids_500/train/iter2", True)]
-valid_dirs = [("data/hybrid_bids/bids_500/valid/oracle", False),
-              ("data/hybrid_bids/bids_500/valid/iter1", True),
-              ("data/hybrid_bids/bids_500/valid/iter2", True)]
-
+# train_dirs = [("data/hybrid_bids/bids_500/train/oracle", False),
+#               ("data/hybrid_bids/bids_500/train/iter1", True),
+#               ("data/hybrid_bids/bids_500/train/iter2", True)]
+# valid_dirs = [("data/hybrid_bids/bids_500/valid/oracle", False),
+#               ("data/hybrid_bids/bids_500/valid/iter1", True),
+#               ("data/hybrid_bids/bids_500/valid/iter2", True)]
 
 test_dirs = [("data/hybrid_bids/bids_500/test/oracle", False),
-              ("data/hybrid_bids/bids_500/test/iter1", True),
-              ("data/hybrid_bids/bids_500/test/iter2", True)]
+              ("data/hybrid_bids/bids_500/test/iter1", False),
+              ("data/hybrid_bids/bids_500/test/iter2", False)]
 
 
-m = RankNet("models/bids_500-5.pt", 26, "")
-m.train(train_dirs, test_dirs, 100, 32)
+# test_data = load_data(test_dirs, 26, filename='test_full.npy')
+test_full_data = np.load('test_full.npy')
+test_data = np.load('test.npy')
+
+# m = RankNet("models/bids_500-m4.pt", 26, "")
+# m.train(train_dirs, valid_dirs, test_dirs, 100, 32)
+
+# m.test(test_dirs)
+
+test_weights = torch.from_numpy(test_data[:, 0])
+test_y = torch.from_numpy(test_data[:, -1].astype(int))
+test_X1 = torch.from_numpy(test_data[:, 1:26 + 1])
+test_X2 = torch.from_numpy(test_data[:, 26 + 1:-1])
+
+test_full_weights = torch.from_numpy(test_full_data[:, 0])
+test_full_y = torch.from_numpy(test_full_data[:, -1].astype(int))
+test_full_X1 = torch.from_numpy(test_full_data[:, 1:26 + 1])
+test_full_X2 = torch.from_numpy(test_full_data[:, 26 + 1:-1])
+
+
+preds = np.zeros(test_y.shape)
+preds_full = np.zeros(test_full_y.shape)
+
+for model in ['models/ensemble/m1/bids_500-m1-61.pt',
+              'models/ensemble/m2/bids_500-m2-84.pt',
+              'models/ensemble/m3/bids_500-m3-15.pt',
+              'models/ensemble/m5/bids_500-m4-90.pt',
+              'models/ensemble/m6/bids_500-m6-92.pt']:
+
+    loaded = torch.jit.load(model)
+
+    # print(loaded)
+    # print(loaded.code)
+
+    loaded.eval()
+    with torch.no_grad():
+        y_pred_full = []
+        for x1, x2 in zip(test_full_X1, test_full_X2):
+            y_pred_full.append(1 if loaded(x1, x2).item() >= 0.5 else 0)
+        y_pred_full = np.array(y_pred_full)
+        preds_full += y_pred_full / 6
+        # y_pred_full = torch.from_numpy(y_pred_full).double()
+        # acc_full = (y_pred_full == test_full_y).sum().data.numpy()/y_pred_full.size()[0]
+
+        y_pred = []
+        for x1, x2 in zip(test_X1, test_X2):
+            y_pred.append(1 if loaded(x1, x2).item() >= 0.5 else 0)
+        y_pred = np.array(y_pred)
+        preds += y_pred / 6
+        # y_pred = torch.from_numpy(y_pred).double()
+        # acc = (y_pred == test_y).sum().data.numpy()/y_pred.size()[0]
+
+        # print(model, "full", acc_full, "top10%:", acc)
+
+preds_full = torch.from_numpy((preds_full >= 0.5).astype(int)).double()
+acc_full = (preds_full == test_full_y).sum().data.numpy()/preds_full.size()[0]
+
+preds = torch.from_numpy((preds >= 0.5).astype(int)).double()
+acc = (preds == test_y).sum().data.numpy()/preds.size()[0]
+
+print("ensemble", "full", acc_full, "top10%:", acc)

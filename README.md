@@ -33,6 +33,10 @@ The problems used for training, validation and testing should be in `.lp` format
 
 Please see the problems in the `data/` folder (e.g. `data/hybrid_bids/bids_500/test`) for an example of the data format and folder structure. 
 
+### SCIP settings
+
+`scipparams.set` contains the SCIP settings that control the solving process, including time limits, node limits, etc.
+
 ### Getting oracle trajectories
 
 The initial model is trained on the oracle trajectories. To collect this data, run with `oracle` as the mode (`-M`) flag:

@@ -17,6 +17,10 @@ class RankNetModule(nn.Module):
         self.model = nn.Sequential(
             nn.Linear(inputs, hidden_size),
             nn.ReLU(inplace=True),
+            nn.Dropout(p=0.2)
+            nn.linear(inputs, hidden_size),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=0.2),
             nn.Linear(hidden_size, outputs),
         )
         self.model.double()

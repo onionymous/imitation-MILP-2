@@ -55,7 +55,7 @@ MAINOBJFILES	+=	$(addprefix $(OBJDIR)/,$(CXXMAINOBJ))
 PYTHON_VERSION = 3.7m
 # PYTHON_INCLUDE = /usr/include/python$(PYTHON_VERSION)
 
-FLAGS		+=	-g -shared -fPIC -O0 -std=c++11 -fno-lto -I$(BOOST_INC) -I/cs/ml/software/libtorch/include
+FLAGS		+=	-g -shared -fPIC -O0 -std=c++14 -fno-lto -I$(BOOST_INC) -I/cs/ml/software/libtorch/include
 FLAGS		+=	-Wfatal-errors $(filter-out -Wstrict-prototypes, $(shell python3-config --cflags))
 
 LDFLAGS     +=  -L/cs/ml/software/libtorch/lib -ltorch -lc10 -lmkldnn -lgomp -lnvToolsExt # -lcaffe lcaffe_gpu
