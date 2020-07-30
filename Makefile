@@ -52,14 +52,14 @@ MAINOBJFILES	+=	$(addprefix $(OBJDIR)/,$(CXXMAINOBJ))
 # External libraries
 #-----------------------------------------------------------------------------
 # location of the Python header files
-PYTHON_VERSION = 3.8
-PYTHON_INCLUDE = /usr/include/python$(PYTHON_VERSION)
+PYTHON_VERSION = 3.7m
+# PYTHON_INCLUDE = /usr/include/python$(PYTHON_VERSION)
 
-FLAGS		+=	-g -shared -fPIC -O0 -std=c++11 -fno-lto -I$(BOOST_INC) -I$(PYTHON_INCLUDE)
+FLAGS		+=	-g -shared -fPIC -O0 -std=c++11 -fno-lto -I$(BOOST_INC) -I/cs/ml/software/libtorch/include
 FLAGS		+=	-Wfatal-errors $(filter-out -Wstrict-prototypes, $(shell python3-config --cflags))
 
-LDFLAGS     +=  -ltorch -lc10 -lmkldnn -lgomp #-lnvToolsExt -lcaffe lcaffe_gpu
-LDFLAGS		+=	-L$(BOOST_LIB) -lboost_system -lboost_filesystem -lboost_program_options -lboost_python3 -lpython$(PYTHON_VERSION) 
+LDFLAGS     +=  -L/cs/ml/software/libtorch/lib -ltorch -lc10 -lmkldnn -lgomp -lnvToolsExt # -lcaffe lcaffe_gpu
+LDFLAGS		+=	-L$(BOOST_LIB)  -L/cs/ml/software/miniconda3/lib -lpython$(PYTHON_VERSION) -lboost_system -lboost_filesystem -lboost_program_options -lboost_python37
 LDFLAGS		+=	$(shell python3-config --ldflags)
 
 #-----------------------------------------------------------------------------
