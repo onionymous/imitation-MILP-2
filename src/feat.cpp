@@ -31,7 +31,7 @@
 namespace imilp {
 
 /** Features enum to string map. */
-std::unordered_map<Feat::Feature, const char*> Feat::feature_names_ = {
+std::unordered_map<Feat::Feature, const char*, std::hash<int>> Feat::feature_names_ = {
     {FEAT_DEPTH, "FEAT_DEPTH"},
     {FEAT_MAXDEPTH, "FEAT_MAXDEPTH"},
     {FEAT_ROOTLPOBJ, "FEAT_ROOTLPOBJ"},

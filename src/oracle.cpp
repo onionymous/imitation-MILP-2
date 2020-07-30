@@ -44,7 +44,7 @@ Oracle::~Oracle() {
 
 /** Destructor. */
 void Oracle::FreeSolutions() {
-/* Free the solution objects. */
+  /* Free the solution objects. */
   for (unsigned i = 0; i < solutions_.size(); ++i) {
     SCIPfreeSol(scip_, &(solutions_[i]));
   }
@@ -62,7 +62,6 @@ bool Oracle::LoadSolutions() {
 
   /* Loop through each file in the solutions directory and read a solution. */
   namespace fs = boost::filesystem;
-  std::cout << solutions_dir_ << "\n";
   for (auto& sol_path : fs::directory_iterator(fs::path(solutions_dir_))) {
     SCIP_Bool partial, error;
     SCIP_SOL *sol;
@@ -73,7 +72,7 @@ bool Oracle::LoadSolutions() {
     
     if (retcode != SCIP_OKAY) {
       std::cerr << "[ERROR]: " << "Oracle: "
-          << "Could not create solution for file: " << sol_path.path().string();
+          << "Could not read solution for file: " << sol_path.path().string();
       success = false;
       break;
     }
@@ -111,6 +110,8 @@ bool Oracle::LoadSolutions() {
 /** Check optimality of a node with respect to the list of current known
     solutions. */
 int Oracle::GetOptimality(SCIP_NODE* node) {
+  assert(!solutions_.empty());
+
   NodeId node_id = SCIPnodeGetNumber(node);
 
   /* operator [] will default construct and insert an object if doesn't exist. */
@@ -205,6 +206,8 @@ int Oracle::GetOptimality(SCIP_NODE* node) {
 
 /** Get distance from closest optimal node. */
 int Oracle::GetDistanceFromOpt(SCIP_NODE* node) {
+  assert(!solutions_.empty());
+
   NodeId node_id = SCIPnodeGetNumber(node);
 
   /* If the node is already in the cache, return the cached value. */
@@ -233,6 +236,7 @@ int Oracle::GetDistanceFromOpt(SCIP_NODE* node) {
 }
 
 double Oracle::GetOptObjectiveValue() {
+  assert(!solutions_.empty());
   return SCIPsolGetOrigObj(solutions_[0]);
 }
 

@@ -22,31 +22,40 @@
 #include "objscip/objscip.h"
 
 namespace imilp {
+  void EventhdlrPrimalInt::Init() {
+    if (!oracle_->LoadSolutions()) {
+      assert(0 && "[FATAL]: EventhdlrPrimalInt: Oracle failed to initialize.");
+    }
+  }
+
   void EventhdlrPrimalInt::Process() {
     SCIP_SOL *sol = SCIPgetBestSol(scip_);
 
     if (sol) {
       double obj = SCIPsolGetOrigObj(sol);
 
-      // double t = SCIPgetSolvingTime(scip_);
+      double t = SCIPgetSolvingTime(scip_);
 
-      long n = SCIPgetNNodes(scip_);
+      // long n = SCIPgetNNodes(scip_);
 
       obj_vals_.push_back(obj);
-      // times_.push_back(t);
-      nnodes_.push_back(n);
+      times_.push_back(t);
+      // nnodes_.push_back(n);
     }
   }
 
   void EventhdlrPrimalInt::DeInit() {
-    SCIP_SOL *sol = SCIPgetBestSol(scip_);
-    double opt = SCIPsolGetOrigObj(sol);
+    // SCIP_SOL *sol = SCIPgetBestSol(scip_);
+    // double opt = SCIPsolGetOrigObj(sol);
+    assert(obj_vals_.size() == times_.size());
+
+    double opt = oracle_->GetOptObjectiveValue();
 
     std::cout << "\nObjective values: (opt is " << opt << ")" << "\n";
 
-    // double prev_t = 0.0;
+    double prev_t = 0.0;
     
-    double prev_n = 0.0;
+    // double prev_n = 0.0;
     double prev_p = 1.0;
     double primal_integral = 0.0;
 
@@ -55,24 +64,26 @@ namespace imilp {
     for (size_t i = 0; i < obj_vals_.size(); i++) {
       double p =
           fabs(opt - obj_vals_[i]) / std::max(fabs(opt), fabs(obj_vals_[i]));
-      // primal_integral += (prev_p * (times_[i] - prev_t));
-      primal_integral += (prev_p * ((double)nnodes_[i] - prev_n));
+      primal_integral += (prev_p * (times_[i] - prev_t));
+      // primal_integral += (prev_p * ((double)nnodes_[i] - prev_n));
 
       prev_p = p;
-      // prev_t = times_[i];
-      prev_n = (double)nnodes_[i];
+      prev_t = times_[i];
+      // prev_n = (double)nnodes_[i];
 
-      // std::cout << obj_vals_[i] << " " << p << " " << times_[i] << "\n";
-      std::cout << obj_vals_[i] << " " << p << " " << nnodes_[i] << "\n";
+      // primal_integral += (p * (times_[i] - prev_t));
+
+      std::cout << obj_vals_[i] << " " << p << " " << times_[i] << "\n";
+      // std::cout << obj_vals_[i] << " " << p << " " << nnodes_[i] << "\n";
     }
 
-    // double t_final = SCIPgetSolvingTime(scip_);
-    long n_final = SCIPgetNNodes(scip_);
-    // primal_integral += prev_p * (t_final - prev_t);
-    primal_integral += prev_p * ((double)n_final - prev_n);
+    double t_final = SCIPgetSolvingTime(scip_);
+    // long n_final = SCIPgetNNodes(scip_);
+    primal_integral += prev_p * (t_final - prev_t);
+    // primal_integral += prev_p * ((double)n_final - prev_n);
     // std::cout << opt << " " << 0.0 << " " << t_final << "\n";
 
-    std::cout << opt << " " << 0.0 << " " << n_final << "\n";
+    // std::cout << opt << " " << 0.0 << " " << n_final << "\n";
     std::cout << "Primal integral: " << primal_integral << "\n\n";
   }
 }
@@ -113,6 +124,7 @@ SCIP_DECL_EVENTEXIT(imilp::EventhdlrPrimalInt::scip_exit) {
   assert(eventhdlr_obj != NULL);
 
   eventhdlr_obj->DeInit();
+  oracle_->FreeSolutions();
 
   return SCIP_OKAY;
 } /*lint !e715*/

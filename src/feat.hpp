@@ -134,7 +134,7 @@ class Feat {
   };  /* enum Features */
 
   /** Map to translate features to strings. */
-  static std::unordered_map<Feature, const char *> feature_names_;
+  static std::unordered_map<Feature, const char *, std::hash<int> > feature_names_;
 
   /** Cache. */
   std::unordered_map<long, std::vector<double>> cache_;

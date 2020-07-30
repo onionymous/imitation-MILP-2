@@ -44,7 +44,7 @@ class EventhdlrPrimalInt : public scip::ObjEventhdlr {
   void Process();
 
   /** Event handler initialization tasks. */
-  void Init() {} ;
+  void Init();
 
   /** Event handler deinitialization tasks. */
   void DeInit();

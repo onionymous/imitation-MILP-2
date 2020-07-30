@@ -19,6 +19,7 @@
 #include "scip/scip.h"
 #include "objscip/objscip.h"
 
+#include "oracle.hpp"
 #include "scorer_base.hpp"
 #include "data_collector_base.hpp"
 
@@ -35,12 +36,14 @@ namespace imilp {
  */
 class NodeselPolicy : public scip::ObjNodesel {
  public:
-  NodeselPolicy(SCIP *scip, ScorerBase *scorer,
-                DataCollectorBase *dc)
+  NodeselPolicy(SCIP *scip, Oracle* oracle, ScorerBase *scorer,
+                DataCollectorBase *dc, bool is_train)
       : ObjNodesel(scip, NODESEL_NAME, NODESEL_DESC, NODESEL_PRIORITY,
                    NODESEL_PRIORITY),
+        oracle_(oracle),
         scorer_(scorer),
-        dc_(dc) {}
+        dc_(dc),
+        is_train_(is_train) {}
 
   ~NodeselPolicy() {}
 
@@ -117,6 +120,12 @@ class NodeselPolicy : public scip::ObjNodesel {
 
   /** Event handler object. */
   DataCollectorBase *dc_;
+
+  /** Oracle. */
+  Oracle* oracle_;
+
+  /** Training mode. */
+  bool is_train_;
 };
 
 }  // namespace imilp

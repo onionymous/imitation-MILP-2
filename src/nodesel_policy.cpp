@@ -17,8 +17,8 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
-#include <chrono> 
-
+#include <chrono>
+#include <random>
 
 #include "nodesel_policy.hpp"
 #include "objscip/objscip.h"
@@ -95,7 +95,73 @@ SCIP_DECL_NODESELSELECT(imilp::NodeselPolicy::scip_select) {
   assert(scip != NULL);
   assert(selnode != NULL);
 
-  *selnode = SCIPgetBestNode(scip);
+  /* Generate a random number. With 5% probability follow the oracle. */
+  if (is_train_) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<> dist(0.0, 1.0);
+
+    double prob_oracle = dist(gen);
+    if (prob_oracle <= 0.05) {
+      bool found = false;
+
+      /* Loop through all nodes in the priority queue. */
+      for (int v = 2; v >= 0; --v) {
+        SCIP_NODE* node;
+        SCIP_NODE** open_nodes;
+        int num_open_nodes = -1;
+
+        SCIP_RETCODE retcode;
+
+        switch (v) {
+          case 2:
+            retcode = SCIPgetChildren(scip_, &open_nodes, &num_open_nodes);
+            assert(retcode == SCIP_OKAY);
+            break;
+          case 1:
+            retcode = SCIPgetSiblings(scip_, &open_nodes, &num_open_nodes);
+            assert(retcode == SCIP_OKAY);
+            break;
+          case 0:
+            retcode = SCIPgetLeaves(scip_, &open_nodes, &num_open_nodes);
+            assert(retcode == SCIP_OKAY);
+            break;
+          default:
+            assert(0);
+            break;
+        }
+
+        assert(num_open_nodes >= 0);
+
+        /* Loop through each open node and compute features. */
+        for (int n = num_open_nodes - 1; n >= 0 && !SCIPisStopped(scip_); --n) {
+          node = open_nodes[n];
+
+          if (!SCIPisInfinity(scip_, SCIPnodeGetLowerbound(node))) {
+            int opt = oracle_->GetOptimality(node);
+
+            if (opt > -1) {
+              /* Node is optimal. */
+              *selnode = node;
+              found = true;
+              break;
+
+            }
+          }
+        }
+
+        if (found) {
+          break;
+        }
+      }
+    } else {
+      *selnode = SCIPgetBestNode(scip);
+    }
+  } else {
+    /* If not in training mode, use model only. */
+    *selnode = SCIPgetBestNode(scip);
+  }
+  
   if (dc_) {
     dc_->Process();
   }

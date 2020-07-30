@@ -21,72 +21,51 @@ def file_len(fname):
 class RankNetModule(nn.Module):
     def __init__(self, inputs, hidden_size, outputs, layers=1, dropout=None, batchnorm=False):
         super(RankNetModule, self).__init__()
+        # self.model = nn.Sequential(
+        #     nn.Linear(inputs, hidden_size),
+        #     # nn.BatchNorm1d(hidden_size),
+        #     nn.ReLU(inplace=True),
+        #     nn.Linear(hidden_size, hidden_size),
+        #     nn.Dropout(p=0.2),
+        #     # nn.BatchNorm1d(hidden_size),
+        #     nn.ReLU(inplace=True),
+        #     nn.Dropout(p=0.2),
+        #     nn.Linear(hidden_size, hidden_size),
+        #     # nn.BatchNorm1d(hidden_size),
+        #     nn.ReLU(inplace=True),
+        #     nn.Dropout(p=0.2),
+        #     nn.Linear(hidden_size, hidden_size),
+        #     # nn.BatchNorm1d(hidden_size),
+        #     nn.ReLU(inplace=True),
+        #     nn.Dropout(p=0.2),
+        #     nn.Linear(hidden_size, hidden_size),
+        #     # # nn.BatchNorm1d(hidden_size),
+        #     # nn.ReLU(inplace=True),
+        #     # nn.Dropout(p=0.2),
+        #     nn.Linear(hidden_size, outputs),
+        # )
         self.model = nn.Sequential(
             nn.Linear(inputs, hidden_size),
-            nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
+            nn.Dropout(p=0.2),
             nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
             nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
+            nn.Dropout(p=0.2),
+            nn.Linear(hidden_size, hidden_size),
+            nn.ReLU(inplace=True),
+            nn.Dropout(p=0.2),
             # nn.Linear(hidden_size, hidden_size),
-            # # nn.BatchNorm1d(hidden_size),
-            # nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            # nn.Linear(hidden_size, hidden_size),
-            # # nn.BatchNorm1d(hidden_size),
-            # nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            # nn.Linear(hidden_size, hidden_size),
-            # # nn.BatchNorm1d(hidden_size),
             # nn.ReLU(inplace=True),
             # nn.Dropout(p=0.2),
             nn.Linear(hidden_size, outputs),
         )
+
         self.model.double()
         self.sigmoid = nn.Sigmoid()
 
     def forward(self, input_1, input_2):
         result_1 = self.model(input_1.double())
         result_2 = self.model(input_2.double())
-        pred = self.sigmoid(result_1 - result_2)
-        return pred
-
-
-'''
-Modified version of the model for evaluation
-'''
-class RankNetModuleEval(nn.Module):
-    def __init__(self, inputs, hidden_size, outputs):
-        super(RankNetModuleEval, self).__init__()
-        self.model = nn.Sequential(
-            nn.Linear(inputs, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            nn.Linear(hidden_size, hidden_size),
-            nn.BatchNorm1d(hidden_size),
-            nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            # nn.Linear(hidden_size, hidden_size),
-            # # nn.BatchNorm1d(hidden_size),
-            # nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            # nn.Linear(hidden_size, hidden_size),
-            # # nn.BatchNorm1d(hidden_size),
-            # nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            # nn.Linear(hidden_size, hidden_size),
-            # # nn.BatchNorm1d(hidden_size),
-            # nn.ReLU(inplace=True),
-            # nn.Dropout(p=0.2),
-            nn.Linear(hidden_size, outputs),
-        )
-        self.model.double()
-        self.sigmoid = nn.Sigmoid()
-
-    def forward(self, input_1, input_2):
-        result_1 = self.model(input_1.view(1, -1).double())
-        result_2 = self.model(input_2.view(1, -1).double())
         pred = self.sigmoid(result_1 - result_2)
         return pred
 
@@ -146,7 +125,6 @@ class RankNet:
         traced_script_module.save(model_file)
 
         output = traced_script_module(e1, e2)
-        print(output[0, 0])
 
         self.model.to(self.device)
 
@@ -214,11 +192,11 @@ class RankNet:
         #             continue
         #         valid_data = np.row_stack((valid_data, data))
 
-        # train_data = self.load_data(train_dirs, filename='train.npy')
-        # valid_data = self.load_data(valid_dirs, filename='valid.npy')
+        train_data = self.load_data(train_dirs)
+        valid_data = self.load_data(valid_dirs)
 
-        train_data = np.load('train.npy')
-        valid_data = np.load('valid.npy')
+        # train_data = np.load('train.npy')
+        # valid_data = np.load('valid.npy')
         # test_data = np.load('test.npy')
 
         # Separate training data into components
@@ -254,7 +232,7 @@ class RankNet:
         print("Train on {}, test on {}".format(N_train, N_valid))
 
         # Train model
-        learning_rate = 0.2
+        learning_rate = 0.01
         self.model = RankNetModule(self.input_dim, self.hidden_size, self.outputs).to(self.device)
         optimizer = optim.Adadelta(self.model.parameters(), lr = learning_rate)
        
@@ -304,7 +282,7 @@ class RankNet:
             train_loss /= n
             train_acc /= n
 
-            print(valid_X1.size(), valid_X2.size())
+            # print(valid_X1.size(), valid_X2.size())
 
             with torch.no_grad():
                 valid_pred = self.model(valid_X1, valid_X2)
@@ -375,19 +353,30 @@ class RankNet:
 #               ("data/hybrid_bids/bids_500/valid/iter3", True)]
 
 
-train_dirs = [("data/hybrid_bids/bids_500/train/oracle", False),
-              ("data/hybrid_bids/bids_500/train/iter1", True),
-              ("data/hybrid_bids/bids_500/train/iter2", True)]
-valid_dirs = [("data/hybrid_bids/bids_500/valid/oracle", False),
-              ("data/hybrid_bids/bids_500/valid/iter1", True),
-              ("data/hybrid_bids/bids_500/valid/iter2", True)]
+train_dirs = [("data/mvc/data/train/oracle", False),
+              ("data/mvc/data/train/iter1", True),
+              ("data/mvc/data/train/iter2", True),
+              ("data/mvc/data/train/iter3", True)]
+              # ("data/hybrid_bids/bids_850/train/iter1", True)]
+              # ("data/hybrid_bids/bids_850/train/iter2", True),
+              # ("data/hybrid_bids/bids_850/train/iter3", True)]
+#               ("data/hybrid_bids/bids_500/train/iter2", True),
+#               ("data/hybrid_bids/bids_500/train/iter3", True)]
+valid_dirs = [("data/mvc/data/valid/oracle", False),
+              ("data/mvc/data/valid/iter1", True),
+              ("data/mvc/data/valid/iter2", True),
+              ("data/mvc/data/valid/iter3", True)]
+              # ("data/hybrid_bids/bids_850/valid/iter1", True)]
+              # ("data/hybrid_bids/bids_850/valid/iter2", True),
+              # ("data/hybrid_bids/bids_850/valid/iter3", True)]
+              # ("data/hybrid_bids/bids_500/valid/iter2", True),
+              # ("data/hybrid_bids/bids_500/valid/iter3", True)]
 
-test_dirs = [("data/hybrid_bids/bids_500/test/oracle", False),
-              ("data/hybrid_bids/bids_500/test/iter1", True),
-              ("data/hybrid_bids/bids_500/test/iter2", True)]
+test_dirs = [("data/mvc/data/test/oracle", False)]
+              # ("data/hybrid_bids/bids_500/test/iter1", True),
+              # ("data/hybrid_bids/bids_500/test/iter2", True)]
 
 
-m = RankNet("models/bids_500-test.pt", 26, "")
+m = RankNet("models/mvc/iter3/mvc_iter3.pt", 26, "")
 m.train(train_dirs, valid_dirs, test_dirs, 100, 32)
-
 # m.test(test_dirs)

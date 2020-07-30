@@ -153,14 +153,14 @@ int main(int argc, char** argv) {
       }
 
       if (output_path == "") {
-        std::cerr << "[ERROR]: Path to save solutions to must be specified."
+        std::cerr << "[ERROR]: Path to save trajectory data to must be specified."
                   << "\n\n";
         std::cerr << desc << std::endl;
         return EXIT_FAILURE;
       }
 
       /* Solve with oracle. */
-      if (!im.GetOracleTrajectories(problems_path, output_path)) {
+      if (!im.RunOracleSolve(problems_path, output_path)) {
         std::cerr << "[ERROR]: ImitationMILP encountered an error."
                   << "\n";
         return EXIT_FAILURE;
@@ -177,8 +177,8 @@ int main(int argc, char** argv) {
         return EXIT_FAILURE;
       }
 
-      if (output_path == "") {
-        std::cerr << "[ERROR]: Path to save solutions to must be specified."
+      if (is_train && output_path == "") {
+        std::cerr << "[ERROR]: Path to save trajectory data to must be specified in training mode."
                   << "\n\n";
         std::cerr << desc << std::endl;
         return EXIT_FAILURE;
@@ -192,13 +192,28 @@ int main(int argc, char** argv) {
       }
 
       /* Solve with model. */
-      if (!im.GetPolicyTrajectories(problems_path, output_path, model_path)) {
+      if (!im.RunPolicySolve(problems_path, output_path, model_path, is_train)) {
         std::cerr << "[ERROR]: ImitationMILP encountered an error."
                   << "\n";
         return EXIT_FAILURE;
       }
 
       return EXIT_SUCCESS;
+    } else if (mode == "default") {
+      /* DEFAULT SCIP MODE */
+      if (problems_path == "") {
+        std::cerr << "[ERROR]: Path to problems must be specified."
+                  << "\n\n";
+        std::cerr << desc << std::endl;
+        return EXIT_FAILURE;
+      }
+
+      /* Solve with default SCIP. */
+      if (!im.RunDefaultSCIPSolve(problems_path)) {
+        std::cerr << "[ERROR]: ImitationMILP encountered an error."
+                  << "\n";
+        return EXIT_FAILURE;
+      }
     } else {
       std::cerr << "[ERROR]: Unrecognized mode: " << mode << "." << "\n";
         return EXIT_FAILURE;

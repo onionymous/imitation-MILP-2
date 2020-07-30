@@ -52,6 +52,7 @@ bool ImitationMILP::Solve(const std::string& problem_file,
   SCIP_RETCODE retcode;
 
   retcode = CreateNewSCIP();
+
   if (retcode != SCIP_OKAY) {
     return false;
   }
@@ -68,7 +69,6 @@ bool ImitationMILP::Solve(const std::string& problem_file,
   PythonScorer* scorer = NULL;
   NodeselPolicy* nodesel = NULL;
 
-  // fix this later ur a dummy
   if (model_file != "") {
     feat = new Feat();
 
@@ -81,7 +81,7 @@ bool ImitationMILP::Solve(const std::string& problem_file,
 
     /* Create the node selector. */
     scorer = new PythonScorer(scip_, model, feat);
-    nodesel = new NodeselPolicy(scip_, scorer, NULL);
+    nodesel = new NodeselPolicy(scip_, NULL, scorer, NULL, false /* is_train */);
 
     /* Create the data collector. */
     dc = new FeatComputerCollector(scip_, feat);
@@ -90,7 +90,12 @@ bool ImitationMILP::Solve(const std::string& problem_file,
     /* Use node selector. */
     SCIP_CALL(SCIPincludeObjEventhdlr(scip_, eventhdlr_dc, FALSE));
     SCIP_CALL(SCIPincludeObjNodesel(scip_, nodesel, FALSE));
-  }
+  } 
+
+  // if (!time_limit) {
+  //   /* Set no time limit. */
+  //   SCIPsetRealParam(scip, "limits/time", 1e20);
+  // }
 
   /* Use eventhandler for primal integral. */
   eventhdlr_primalint = new EventhdlrPrimalInt(scip_, NULL);
@@ -228,7 +233,9 @@ bool ImitationMILP::ValidateDirectoryStructure(
                           problems_path /* input file */,
                           problem_solutions_dir.string() /* output solution */,
                           NULL /* use data collector */,
-                          NULL /* use node selector */, NULL);
+                          NULL /* use node selector */, 
+                          NULL /* oracle */,
+                          false /* time limit */);
       if (retcode != SCIP_OKAY) {
         success = false;
         break;
@@ -289,7 +296,7 @@ bool ImitationMILP::OracleSolve(const std::string& problems_path,
         scip_, data_file.string(), /* file to collect data */
         is_append /* append to existing file */, &oracle, feat,
         1.0 /* data collector random sampling rate */);
-    NodeselPolicy node_selector(scip_, &scorer, &dc);
+    NodeselPolicy node_selector(scip_, &oracle, &scorer, &dc, false /* is_train */);
 
     /* Solve current SCIP instance. */
     retcode = SolveSCIP(problem_name.string() /* problem name */,
@@ -319,7 +326,7 @@ bool ImitationMILP::OracleSolve(const std::string& problems_path,
 bool ImitationMILP::PolicySolve(const std::string& problems_path,
                                 const std::string& data_path, Feat* feat,
                                 RankNetModel* model, double dc_sample_rate,
-                                bool is_append) {
+                                bool is_append, bool is_train) {
   bool success = true;
   SCIP_RETCODE retcode;
 
@@ -352,9 +359,15 @@ bool ImitationMILP::PolicySolve(const std::string& problems_path,
 
     /* Create the node selector. */
     PythonScorer scorer(scip_, model, feat);
-    RankedPairsCollector dc(scip_, data_file.string(), is_append, &oracle, feat,
-                            dc_sample_rate);
-    NodeselPolicy node_selector(scip_, &scorer, &dc);
+
+    RankedPairsCollector *dc = NULL;
+
+    if (is_train) {
+      dc = new RankedPairsCollector(scip_, data_file.string(), is_append,
+                                    &oracle, feat, dc_sample_rate);
+    }
+    
+    NodeselPolicy node_selector(scip_, &oracle, &scorer, dc, is_train);
 
     /* Solve current SCIP instance. */
     retcode = SolveSCIP(problem_name.string() /* problem name */,
@@ -374,103 +387,105 @@ bool ImitationMILP::PolicySolve(const std::string& problems_path,
       FreeSCIP();
       return success;
     }
+
+    delete dc;
   }
 
   return success;
 }
 
-/** Train loop for model. */
-bool ImitationMILP::Train(const std::string& train_path_str,
-                          const std::string& valid_path_str,
-                          const std::string& model_path,
-                          const std::string& prev_model, int num_iters,
-                          int num_epochs, int batch_size) {
-  bool success = true;
+// /** Train loop for model. */
+// bool ImitationMILP::Train(const std::string& train_path_str,
+//                           const std::string& valid_path_str,
+//                           const std::string& model_path,
+//                           const std::string& prev_model, int num_iters,
+//                           int num_epochs, int batch_size) {
+//   bool success = true;
 
-  /* Validate train and validation directory structures and make sure the
-     problems have valid solutions. */
-  if (!ValidateDirectoryStructure(train_path_str) ||
-      !ValidateDirectoryStructure(valid_path_str)) {
-    return false;
-  }
+//   /* Validate train and validation directory structures and make sure the
+//      problems have valid solutions. */
+//   if (!ValidateDirectoryStructure(train_path_str) ||
+//       !ValidateDirectoryStructure(valid_path_str)) {
+//     return false;
+//   }
 
-  fs::path train_data_path = fs::path(train_path_str) / kDataDirName;
-  fs::path valid_data_path = fs::path(valid_path_str) / kDataDirName;
+//   fs::path train_data_path = fs::path(train_path_str) / kDataDirName;
+//   fs::path valid_data_path = fs::path(valid_path_str) / kDataDirName;
 
-  /* Setup training. */
-  /* Features to compute during training. */
-  Feat feat;
+//   /* Setup training. */
+//   /* Features to compute during training. */
+//   Feat feat;
 
-  /* Create the model. */
-  RankNetModel model(feat.GetNumFeatures(), model_path, prev_model);
-  success = model.Init(true /* is_gpu */);
-  if (!success) {
-    return success;
-  }
+//   /* Create the model. */
+//   RankNetModel model(feat.GetNumFeatures(), model_path, prev_model);
+//   success = model.Init(true /* is_gpu */);
+//   if (!success) {
+//     return success;
+//   }
 
-  /* If there was no previous model, train an initial model with the oracle
-     scorer as behavioral cloning. */
-  if (prev_model == "") {
-    std::cerr << "[INFO]: "
-              << "ImitationMILP: "
-              << "Previous model was not specified, training a new model and "
-                 "saving to file: "
-              << model_path << "\n";
+//   /* If there was no previous model, train an initial model with the oracle
+//      scorer as behavioral cloning. */
+//   if (prev_model == "") {
+//     std::cerr << "[INFO]: "
+//               << "ImitationMILP: "
+//               << "Previous model was not specified, training a new model and "
+//                  "saving to file: "
+//               << model_path << "\n";
 
-    /* Remove existing data if it exists. */
+//     /* Remove existing data if it exists. */
 
-    // if (fs::exists(data_dir) &&  fs::is_directory(data_dir)) {
-    //   fs::remove_all(data_dir);
-    // }
-    // fs::create_directory(data_dir);
+//     // if (fs::exists(data_dir) &&  fs::is_directory(data_dir)) {
+//     //   fs::remove_all(data_dir);
+//     // }
+//     // fs::create_directory(data_dir);
 
-    /* Collect initial data using oracle policy. */
-    if (!OracleSolve(train_path_str, train_data_path.string(), &feat,
-                     true /* aggregate data */) ||
-        !OracleSolve(valid_path_str, valid_data_path.string(), &feat, false)) {
-      return false;
-    }
+//     /* Collect initial data using oracle policy. */
+//     if (!OracleSolve(train_path_str, train_data_path.string(), &feat,
+//                      true /* aggregate data */) ||
+//         !OracleSolve(valid_path_str, valid_data_path.string(), &feat, false)) {
+//       return false;
+//     }
 
-    /* Train the initial model. */
+//     /* Train the initial model. */
 
-    success = model.Train(train_data_path.string(), valid_data_path.string(),
-                          num_epochs, batch_size);
+//     success = model.Train(train_data_path.string(), valid_data_path.string(),
+//                           num_epochs, batch_size);
 
-    if (!success) {
-      return success;
-    }
-  }
+//     if (!success) {
+//       return success;
+//     }
+//   }
 
-  /* Run the train loop for any number of iterations. */
-  std::cerr << "[INFO]: "
-            << "ImitationMILP: "
-            << "Running training loop for " << num_iters << " iterations."
-            << "\n";
-  for (int i = 0; (i < num_iters) && success; ++i) {
-    std::cerr << "[INFO]: "
-              << "Starting train iteration " << i << "\n";
+//   /* Run the train loop for any number of iterations. */
+//   std::cerr << "[INFO]: "
+//             << "ImitationMILP: "
+//             << "Running training loop for " << num_iters << " iterations."
+//             << "\n";
+//   for (int i = 0; (i < num_iters) && success; ++i) {
+//     std::cerr << "[INFO]: "
+//               << "Starting train iteration " << i << "\n";
 
-    /* Collect data using current trained model. */
-    if (!PolicySolve(train_path_str, train_data_path.string(), &feat, &model,
-                     1.0 /* sampling rate */, true /* aggregate data */) ||
-        !PolicySolve(valid_path_str, valid_data_path.string(), &feat, &model,
-                     1.0, false)) {
-      return false;
-    }
+//     /* Collect data using current trained model. */
+//     if (!PolicySolve(train_path_str, train_data_path.string(), &feat, &model,
+//                      1.0 /* sampling rate */, true /* aggregate data */) ||
+//         !PolicySolve(valid_path_str, valid_data_path.string(), &feat, &model,
+//                      1.0, false)) {
+//       return false;
+//     }
 
-    /* Train the next model. */
-    fs::path train_path = fs::path(train_path_str) / kDataDirName;
-    fs::path valid_path = fs::path(valid_path_str) / kDataDirName;
-    success = model.Train(train_path.string(), valid_path.string(), num_epochs,
-                          batch_size);
-  }
+//     /* Train the next model. */
+//     fs::path train_path = fs::path(train_path_str) / kDataDirName;
+//     fs::path valid_path = fs::path(valid_path_str) / kDataDirName;
+//     success = model.Train(train_path.string(), valid_path.string(), num_epochs,
+//                           batch_size);
+//   }
 
-  return success;
-}
+//   return success;
+// }
 
 /** Write oracle trajectories. */
-bool ImitationMILP::GetOracleTrajectories(const std::string& problems_path_str,
-                                          const std::string& data_path_str) {
+bool ImitationMILP::RunOracleSolve(const std::string& problems_path_str,
+                                   const std::string& data_path_str) {
   bool success = true;
 
   /* Validate train and validation directory structures and make sure the
@@ -486,7 +501,8 @@ bool ImitationMILP::GetOracleTrajectories(const std::string& problems_path_str,
     // fs::remove_all(data_dir);
     std::cerr << "[ERROR]: "
               << "ImitationMILP: "
-              << "Data output directory: " << data_dir << "not empty." << "\n";
+              << "Data output directory: " << data_dir << "exists already." 
+              << "\n";
     return false;
   }
 
@@ -511,9 +527,10 @@ bool ImitationMILP::GetOracleTrajectories(const std::string& problems_path_str,
 }
 
 /** Write trajectories from solving with a particular model/policy. */
-bool ImitationMILP::GetPolicyTrajectories(const std::string& problems_path_str,
-                                          const std::string& data_path_str,
-                                          const std::string& model_path_str) {
+bool ImitationMILP::RunPolicySolve(const std::string& problems_path_str,
+                                   const std::string& data_path_str,
+                                   const std::string& model_path_str,
+                                   bool is_train) {
   bool success = true;
 
   /* Validate train and validation directory structures and make sure the
@@ -522,23 +539,26 @@ bool ImitationMILP::GetPolicyTrajectories(const std::string& problems_path_str,
     return false;
   }
 
-  /* Remove existing data if it exists. */
-  fs::path data_dir = fs::path(data_path_str);
+  if (is_train) {
+    /* Remove existing data if it exists. */
+    fs::path data_dir = fs::path(data_path_str);
 
-  if (fs::exists(data_dir) && fs::is_directory(data_dir)) {
-    // fs::remove_all(data_dir);
-    std::cerr << "[ERROR]: "
-              << "ImitationMILP: "
-              << "Data output directory: " << data_dir << " not empty." << "\n";
-    return false;
-  }
+    if (fs::exists(data_dir) && fs::is_directory(data_dir)) {
+      // fs::remove_all(data_dir);
+      std::cerr << "[ERROR]: "
+                << "ImitationMILP: "
+                << "Data output directory: " << data_dir << " exists already." 
+                << "\n";
+      return false;
+    }
 
-  /* Create data directory, where each problem will save its data to a separate
-   * file in this directory. */
-  if (fs::create_directory(data_dir)) {
-    std::cout << "[INFO]: "
-              << "ImitationMILP: "
-              << "Writing trajectories to directory: " << data_dir << "\n";
+    /* Create data directory, where each problem will save its data to a separate
+     * file in this directory. */
+    if (fs::create_directory(data_dir)) {
+      std::cout << "[INFO]: "
+                << "ImitationMILP: "
+                << "Writing trajectories to directory: " << data_dir << "\n";
+    }
   }
 
   /* Check model exists. */
@@ -564,10 +584,69 @@ bool ImitationMILP::GetPolicyTrajectories(const std::string& problems_path_str,
     return success;
   }
 
-  /* Collect initial data using oracle policy. */
+  /* Collect data using model policy. */
   if (!PolicySolve(problems_path_str, data_path_str, &feat, &model,
-                   1.0 /* sampling rate */, false /* aggregate data */)) {
+                   1.0 /* sampling rate */, false /* aggregate data */,
+                   is_train)) {
     return false;
+  }
+
+  return success;
+}
+
+/** Batch solve with default SCIP. */
+bool ImitationMILP::RunDefaultSCIPSolve(const std::string& problems_path_str) {
+  bool success = true;
+
+  /* Validate train and validation directory structures and make sure the
+     problems have valid solutions. */
+  if (!ValidateDirectoryStructure(problems_path_str)) {
+    return false;
+  }
+
+  SCIP_RETCODE retcode;
+
+  fs::path path = fs::path(problems_path_str);
+  fs::path solutions_dir = path / kSolutionsDirName;
+
+  for (auto& problem : fs::directory_iterator(path)) {
+    /* not a valid problem file, skip. */
+    if (fs::extension(problem.path()) != ".lp") {
+      continue;
+    }
+
+    fs::path problem_name = problem.path().stem();
+    fs::path problem_solutions_dir = fs::path(solutions_dir) / problem_name;
+
+    retcode = CreateNewSCIP();
+    if (retcode != SCIP_OKAY) {
+      success = false;
+      break;
+    }
+
+    /* Create the oracle. */
+    Oracle oracle(scip_, problem_solutions_dir.string());
+    EventhdlrPrimalInt eventhdlr_primalint(scip_, &oracle);
+    SCIP_CALL(SCIPincludeObjEventhdlr(scip_, &eventhdlr_primalint, FALSE));
+
+    /* Solve current SCIP instance. */
+    retcode = SolveSCIP(problem_name.string() /* problem name */,
+                        problems_path_str /* problem input file */,
+                        std::string("") /* don't write solution to outfile */,
+                        NULL, NULL, NULL);
+    if (retcode != SCIP_OKAY) {
+      success = false;
+      break;
+    }
+
+    /* Clean up current SCIP instance. */
+    retcode = FreeSCIP();
+
+    /* If something went wrong, free current SCIP instance. */
+    if (!success) {
+      FreeSCIP();
+      return success;
+    }
   }
 
   return success;
@@ -599,7 +678,13 @@ SCIP_RETCODE ImitationMILP::SolveSCIP(const std::string& problem_name,
                                       const std::string& problem_dir,
                                       const std::string& output_dir,
                                       EventhdlrCollectData* eventhdlr,
-                                      NodeselPolicy* nodesel, Oracle* oracle) {
+                                      NodeselPolicy* nodesel, Oracle* oracle,
+                                      bool time_limit) {
+  /* Whether to limit solving time or not. */
+  if (!time_limit) {
+    SCIPsetRealParam(scip_, "limits/time", 1e20);
+  }
+
   /* Use eventhandler if specified. */
   if (eventhdlr) {
     SCIP_CALL(SCIPincludeObjEventhdlr(scip_, eventhdlr, FALSE));
