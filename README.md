@@ -84,18 +84,29 @@ m.train(train_dirs, valid_dirs, 100, 32)
 ### Running SCIP with the model
 Run with `model` as the mode flag:
 ```
-bin/imilp -M model -p [problems folder] -o [folder to save trajectories data] -m [model path]
+bin/imilp -M model -p [problems folder] -m [model path]
 ```
 
 The specified model should be a valid [TorchScript](https://pytorch.org/docs/stable/jit.html) model.
+
+### DAgger loop
+This process can be repeated in a loop; i.e. training a model with the initial oracle trajectories, then collecting data during the solving process, using the oracle model, then training another model with the new data collected, until the desired number of iterations of DAgger is completed.
+
+To collect trajectories while using the model, specify the `-t` or `--train` flag while using `model` as the mode flag and specify an output folder using the `-o` flag:
+```
+bin/imilp -t -M model -p [problems folder] -o [folder to save trajectories data] -m [model path]
+```
+
+The specified model should be a valid [TorchScript](https://pytorch.org/docs/stable/jit.html) model.
+
+
+This differs from running with the model in evaluation (i.e. not training) mode in the section above in that it collects the trajectory data during the solve process and saves it to the specified output folder. In addition, during the solving process, there is a small chance the node selection policy will not follow the model, but use the oracle instead. This is to diversify the data collected for training. Without the `-t` flag, the node selection policy will be based on the model only.
+
 
 Again, it is recommended to save the solving logs to extract statistics later on:
 ```
 bin/imilp -M model -p data/hybrid_bids/bids_500/test -o data/hybrid_bids/bids_500/test/iter1 -m models/bids_500-0.pt 2>&1 | tee bids_500_test_iter1.log
 ```
-
-### DAgger loop
-This process can be repeated in a loop; i.e. training a model with the initial oracle trajectories, then collecting data during the solving process, using the oracle model, then training another model with the new data collected, until the desired number of iterations of DAgger is completed.
 
 ## Utilities
 
